@@ -21,7 +21,7 @@ jQuery(function ($) {
     "use strict";
 
     $(window).on('scroll', function () {
-        if ($(this).scrollTop() > 6969691) { // Set position from top to add class
+        if ($(this).scrollTop() > 260) { // Set position from top to add class
             $('header').addClass('header-appear');
         }
         else {
