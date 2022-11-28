@@ -1,1 +1,83 @@
-<p>login works!</p>
+<div class="container">
+  <div class="row align-items-lg-center">
+    <!--Form area-->
+    <div class="col-lg-6 pr-lg-5">
+      <!--Header-->
+      <div class="heading-area">
+        <h6 class="sub-title main-color">Welcome back</h6>
+        <h2 class="title">Login as admin</h2>
+      </div>
+      <!--Form-->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="contact-form">
+        <!--Error message-->
+        <p>
+          <mat-error *ngIf="form.invalid && form.hasError('badLogin')">
+            <!--TODO-->
+            <strong>ERROR</strong>:
+            Either the <i>username</i> or <i>password</i> was incorrect.
+          </mat-error>
+        </p>
+        <!--Email-->
+        <mat-form-field>
+          <mat-label>Email:</mat-label>
+          <input matInput formControlName="email" required
+                 placeholder="Enter an email">
+          <mat-error *ngIf="form.get('email')!.errors">
+            Email is required
+          </mat-error>
+        </mat-form-field>
+        <!--Password-->
+        <mat-form-field>
+          <mat-label>Password:</mat-label>
+          <input matInput formControlName="password" required
+                 placeholder="Enter the password">
+          <mat-error *ngIf="form.get('password')!.errors">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+        <!--Submit/Cancel Buttons-->
+        <div>
+          <button mat-flat-button color="primary"
+                  type="submit"
+                  [disabled]="!form.valid">
+            Login
+          </button>
+          <button mat-flat-button color="secondary"
+                  [routerLink]="['']">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+      
+      <!--Contact Form-->
+      <form class="contact-form" id="contact-form-data">
+        <div id="result"></div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <input class="form-control" type="text" placeholder="Name" required="" id="your_name" name="userName">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <input class="form-control" type="email" placeholder="Email" required="" id="your_email" name="userEmail">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input class="form-control" type="text" placeholder="Subject" required="" id="your_subject" name="userSubject">
+        </div>
+
+        <div class="form-group">
+          <textarea class="form-control" placeholder="Message" id="message" name="userMessage"></textarea>
+        </div>
+
+        <!--Button-->
+        <a href="javascript:void(0);" id="submit_btn" class="contact_btn btn btn-large btn-rounded btn-blue d-block mt-4">Send Message</a>
+
+      </form>
