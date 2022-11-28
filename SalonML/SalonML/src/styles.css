@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('./app/shared/vendor/css/bundle.min.css');
+@import url('./app/shared/vendor/css/LineIcons.min.css');
+@import url('./app/shared/vendor/css/revolution-settings.min.css');
+@import url('./app/shared/vendor/css/jquery.fancybox.min.css');
+@import url('./app/shared/vendor/css/owl.carousel.min.css');
+@import url('./app/shared/vendor/css/cubeportfolio.min.css');
+@import url('./app/shared/resume/css/style.css');
