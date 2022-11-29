@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-resume-header',
   templateUrl: './resume-header.component.html',
-  styleUrls: []
+  styleUrls: ['./resume-header.component.css',
+    '../../../shared/resume/css/style.css']
 })
 export class ResumeHeaderComponent implements OnInit {
 

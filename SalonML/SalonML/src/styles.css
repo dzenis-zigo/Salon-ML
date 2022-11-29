@@ -4,7 +4,6 @@
 @import url('./app/shared/vendor/css/jquery.fancybox.min.css');
 @import url('./app/shared/vendor/css/owl.carousel.min.css');
 @import url('./app/shared/vendor/css/cubeportfolio.min.css');
-@import url('./app/shared/resume/css/style.css');
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
