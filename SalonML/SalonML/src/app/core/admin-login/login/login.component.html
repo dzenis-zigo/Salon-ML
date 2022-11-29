@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-top: 128px">
   <div class="row align-items-lg-center">
     <!--Form area-->
     <div class="col-lg-6 pr-lg-5">
@@ -18,32 +18,40 @@
           </mat-error>
         </p>
         <!--Email-->
-        <mat-form-field>
-          <mat-label>Email:</mat-label>
-          <input matInput formControlName="email" required
-                 placeholder="Enter an email">
-          <mat-error *ngIf="form.get('email')!.errors">
-            Email is required
-          </mat-error>
-        </mat-form-field>
+        <div class="col-lg-6">
+          <mat-form-field class="form-group">
+            <input matInput formControlName="email" required
+                   type="email"
+                   style="margin-bottom: 12px"
+                   placeholder="Enter an email">
+            <mat-error *ngIf="form.get('email')!.errors">
+              Email is required
+            </mat-error>
+          </mat-form-field>
+        </div>
         <!--Password-->
-        <mat-form-field>
-          <mat-label>Password:</mat-label>
-          <input matInput formControlName="password" required
-                 placeholder="Enter the password">
-          <mat-error *ngIf="form.get('password')!.errors">
-            Password is required
-          </mat-error>
-        </mat-form-field>
+        <div class="col-lg-6">
+          <mat-form-field>
+            <mat-label>Password:</mat-label>
+            <input matInput formControlName="password" required
+                   type="password"
+                   placeholder="Enter the password">
+            <mat-error *ngIf="form.get('password')!.errors">
+              Password is required
+            </mat-error>
+          </mat-form-field>
+        </div>
         <!--Submit/Cancel Buttons-->
-        <div>
-          <button mat-flat-button color="primary"
+        <div class="row align-items-lg-center">
+          <button color="primary"
                   type="submit"
-                  [disabled]="!form.valid">
+                  [disabled]="!form.valid"
+                  class="contact_btn btn btn-large btn-rounded btn-blue d-block mt-4">
             Login
           </button>
-          <button mat-flat-button color="secondary"
-                  [routerLink]="['']">
+          <button color="secondary"
+                  [routerLink]="['']"
+                  class="contact_btn btn btn-large btn-rounded btn-white d-block mt-4">
             Cancel
           </button>
         </div>
@@ -51,33 +59,3 @@
     </div>
   </div>
 </div>
-      
-      <!--Contact Form-->
-      <form class="contact-form" id="contact-form-data">
-        <div id="result"></div>
-
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="form-group">
-              <input class="form-control" type="text" placeholder="Name" required="" id="your_name" name="userName">
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="form-group">
-              <input class="form-control" type="email" placeholder="Email" required="" id="your_email" name="userEmail">
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <input class="form-control" type="text" placeholder="Subject" required="" id="your_subject" name="userSubject">
-        </div>
-
-        <div class="form-group">
-          <textarea class="form-control" placeholder="Message" id="message" name="userMessage"></textarea>
-        </div>
-
-        <!--Button-->
-        <a href="javascript:void(0);" id="submit_btn" class="contact_btn btn btn-large btn-rounded btn-blue d-block mt-4">Send Message</a>
-
-      </form>
