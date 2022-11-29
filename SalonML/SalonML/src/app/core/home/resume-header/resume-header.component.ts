@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-resume-header',
   templateUrl: './resume-header.component.html',
-  styleUrls: ['./resume-header.component.css',
-    '../../../shared/resume/css/style.css']
+    styleUrls: [
+        '../../../shared/resume/css/style.css',
+        './resume-header.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ResumeHeaderComponent implements OnInit {
 
