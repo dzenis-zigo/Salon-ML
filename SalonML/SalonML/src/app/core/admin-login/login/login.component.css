@@ -1,0 +1,9 @@
+button:disabled.btn-disabled {
+  background-color: grey;
+  border-color: gray;
+  pointer-events: none;
+}
+
+a:hover {
+    color: black;
+}

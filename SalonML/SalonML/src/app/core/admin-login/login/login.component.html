@@ -1,14 +1,14 @@
-<div class="container" style="margin-top: 128px">
-  <div class="row align-items-lg-center">
+<div style="padding-top: 128px;">
+  <div>
     <!--Form area-->
-    <div class="col-lg-6 pr-lg-5">
+    <div>
       <!--Header-->
-      <div class="heading-area">
+      <div style="text-align: center;">
         <h6 class="sub-title main-color">Welcome back</h6>
         <h2 class="title">Login as admin</h2>
       </div>
       <!--Form-->
-      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="contact-form">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <!--Error message-->
         <p>
           <mat-error *ngIf="form.invalid && form.hasError('badLogin')">
@@ -18,19 +18,18 @@
           </mat-error>
         </p>
         <!--Email-->
-        <div class="col-lg-6">
-          <mat-form-field class="form-group">
+        <div style="text-align: center; padding-top: 24px">
+          <mat-form-field>
             <input matInput formControlName="email" required
                    type="email"
-                   style="margin-bottom: 12px"
-                   placeholder="Enter an email">
+                   placeholder="Email:">
             <mat-error *ngIf="form.get('email')!.errors">
               Email is required
             </mat-error>
           </mat-form-field>
         </div>
         <!--Password-->
-        <div class="col-lg-6">
+        <div style="text-align: center;">
           <mat-form-field>
             <mat-label>Password:</mat-label>
             <input matInput formControlName="password" required
@@ -42,11 +41,11 @@
           </mat-form-field>
         </div>
         <!--Submit/Cancel Buttons-->
-        <div class="row align-items-lg-center">
+        <div style="display: flex; align-items: center; justify-content: center; ">
           <button color="primary"
                   type="submit"
                   [disabled]="!form.valid"
-                  class="contact_btn btn btn-large btn-rounded btn-blue d-block mt-4">
+                  class="contact_btn btn btn-large btn-rounded btn-blue d-block mt-4 btn-disabled">
             Login
           </button>
           <button color="secondary"
@@ -56,6 +55,9 @@
           </button>
         </div>
       </form>
+    </div>
+    <div style="text-align: center; padding-top: 48px;">
+      <a [routerLink]="['forgot-password']">Click here if you forgot your password</a>
     </div>
   </div>
 </div>
