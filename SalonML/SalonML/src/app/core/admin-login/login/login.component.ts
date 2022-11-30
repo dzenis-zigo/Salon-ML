@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService, LoginRequest } from '../../auth/auth.service';
 
 
 
@@ -10,9 +12,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
     '../../../shared/resume/css/style.css']
 })
 export class LoginComponent implements OnInit {
-  form!: FormGroup;
+    form!: FormGroup;
+    failedLogin: boolean = false;
 
-  constructor() { }
+    constructor(private authService: AuthService,
+      private router: Router) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -27,6 +31,19 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    //todo
+      var loginRequest = <LoginRequest>{};
+      loginRequest.email = this.form.controls['email'].value;
+      loginRequest.password = this.form.controls['password'].value;
+
+      this.failedLogin = false;
+
+      this.authService.login(loginRequest)
+          .subscribe(result => {
+              if (result.success)
+                  this.router.navigate(["/"]);
+          }, error => {
+              this.failedLogin = true;
+              this.form.controls['password'].reset();
+          });
   }
 }

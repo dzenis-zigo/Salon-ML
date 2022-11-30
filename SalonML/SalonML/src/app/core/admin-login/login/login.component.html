@@ -18,6 +18,7 @@
           </mat-error>
         </p>
         <!--Email-->
+        <!--TODO browser save password prompt happens for cancel button and not submit button-->
         <div style="text-align: center; padding-top: 24px">
           <mat-form-field>
             <input matInput formControlName="email" required
@@ -40,6 +41,12 @@
             </mat-error>
           </mat-form-field>
         </div>
+        <!--Failed login message-->
+        <!--TODO maybe improve the message styling-->
+        <h6 class="sub-title" style="color: red; text-align: center; margin-bottom: 0px; margin-top: 18px;"
+            *ngIf="failedLogin && !form.get('password')!.dirty">
+          The email or password was incorrect
+        </h6>
         <!--Submit/Cancel Buttons-->
         <div style="display: flex; align-items: center; justify-content: center; ">
           <button color="primary"
