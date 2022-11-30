@@ -3,7 +3,3 @@ button:disabled.btn-disabled {
   border-color: gray;
   pointer-events: none;
 }
-
-a:hover {
-    color: black;
-}
