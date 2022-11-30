@@ -7,10 +7,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { AngularMaterialModule } from '../angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule
   ],
   exports: [
-    LoginComponent
+    LoginComponent,
+    ForgotPasswordComponent
   ]
 })
 export class AdminLoginModule { }
