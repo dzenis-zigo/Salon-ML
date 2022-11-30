@@ -9,14 +9,6 @@
       </div>
       <!--Form-->
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <!--Error message-->
-        <p>
-          <mat-error *ngIf="form.invalid && form.hasError('badLogin')">
-            <!--TODO-->
-            <strong>ERROR</strong>:
-            Either the <i>username</i> or <i>password</i> was incorrect.
-          </mat-error>
-        </p>
         <!--Email-->
         <!--TODO browser save password prompt happens for cancel button and not submit button-->
         <div style="text-align: center; padding-top: 24px">
