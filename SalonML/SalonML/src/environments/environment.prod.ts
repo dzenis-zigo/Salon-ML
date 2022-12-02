@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    baseUrl: "https://changeme.todo"
+    baseUrl: "https://api-frizerski-salon-ml.azurewebsites.net/"
 };
