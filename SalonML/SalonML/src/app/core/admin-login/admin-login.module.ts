@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,6 +28,7 @@ import { NewPasswordComponent } from './new-password/new-password.component';
     LoginComponent,
     ForgotPasswordComponent,
     NewPasswordComponent
-  ]
+  ],
+  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }]
 })
 export class AdminLoginModule { }
