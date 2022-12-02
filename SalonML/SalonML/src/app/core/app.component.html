@@ -15,7 +15,8 @@
   <!--Navigation-->
   <nav class="navbar navbar-top-default navbar-expand-lg navbar-simple nav-line">
     <div class="container">
-      <a [routerLink]="['/login']" title="Logo" class="logo scroll">
+      <!--todo maybe scroll to top when Logo is clicked-->
+      <a [routerLink]="['']" title="Logo" class="logo scroll">
         <!--Logo Default-->
         <img src="/assets/resume/img/logo.png" alt="logo" class="logo-dark">
       </a>
@@ -27,6 +28,7 @@
 
 <router-outlet></router-outlet>
 
+<!--
 <table *ngIf="forecasts">
   <thead>
     <tr>
@@ -45,3 +47,4 @@
     </tr>
   </tbody>
 </table>
+ -->
