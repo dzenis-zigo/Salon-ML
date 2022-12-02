@@ -29,7 +29,8 @@ namespace SalonML_API.Controllers
         [HttpGet]
         public async Task<IActionResult> ImportLoremIpsum()
         {
-            throw new NotImplementedException();
+            return Ok(((IConfigurationRoot)_configuration).GetDebugView());
+            //throw new NotImplementedException();
         }
 
         [HttpGet]
