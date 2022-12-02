@@ -47,7 +47,7 @@ namespace SalonML_API.Services
             };
 
             request.Headers.Add("Accept", "application/json");
-            request.Headers.Add("api-key", _config["SendInBlue:API_Key"]);
+            request.Headers.Add("api-key", _config["SendInBlue:APIKey"]);
 
             var httpClient = _httpClientFactory.CreateClient();
 

@@ -3,8 +3,17 @@ using Microsoft.EntityFrameworkCore;
 using SalonML_API.Data;
 using SalonML_API.Data.Models;
 using SalonML_API.Services;
+using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// add azure key vault
+if (builder.Environment.IsProduction())
+{
+    builder.Configuration.AddAzureKeyVault(
+        new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
+        new DefaultAzureCredential());
+}
 
 builder.Services.AddHttpClient();
 
