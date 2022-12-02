@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { ResumeHeaderComponent } from './resume-header/resume-header.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { ResumeHeaderComponent } from './resume-header/resume-header.component';
     ResumeHeaderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AppRoutingModule
   ],
   exports: [
     HomeComponent
