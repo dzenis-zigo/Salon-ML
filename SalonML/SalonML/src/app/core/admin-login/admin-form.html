@@ -4,8 +4,8 @@
     <div>
       <!--Header-->
       <div style="text-align: center;">
-        <h6 class="sub-title main-color">Welcome back</h6>
-        <h2 class="title">Login as admin</h2>
+        <h6 class="sub-title main-color">{{subTitle}}</h6>
+        <h2 class="title">{{title}}</h2>
       </div>
       <!--Form-->
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -13,30 +13,30 @@
         <!--TODO browser save password prompt happens for cancel button and not submit button-->
         <div style="text-align: center; padding-top: 24px">
           <mat-form-field>
-            <input matInput formControlName="email" required
-                   type="email"
-                   placeholder="Email:">
-            <mat-error *ngIf="form.get('email')!.errors">
-              Email is required
+            <input matInput [formControlName]="firstFormControlName" required
+                   [type]="firstFormControlName"
+                   [placeholder]="firstPlaceholder">
+            <mat-error *ngIf="form.get(firstFormControlName)!.errors">
+              {{firstErrorMessage}}
             </mat-error>
           </mat-form-field>
         </div>
         <!--Password-->
-        <div style="text-align: center;">
+        <div style="text-align: center;" *ngIf="secondFormControlName">
           <mat-form-field>
-            <input matInput formControlName="password" required
-                   type="password"
-                   placeholder="Enter the password">
-            <mat-error *ngIf="form.get('password')!.errors">
-              Password is required
+            <input matInput [formControlName]="secondFormControlName" required
+                   [type]="secondFormControlName"
+                   [placeholder]="secondPlaceholder">
+            <mat-error *ngIf="form.get(secondFormControlName)!.errors">
+              {{secondErrorMessage}}
             </mat-error>
           </mat-form-field>
         </div>
         <!--Failed login message-->
         <!--TODO maybe improve the message styling-->
         <h6 class="sub-title" style="color: red; text-align: center; margin-bottom: 0px; margin-top: 18px;"
-            *ngIf="failedLogin && !form.get('password')!.dirty">
-          The email or password was incorrect
+            *ngIf="failedRequest && (!form.get(firstFormControlName)!.dirty || !form.get(secondFormControlName)?.dirty)">
+          {{mainErrorMessage}}
         </h6>
         <!--Submit/Cancel Buttons-->
         <div style="display: flex; align-items: center; justify-content: center; ">
@@ -44,7 +44,7 @@
                   type="submit"
                   [disabled]="!form.valid"
                   class="contact_btn btn btn-large btn-rounded btn-blue d-block mt-4 btn-disabled">
-            Login
+            {{primaryButtonText}}
           </button>
           <button color="secondary"
                   [routerLink]="['']"
@@ -54,7 +54,8 @@
         </div>
       </form>
     </div>
-    <div style="text-align: center; padding-top: 48px;">
+    <div *ngIf="primaryButtonText == 'Login'"
+         style="text-align: center; padding-top: 48px;">
       <a [routerLink]="['/forgot-password']">Click here if you forgot your password</a>
     </div>
   </div>

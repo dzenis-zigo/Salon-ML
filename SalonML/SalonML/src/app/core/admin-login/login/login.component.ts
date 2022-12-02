@@ -2,20 +2,36 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, LoginRequest } from '../../auth/auth.service';
-
-
+import { AdminForm } from '../admin-form';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
+  templateUrl: '../admin-form.html',
   styleUrls: ['./login.component.css',
     '../../../shared/resume/css/style.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AdminForm {
     form!: FormGroup;
-    failedLogin: boolean = false;
+    failedRequest: boolean = false;
 
-    constructor(private authService: AuthService,
+    // AdminForm variables
+    subTitle = "Welcome back";
+    title = "Login as admin";
+
+    firstFormControlName = "email" as const;
+    firstPlaceholder = "Email";
+    firstErrorMessage = "Email is required";
+
+    secondFormControlName = "password" as const;
+    secondPlaceholder = "Password";
+    secondErrorMessage = "Password is required";
+
+    mainErrorMessage = "The email or password was incorrect";
+    primaryButtonText = "Login";
+
+
+    constructor(
+      private authService: AuthService,
       private router: Router) {}
 
   ngOnInit(): void {
@@ -40,7 +56,7 @@ export class LoginComponent implements OnInit {
               if (result.success)
                   this.router.navigate(["/"]);
           }, error => {
-              this.failedLogin = true;
+              this.failedRequest = true;
               this.form.controls['password'].reset();
           });
   }
