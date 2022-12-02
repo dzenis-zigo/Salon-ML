@@ -42,10 +42,17 @@ namespace SalonML_API.Controllers
             if (await _roleManager.FindByNameAsync(role_Administrator) == null)
                 await _roleManager.CreateAsync(new IdentityRole(role_Administrator));
 
+            // access Admin emails one by one because couldn't store array of secrets in Azure Key Vault
+            IEnumerable<string> emails = new List<string>() {
+                _configuration["DefaultUsers:DefaultEmailOne"],
+                _configuration["DefaultUsers:DefaultEmailTwo"],
+                _configuration["DefaultUsers:DefaultEmailThree"],
+            };
+
             // create list to return newly added users
             var addedUserList = new List<ApplicationUser>();
 
-            foreach (string email in _configuration.GetSection("DefaultUsers:DefaultEmails").Get<string[]>())
+            foreach (string email in emails)
             {
                 if (await _userManager.FindByNameAsync(email) == null)
                 {
