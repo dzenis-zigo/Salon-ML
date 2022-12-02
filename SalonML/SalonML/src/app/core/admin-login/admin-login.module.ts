@@ -8,11 +8,13 @@ import { AppRoutingModule } from '../app-routing.module';
 import { AngularMaterialModule } from '../angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { NewPasswordComponent } from './new-password/new-password.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    NewPasswordComponent
   ],
   imports: [
     CommonModule,
