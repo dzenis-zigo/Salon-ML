@@ -8,7 +8,7 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: SalonML_API\publish
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 6.0.x
-  WORKING_DIRECTORY: SalonML_API
+  WORKING_DIRECTORY: SalonML/SalonML_API
 jobs:
   build:
     runs-on: windows-latest
@@ -44,5 +44,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.api_frizerski_salon_ml_42E2 }}
+        publish-profile: ${{ secrets.api_frizerski_salon_ml_74CC }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
