@@ -5,6 +5,9 @@ namespace SalonML_API.Data
     // TODO suffix all these with DTO?
     public class NewPasswordRequest
     {
+        [Required(ErrorMessage = "UserId is required.")]
+        public string UserId { get; set; } = null!;
+
         [Required(ErrorMessage = "Token is required.")]
         public string Token { get; set; } = null!;
 

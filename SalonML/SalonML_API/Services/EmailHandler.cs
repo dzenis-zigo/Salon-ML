@@ -1,5 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Web;
 
 namespace SalonML_API.Services
 {
@@ -16,9 +18,10 @@ namespace SalonML_API.Services
             _config = configuration;
         }
 
-        public async void SendPasswordResetLink(string email, string token)
+        public async void SendPasswordResetLink(string email, string userId, string token)
         {
-            var resetUrl = _config["AppUrl"] + "new-password/" + token;
+            // Url Encode the token because it has slashes - slashes mess with the angular routing
+            var resetUrl = _config["AppUrl"] + "new-password/" + userId + "/" + HttpUtility.UrlEncode(token);
             var resetLinkText = "Please follow this link to reset your password";
             var requestContent = $@"{{  
                 ""sender"":

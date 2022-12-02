@@ -12,7 +12,6 @@ import { AdminForm } from '../admin-form';
 })
 export class LoginComponent implements OnInit, AdminForm {
     form!: FormGroup;
-    failedRequest: boolean = false;
 
     // AdminForm variables
     subTitle = "Welcome back";
@@ -28,6 +27,7 @@ export class LoginComponent implements OnInit, AdminForm {
 
     mainErrorMessage = "The email or password was incorrect";
     primaryButtonText = "Login";
+    failedRequest: boolean = false;
 
 
     constructor(

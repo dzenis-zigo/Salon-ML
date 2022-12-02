@@ -26,7 +26,8 @@ import { NewPasswordComponent } from './new-password/new-password.component';
   ],
   exports: [
     LoginComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    NewPasswordComponent
   ]
 })
 export class AdminLoginModule { }

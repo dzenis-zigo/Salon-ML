@@ -8,8 +8,8 @@ import { HomeComponent } from './home/home/home.component';
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
-    { path: 'forgot-password', component: ForgotPasswordComponent }
-    { path: 'new-password/:token', component: NewPasswordComponent }
+    { path: 'forgot-password', component: ForgotPasswordComponent },
+    { path: 'new-password/:userId/:token', component: NewPasswordComponent }
 ];
 
 @NgModule({

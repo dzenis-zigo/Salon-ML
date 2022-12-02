@@ -45,9 +45,7 @@ namespace SalonML_API.Controllers
                 });
 
             // create and return a token
-            var secToken = await CreateTokenAsync(user);
-
-            var jwt = new JwtSecurityTokenHandler().WriteToken(secToken);
+            var jwt = await GenerateTokenAsync(user);
 
             return Ok(new LoginResult()
             {
@@ -66,7 +64,7 @@ namespace SalonML_API.Controllers
                 return Ok(); // don't return more info in order to prevent email enumeration
 
             // TODO change expiration time
-            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user); // token is crazy long
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user); // token is crazy long
 
             /* TODO deleteme
             // create token in DB
@@ -82,7 +80,7 @@ namespace SalonML_API.Controllers
             */
 
             // fire and forget to lower server response time (and prevent timing attacks)
-            _emailHandler.SendPasswordResetLink(forgotPasswordRequest.Email, token);
+            _emailHandler.SendPasswordResetLink(forgotPasswordRequest.Email, user.Id, token);
 
             return Ok();
         }
@@ -90,10 +88,16 @@ namespace SalonML_API.Controllers
         [HttpPost]
         public async Task<IActionResult> NewPassword(NewPasswordRequest newPasswordRequest)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByIdAsync(newPasswordRequest.UserId);
+
+            var result = await _userManager.ResetPasswordAsync(user, 
+                newPasswordRequest.Token, 
+                newPasswordRequest.Password);
+
+            return Ok();
         }
 
-        private async Task<JwtSecurityToken> CreateTokenAsync(ApplicationUser user)
+        private async Task<string> GenerateTokenAsync(ApplicationUser user)
         {
             var jwtOptions = new JwtSecurityToken(
                 issuer: _config["JwtSettings:Issuer"], //TODO verify iss and aud was done correctly
@@ -104,7 +108,9 @@ namespace SalonML_API.Controllers
                 signingCredentials: GetSigningCredentials()
             );
 
-            return jwtOptions;
+            var jwt = new JwtSecurityTokenHandler().WriteToken(jwtOptions);
+
+            return jwt;
         }
 
         private async Task<List<Claim>> GetClaimsAsync(ApplicationUser user)
