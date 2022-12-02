@@ -25,7 +25,6 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-    providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

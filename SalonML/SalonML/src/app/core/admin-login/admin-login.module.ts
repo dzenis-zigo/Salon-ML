@@ -28,7 +28,6 @@ import { NewPasswordComponent } from './new-password/new-password.component';
     LoginComponent,
     ForgotPasswordComponent,
     NewPasswordComponent
-  ],
-  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }]
+  ]
 })
 export class AdminLoginModule { }

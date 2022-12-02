@@ -13,7 +13,6 @@ import { ResumeHeaderComponent } from './resume-header/resume-header.component';
   ],
   exports: [
     HomeComponent
-  ],
-  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }]
+  ]
 })
 export class HomeModule { }
