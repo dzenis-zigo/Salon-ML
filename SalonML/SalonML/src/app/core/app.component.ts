@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public forecasts?: WeatherForecast[];
 
-  constructor(http: HttpClient) {
-    http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
+    constructor(http: HttpClient) {
+      var url = environment.baseUrl + '/weatherforecast';
+
+      http.get<WeatherForecast[]>(url).subscribe(result => {
       this.forecasts = result;
     }, error => console.error(error));
   }
