@@ -1,0 +1,20 @@
+.american-flag {
+  background: url("/assets/custom/american-flag-wavy-small.jpg") no-repeat !important;
+}
+
+.bosnian-flag {
+  background: url("/assets/custom/bosnian-flag-wavy-small.jpg") no-repeat !important;
+}
+
+.btn-flag {
+  background-size: 150px !important;
+  background-position: center;
+  width: 140px !important;
+  height: 50px;
+  margin: 12px;
+  border-radius: 30px;
+}
+
+.btn-flag:hover {
+  transform: scale(1.1);
+}
