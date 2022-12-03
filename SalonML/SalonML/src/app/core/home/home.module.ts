@@ -6,12 +6,14 @@ import { AppRoutingModule } from '../app-routing.module';
 import { ResumeContactUsComponent } from './resume-contact-us/resume-contact-us.component';
 import { FormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material.module';
+import { BluePipe } from './blue.pipe';
 
 @NgModule({
   declarations: [
     HomeComponent,
     ResumeHeaderComponent,
-    ResumeContactUsComponent
+    ResumeContactUsComponent,
+    BluePipe
   ],
   imports: [
     CommonModule,
