@@ -1,0 +1,31 @@
+.mb-4 {
+  margin-bottom: 0 !important;
+}
+
+.pr-2 {
+  margin-top: 1.5rem;
+}
+
+.phone-item {
+  margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .address-item {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .address-item {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .address-item {
+    display: inline-block;
+  }
+}
