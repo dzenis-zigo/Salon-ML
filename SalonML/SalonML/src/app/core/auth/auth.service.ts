@@ -26,7 +26,12 @@ export class AuthService {
                     console.log(loginResult.token); //todo delete
                 }
             }));
-    }
+  }
+
+  logout() {
+    localStorage.removeItem(this.tokenKey);
+    this.isLoggedIn = false; // probably don't need this (todo)
+  }
 }
 
 export interface LoginRequest {

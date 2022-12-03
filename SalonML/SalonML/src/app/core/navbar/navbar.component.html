@@ -7,6 +7,11 @@
         <!--Logo Default-->
         <img src="/assets/resume/img/logo.png" alt="logo" class="logo-dark">
       </a>
+      <a (click)="logout()"
+         *ngIf="isAdmin"
+         style="cursor: pointer;">
+        <h4>Logout</h4>
+      </a>
     </div>
   </nav>
 </header>

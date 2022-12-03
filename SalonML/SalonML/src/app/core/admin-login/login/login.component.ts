@@ -54,7 +54,9 @@ export class LoginComponent implements OnInit, AdminForm {
       this.authService.login(loginRequest)
           .subscribe(result => {
               if (result.success)
-                  this.router.navigate(["/"]);
+                this.router.navigate(["/"]).then(() => {
+                  window.location.reload();
+                });;
           }, error => {
               this.failedRequest = true;
               this.form.controls['password'].reset();
