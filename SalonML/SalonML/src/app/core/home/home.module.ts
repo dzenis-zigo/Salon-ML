@@ -4,6 +4,8 @@ import { HomeComponent } from './home/home.component';
 import { ResumeHeaderComponent } from './resume-header/resume-header.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { ResumeContactUsComponent } from './resume-contact-us/resume-contact-us.component';
+import { FormsModule } from '@angular/forms';
+import { AngularMaterialModule } from '../angular-material.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { ResumeContactUsComponent } from './resume-contact-us/resume-contact-us.
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    AngularMaterialModule
   ],
   exports: [
     HomeComponent

@@ -2,12 +2,22 @@
 
 <!--Header Start-->
 <section id="home" class="home-banner">
+  <!--<h2 class="adminComponentId">resume-header</h2>-->
   <div class="container">
     <div class="row align-items-lg-center">
       <div class="col-lg-7">
         <!-- Box Area -->
         <div class="heading-box">
-          <h2>Walker<span class="main-color">son</span> Hardin</h2>
+          <h2 *ngIf="!isAdmin || !isEditingTitle"
+              (click)="isEditingTitle = true;">
+            Walker<span class="main-color">son</span> Hardin
+          </h2>
+          <mat-form-field *ngIf="isAdmin && isEditingTitle">
+            <input matInput
+                   (focusout) = "isEditingTitle = false;"
+                   [(ngModel)]="title"
+                   placeholder="title"/>
+          </mat-form-field>
           <p>
             There are many variations of passages of Lorem Ipsum is at the available,
             but the majority have <span class="main-color">suffered</span> alteration some form,
@@ -17,7 +27,7 @@
           </button>
           <button href="javascript:void(0);" class="btn-large btn-rounded btn-transparent-black mt-2 btn-flag bosnian-flag">
           </button>
-        </div>
+</div>
       </div>
 
       <div class="col-lg-5">
