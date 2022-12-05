@@ -24,6 +24,12 @@
   display: block;
 }
 
+@media screen and (max-width: 992px) {
+  .large-input {
+    margin: auto;
+  }
+}
+
 @media screen and (min-width: 450px) {
   .large-input {
     width: 400px;
