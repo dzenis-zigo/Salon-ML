@@ -6,7 +6,8 @@ import { NewPasswordComponent } from './admin-login/new-password/new-password.co
 import { HomeComponent } from './home/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+    { path: '', component: HomeComponent, pathMatch: 'full' },
+    { path: 'admin-test', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: 'new-password/:userId/:token', component: NewPasswordComponent }

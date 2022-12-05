@@ -7,13 +7,15 @@ import { ResumeContactUsComponent } from './resume-contact-us/resume-contact-us.
 import { FormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material.module';
 import { BluePipe } from './blue.pipe';
+import { AutoFocusDirective } from './autofocus.directive';
 
 @NgModule({
   declarations: [
     HomeComponent,
     ResumeHeaderComponent,
     ResumeContactUsComponent,
-    BluePipe
+    BluePipe,
+    AutoFocusDirective
   ],
   imports: [
     CommonModule,

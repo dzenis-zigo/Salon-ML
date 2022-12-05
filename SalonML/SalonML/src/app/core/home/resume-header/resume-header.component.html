@@ -13,20 +13,28 @@
               [innerHtml]="title.value | blue">
           </h2>
           <mat-form-field *ngIf="isAdmin && title.isEditing">
-            <input matInput
+            <input matInput autoFocus
                    (focusout)="saveChanges(title)"
                    [(ngModel)]="title.value"
-                   placeholder="title" />
+                   placeholder="title"/>
           </mat-form-field>
           <!-- Description -->
-          <p>
-            There are many variations of passages of Lorem Ipsum is at the available,
-            but the majority have <span class="main-color">suffered</span> alteration some form,
-            by injected humour randomised words at the available.
+          <p *ngIf="!isAdmin || !description.isEditing"
+             (click)="setIsEditingTrue(description)"
+             [innerHtml]="description.value | blue">
           </p>
-          <button href="javascript:void(0);" class="btn-large btn-rounded btn-transparent-black mt-2 btn-flag american-flag">
+          <mat-form-field *ngIf="isAdmin && description.isEditing" 
+                          class="large-input">
+            <textarea matInput autoFocus
+                      cdkTextareaAutosize 
+                      (focusout)="saveChanges(description)"
+                      [(ngModel)]="description.value"
+                      placeholder="description"></textarea>
+          </mat-form-field>
+          <!--Localization Buttons-->
+          <button (click)="setLocalization('en')" class="btn-large btn-rounded btn-transparent-black mt-2 btn-flag american-flag">
           </button>
-          <button href="javascript:void(0);" class="btn-large btn-rounded btn-transparent-black mt-2 btn-flag bosnian-flag">
+          <button (click)="setLocalization('bih')" class="btn-large btn-rounded btn-transparent-black mt-2 btn-flag bosnian-flag">
           </button>
         </div>
       </div>

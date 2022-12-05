@@ -7,13 +7,17 @@ import { environment } from '../../../environments/environment';
     providedIn: 'root',
 })
 export class AuthService {
-    private tokenKey: string = "token";
+  private tokenKey: string = "token";
+  private testAdminToken: string = "test-admin-jwt";
 
     public isLoggedIn: boolean = false;
+    public isTestAdmin: boolean = false;
 
-    constructor(private http: HttpClient) {
-        this.isLoggedIn = localStorage.getItem(this.tokenKey) !== null;
-    }
+  constructor(private http: HttpClient) {
+    var token = localStorage.getItem(this.tokenKey);
+    this.isLoggedIn = (token !== null);
+    this.isTestAdmin = (token === this.testAdminToken);
+  }
 
     login(item: LoginRequest): Observable<LoginResult> {
         var url = environment.baseUrl + "api/Account/Login";
@@ -31,6 +35,13 @@ export class AuthService {
   logout() {
     localStorage.removeItem(this.tokenKey);
     this.isLoggedIn = false; // probably don't need this (todo)
+    this.isTestAdmin = false; // idk if need this
+  }
+
+  loginTestAdmin() {
+    this.isLoggedIn = true;
+    this.isTestAdmin = true;
+    localStorage.setItem(this.tokenKey, this.testAdminToken);
   }
 }
 
@@ -43,3 +54,5 @@ export interface LoginResult {
   success: boolean;
   token?: string;
 }
+
+//todo handle token expiration
