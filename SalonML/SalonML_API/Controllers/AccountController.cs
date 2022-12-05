@@ -4,7 +4,6 @@ using Microsoft.IdentityModel.Tokens;
 using SalonML_API.Data;
 using SalonML_API.Data.Models;
 using SalonML_API.Services;
-using System.Diagnostics.Metrics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -117,7 +116,7 @@ namespace SalonML_API.Controllers
         {
             var claims = new List<Claim>();
 
-            // todo check if Name: <Email> is required claim
+            claims.Add(new Claim(ClaimTypes.Email, user.Email));
 
             foreach (var role in await _userManager.GetRolesAsync(user))
                 claims.Add(new Claim(ClaimTypes.Role, role));
