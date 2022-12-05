@@ -7,9 +7,6 @@ namespace SalonML_API.Data
         [Required(ErrorMessage = "Id is required.")]
         public string Id { get; set; } = null!;
 
-        [Required(ErrorMessage = "Type is required.")]
-        public string Type { get; set; } = null!;
-
         [Required(ErrorMessage = "English localization is required.")]
         public string EnglishLocalization { get; set; } = null!;
 

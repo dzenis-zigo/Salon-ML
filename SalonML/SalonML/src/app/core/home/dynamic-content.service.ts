@@ -100,7 +100,6 @@ interface DynamicContentItem {
 
 interface DynamicContentDTO {
   id: string;
-  type: string;
   englishLocalization: string;
   bosnianLocalization: string;
 }
