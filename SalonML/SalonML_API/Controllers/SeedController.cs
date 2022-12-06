@@ -56,15 +56,15 @@ namespace SalonML_API.Controllers
             defaultDynamicContent.Add(new DynamicContent()
             {
                 Name = "resume-header-title",
-                EnglishLocalization = LoremIpsumShortText + " (English)",
-                BosnianLocalization = LoremIpsumShortText + " (Bosnian)"
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)"
             });
 
             defaultDynamicContent.Add(new DynamicContent()
             {
                 Name = "resume-header-description",
-                EnglishLocalization = LoremIpsumLongText + " (English)",
-                BosnianLocalization = LoremIpsumLongText + " (Bosnian)"
+                TextEnglish = LoremIpsumLongText + " (English)",
+                TextBosnian = LoremIpsumLongText + " (Bosnian)"
             });
 
             foreach (var seed in defaultDynamicContent)

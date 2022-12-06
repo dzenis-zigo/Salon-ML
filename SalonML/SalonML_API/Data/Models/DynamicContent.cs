@@ -13,12 +13,15 @@ namespace SalonML_API.Data.Models
         [Required]
         public string Name { get; set; }
 
-        public string? EnglishLocalization { get; set; }
+        public string? TextEnglish { get; set; }
 
-        public string? BosnianLocalization { get; set; }
+        public string? TextBosnian { get; set; }
 
         [Column(TypeName = "varchar(100)")]
-        public string? ImageCaption { get; set; }
+        public string? ImageCaptionEnglish { get; set; }
+
+        [Column(TypeName = "varchar(100)")]
+        public string? ImageCaptionBosnian { get; set; }
 
         [Column(TypeName = "varchar(254)")]
         public string? ImageUrl { get; set; }
