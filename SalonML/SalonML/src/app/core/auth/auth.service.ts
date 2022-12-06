@@ -9,39 +9,44 @@ import { environment } from '../../../environments/environment';
 export class AuthService {
   private tokenKey: string = "token";
   private testAdminToken: string = "test-admin-jwt";
+  private token: string | null;
 
     public isLoggedIn: boolean = false;
     public isTestAdmin: boolean = false;
 
   constructor(private http: HttpClient) {
-    var token = localStorage.getItem(this.tokenKey);
-    this.isLoggedIn = (token !== null);
-    this.isTestAdmin = (token === this.testAdminToken);
+    this.token = localStorage.getItem(this.tokenKey);
+    this.isLoggedIn = (this.token !== null);
+    this.isTestAdmin = (this.token === this.testAdminToken);
   }
 
-    login(item: LoginRequest): Observable<LoginResult> {
-        var url = environment.baseUrl + "api/Account/Login";
+  login(item: LoginRequest): Observable<LoginResult> {
+    var url = environment.baseUrl + "api/Account/Login";
 
-        return this.http.post<LoginResult>(url, item)
-            .pipe(tap(loginResult => {
-                if (loginResult.success && loginResult.token) {
-                    localStorage.setItem(this.tokenKey, loginResult.token);
-                    this.isLoggedIn = true;
-                    console.log(loginResult.token); //todo delete
-                }
-            }));
+    return this.http.post<LoginResult>(url, item)
+      .pipe(tap(loginResult => {
+        if (loginResult.success && loginResult.token) {
+          localStorage.setItem(this.tokenKey, loginResult.token);
+          this.isLoggedIn = true;
+          console.log(loginResult.token); //todo delete
+        }
+      }));
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem(this.tokenKey);
     this.isLoggedIn = false; // probably don't need this (todo)
     this.isTestAdmin = false; // idk if need this
   }
 
-  loginTestAdmin() {
+  loginTestAdmin(): void {
     this.isLoggedIn = true;
     this.isTestAdmin = true;
     localStorage.setItem(this.tokenKey, this.testAdminToken);
+  }
+
+  getToken(): string | null {
+    return this.token;
   }
 }
 
