@@ -11,29 +11,29 @@ namespace SalonML_API.Data.Models
 
         [Column(TypeName = "varchar(255)")]
         [Required]
-        public string Name { get; set; } = null!;
+        public string Name { get; set; }
 
-        public string EnglishLocalization { get; set; } = null!;
+        public string? EnglishLocalization { get; set; }
 
-        public string BosnianLocalization { get; set; } = null!;
+        public string? BosnianLocalization { get; set; }
 
         [Column(TypeName = "varchar(100)")]
-        public string ImageCaption { get; set; } = null!;
+        public string? ImageCaption { get; set; }
 
         [Column(TypeName = "varchar(254)")]
-        public string ImageUrl { get; set; } = null!;
+        public string? ImageUrl { get; set; }
 
         [Column(TypeName = "varbinary(max)")]
-        public byte[] ImageData { get; set; } = null!;
+        public byte[]? ImageData { get; set; }
 
         [Column(TypeName = "varchar(100)")]
-        public string IconValue { get; set; } = null!;
+        public string? IconValue { get; set; }
 
-        public int OrderIndex { get; set; }
+        public int? OrderIndex { get; set; }
 
         [Column(TypeName = "varchar(100)")]
         [Required]
-        public string ModifiedBy { get; set; } = null!;
+        public string ModifiedBy { get; set; }
 
         [Required]
         public DateTime ModifiedOn { get; set; }
