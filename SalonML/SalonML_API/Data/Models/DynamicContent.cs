@@ -1,0 +1,41 @@
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace SalonML_API.Data.Models
+{
+    public class DynamicContent
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [Column(TypeName = "varchar(255)")]
+        [Required]
+        public string Name { get; set; } = null!;
+
+        public string EnglishLocalization { get; set; } = null!;
+
+        public string BosnianLocalization { get; set; } = null!;
+
+        [Column(TypeName = "varchar(100)")]
+        public string ImageCaption { get; set; } = null!;
+
+        [Column(TypeName = "varchar(254)")]
+        public string ImageUrl { get; set; } = null!;
+
+        [Column(TypeName = "varbinary(max)")]
+        public byte[] ImageData { get; set; } = null!;
+
+        [Column(TypeName = "varchar(100)")]
+        public string IconValue { get; set; } = null!;
+
+        public int OrderIndex { get; set; }
+
+        [Column(TypeName = "varchar(100)")]
+        [Required]
+        public string ModifiedBy { get; set; } = null!;
+
+        [Required]
+        public DateTime ModifiedOn { get; set; }
+    }
+}
