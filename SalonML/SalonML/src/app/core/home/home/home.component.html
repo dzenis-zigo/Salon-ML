@@ -35,8 +35,15 @@
       <!--Text-->
       <div class="col-lg-6 text-lg-right">
         <p class="company-about fadeIn">
-          © 2022 ML | 
-          <a [routerLink]="['/login']">Login</a>
+          © 2022 ML |
+          <a *ngIf="!isAdmin"
+             [routerLink]="['/login']">
+            Login
+          </a>
+          <a *ngIf="isAdmin"
+             (click)="seedData()">
+            Seed Data
+          </a>
         </p>
       </div>
     </div>

@@ -14,12 +14,12 @@ export class ResumeHeaderComponent implements OnInit {
   isAdmin: boolean;
 
   title: Editable = <Editable>{
-    id: "resume-header-title",
+    name: "resume-header-title",
     isEditing: false,
     value: ''
   };
   description: Editable = <Editable>{
-    id: "resume-header-description",
+    name: "resume-header-description",
     isEditing: false,
     value: ''
   };
@@ -29,8 +29,8 @@ export class ResumeHeaderComponent implements OnInit {
     this.isAdmin = authService.isLoggedIn;
 
     dynContentService.onNewDataLoaded.subscribe(() => {
-      this.title.value = dynContentService.getDynamicContentValue(this.title.id);
-      this.description.value = dynContentService.getDynamicContentValue(this.description.id);
+      this.title.value = dynContentService.getDynamicContentValue(this.title.name);
+      this.description.value = dynContentService.getDynamicContentValue(this.description.name);
     });
   }
 
@@ -48,14 +48,14 @@ export class ResumeHeaderComponent implements OnInit {
   saveChanges(item: Editable): void {
     item.isEditing = false;
 
-    this.dynContentService.setDynamicContentValues(item.id, item.value);
+    this.dynContentService.setDynamicContentValues(item.name, item.value);
 
     // TODO API CALL HERE
   }
 }
 
 interface Editable {
-  id: string;
+  name: string;
   isEditing: boolean;
   value: string;
 }

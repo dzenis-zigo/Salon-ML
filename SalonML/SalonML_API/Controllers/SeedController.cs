@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SalonML_API.Data;
 using SalonML_API.Data.Models;
+using System.Security.Claims;
 
 namespace SalonML_API.Controllers
 {
@@ -27,10 +30,58 @@ namespace SalonML_API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> ImportLoremIpsum()
         {
-            return Ok(((IConfigurationRoot)_configuration).GetDebugView());
-            //throw new NotImplementedException();
+            const string LoremIpsumShortText = "Lorem {Ipsum}";
+            const string LoremIpsumLongText = "There are many variations of passages of Lorem Ipsum is " +
+                    "at the available, but the majority have {suffered} alteration some form, " +
+                    "by injected humour randomised words at the available.";
+
+            // todo possibly export this to a service
+            var email = User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault()!.Value;
+
+            // create a lookup dictionary 
+            // containing all the countries already existing 
+            var dynamicContentDictionary = _context.DynamicContents
+                .AsNoTracking()
+                .ToDictionary(x => x.Name, StringComparer.OrdinalIgnoreCase);
+
+            // create list to return which Dynamic Content was added
+            var newlyAddedDynamicContent = new List<DynamicContent>();
+
+            // create seed data list
+            var defaultDynamicContent = new List<DynamicContent>();
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "resume-header-title",
+                EnglishLocalization = LoremIpsumShortText + " (English)",
+                BosnianLocalization = LoremIpsumShortText + " (Bosnian)"
+            });
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "resume-header-description",
+                EnglishLocalization = LoremIpsumLongText + " (English)",
+                BosnianLocalization = LoremIpsumLongText + " (Bosnian)"
+            });
+
+            foreach (var seed in defaultDynamicContent)
+            {
+                if (!dynamicContentDictionary.ContainsKey(seed.Name))
+                {
+                    seed.ModifiedBy = email;
+                    seed.ModifiedOn = DateTime.Now;
+
+                    await _context.DynamicContents.AddAsync(seed);
+                    newlyAddedDynamicContent.Add(seed);
+                }
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok(newlyAddedDynamicContent);
         }
 
         [HttpGet]

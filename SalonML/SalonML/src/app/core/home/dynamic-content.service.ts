@@ -11,7 +11,7 @@ export class DynamicContentService {
   private testAdminDataKey: string = "dynamic-content";
   private localizationKey: string = "l10n";
   private url: string = environment.baseUrl + "api/DynamicContent/";
-  private dynContentCollection: { [id: string]: DynamicContentItem; };
+  private dynContentCollection: { [name: string]: DynamicContentItem; };
 
   // call next() when page loads first time or when localization changes
   public onNewDataLoaded = new Subject<void>();
@@ -22,29 +22,29 @@ export class DynamicContentService {
     this.fetchAndStoreDynamicContent(); //maybe call this something else
   }
 
-  public getDynamicContentValue(id: string) {
-    return this.dynContentCollection[id].value;
+  public getDynamicContentValue(name: string) {
+    return this.dynContentCollection[name].value;
   }
 
   // update our local data when admin changes a dynContent
-  public setDynamicContentValues(id: string, value: string) {
-    this.dynContentCollection[id].value = value;
+  public setDynamicContentValues(name: string, value: string) {
+    this.dynContentCollection[name].value = value;
 
     var localization = localStorage.getItem(this.localizationKey);
     if (localization === "en")
-      this.dynContentCollection[id].englishValue = value;
+      this.dynContentCollection[name].englishValue = value;
     else
-      this.dynContentCollection[id].bosnianValue = value;
+      this.dynContentCollection[name].bosnianValue = value;
   }
 
   public setLocalization(localizationValue: string) {
     localStorage.setItem(this.localizationKey, localizationValue);
 
-    for (var id in this.dynContentCollection) {
-      this.dynContentCollection[id].value =
+    for (var name in this.dynContentCollection) {
+      this.dynContentCollection[name].value =
         (localizationValue === "en") ?
-        this.dynContentCollection[id].englishValue :
-        this.dynContentCollection[id].bosnianValue
+        this.dynContentCollection[name].englishValue :
+        this.dynContentCollection[name].bosnianValue
     }
 
     this.onNewDataLoaded.next();
@@ -74,7 +74,7 @@ export class DynamicContentService {
       .subscribe(result => {
         // reformat data so it's easier to use
         result.forEach(dto => {
-          this.dynContentCollection[dto.id] = <DynamicContentItem>{
+          this.dynContentCollection[dto.name] = <DynamicContentItem>{
             value: (localization === "en") ? dto.englishLocalization : dto.bosnianLocalization,
             englishValue: dto.englishLocalization,
             bosnianValue: dto.bosnianLocalization
@@ -99,7 +99,7 @@ interface DynamicContentItem {
 }
 
 interface DynamicContentDTO {
-  id: string;
+  name: string;
   englishLocalization: string;
   bosnianLocalization: string;
 }

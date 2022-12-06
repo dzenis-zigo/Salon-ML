@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SalonML_API.Data;
 
 namespace SalonML_API.Controllers
@@ -7,12 +8,25 @@ namespace SalonML_API.Controllers
     [ApiController]
     public class DynamicContentController : ControllerBase
     {
+        private readonly ApplicationDbContext _context;
+
+        public DynamicContentController(
+            ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         // get all of type
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            var dtoList = new List<DynamicContentDTO>();
+            //var dtoList = new List<DynamicContentDTO>();
 
+            // todo verify this is the correct way to cast to DTO
+            var dynContentList = await _context.DynamicContents
+                .Select(d => new DynamicContentDTO(d))
+                .ToListAsync();
+            /*
             dtoList.Add(new DynamicContentDTO() 
             {
                 Id = "resume-header-title",
@@ -29,8 +43,9 @@ namespace SalonML_API.Controllers
                 "at the available, but the majority have {suffered} alteration some form, " +
                 "by injected humour randomised words at the available. Bosnian"
             });
+            */
 
-            return Ok(dtoList);
+            return Ok(dynContentList);
         }
 
         [HttpPut]
