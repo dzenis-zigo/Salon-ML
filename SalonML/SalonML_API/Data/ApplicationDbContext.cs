@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SalonML_API.Data.Models;
+using System.Diagnostics.Metrics;
 
 namespace SalonML_API.Data
 {
@@ -14,5 +15,7 @@ namespace SalonML_API.Data
          : base(options)
         {
         }
+
+        public DbSet<DynamicContent> DynamicContents => Set<DynamicContent>();
     }
 }
