@@ -28,7 +28,9 @@ export class AuthInterceptor implements HttpInterceptor {
         // If token is invalid (such as being expired) then do a logout (remove the token)
         if (error instanceof HttpErrorResponse && error.status === 401) {
           this.authService.logout();
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login']).then(() => {
+            window.location.reload();
+          });
         }
         return throwError(error);
       })
