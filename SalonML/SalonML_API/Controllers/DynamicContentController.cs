@@ -69,11 +69,5 @@ namespace SalonML_API.Controllers
 
             return Ok(dynContentList);
         }
-
-        [HttpPut]
-        public async Task<IActionResult> UpdateDynamicContent(DynamicContentDTO dto)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

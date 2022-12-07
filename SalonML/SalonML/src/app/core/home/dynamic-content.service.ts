@@ -77,8 +77,7 @@ export class DynamicContentService {
 
     var updateUrl = this.url + "UpdateItem";
 
-    this.http.put(updateUrl, newDto)
-      .subscribe(result => console.log(result));
+    this.http.put(updateUrl, newDto).subscribe();
   }
 
   public saveEditableArray(editableArray: Editable[]) {
@@ -93,18 +92,25 @@ export class DynamicContentService {
 
     var updateUrl = this.url + "UpdateArray";
 
-    this.http.put(updateUrl, newDtoArray)
-      .subscribe(result => console.log(result));
+    this.http.put(updateUrl, newDtoArray).subscribe();
   }
 
   private generateDto(editable: Editable, orderIndex?: number) {
     return <DynamicContentDTO>{
       id: editable.id,
       name: editable.name,
-      textEnglish: (this.localizationValue === "en") ? editable.text : undefined,
-      textBosnian: (this.localizationValue === "bih") ? editable.text : undefined,
-      imageCaptionEnglish: (this.localizationValue === "en") ? editable.caption : undefined,
-      imageCaptionBosnian: (this.localizationValue === "bih") ? editable.caption : undefined,
+      textEnglish: (this.localizationValue === "en") ?
+        editable.text :
+        this.dynContentDtoDictionary[editable.name].textEnglish,
+      textBosnian: (this.localizationValue === "bih") ?
+        editable.text :
+        this.dynContentDtoDictionary[editable.name].textBosnian,
+      imageCaptionEnglish: (this.localizationValue === "en") ?
+        editable.caption :
+        this.dynContentDtoDictionary[editable.name].imageCaptionEnglish,
+      imageCaptionBosnian: (this.localizationValue === "bih") ?
+        editable.caption :
+        this.dynContentDtoDictionary[editable.name].imageCaptionBosnian,
       imageUrl: editable.url,
       imageData: editable.data,
       iconValue: editable.iconValue,
