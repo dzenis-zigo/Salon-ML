@@ -10,25 +10,25 @@
           <!-- Title -->
           <h2 *ngIf="!isAdmin || !title.isEditing"
               (click)="setIsEditingTrue(title)"
-              [innerHtml]="title.value | blue">
+              [innerHtml]="title.text | blue">
           </h2>
           <mat-form-field *ngIf="isAdmin && title.isEditing">
             <input matInput autoFocus
                    (focusout)="saveChanges(title)"
-                   [(ngModel)]="title.value"
+                   [(ngModel)]="title.text"
                    placeholder="title"/>
           </mat-form-field>
           <!-- Description -->
           <p *ngIf="!isAdmin || !description.isEditing"
              (click)="setIsEditingTrue(description)"
-             [innerHtml]="description.value | blue">
+             [innerHtml]="description.text | blue">
           </p>
           <mat-form-field *ngIf="isAdmin && description.isEditing" 
                           class="large-input">
             <textarea matInput autoFocus
                       cdkTextareaAutosize 
                       (focusout)="saveChanges(description)"
-                      [(ngModel)]="description.value"
+                      [(ngModel)]="description.text"
                       placeholder="description"></textarea>
           </mat-form-field>
           <!--Localization Buttons-->

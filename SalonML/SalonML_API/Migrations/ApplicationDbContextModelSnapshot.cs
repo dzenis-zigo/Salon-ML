@@ -265,7 +265,7 @@ namespace SalonML_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DynamicContents");
+                    b.ToTable("DynamicContents", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

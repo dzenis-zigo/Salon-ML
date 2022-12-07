@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SalonML_API.Data;
+using SalonML_API.Data.Models;
+using System.Reflection;
+using System.Security.Claims;
 
 namespace SalonML_API.Controllers
 {
@@ -16,34 +20,52 @@ namespace SalonML_API.Controllers
             _context = context;
         }
 
-        // get all of type
+        // perform an update on a single dynamicContent item
+        [HttpPut]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> UpdateItem(DynamicContentDTO dto)
+        {
+            // todo possibly export this to a service
+            var email = User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault()!.Value;
+
+            DynamicContent dbModel = new DynamicContent()
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                TextEnglish = dto.TextEnglish,
+                TextBosnian = dto.TextBosnian,
+                ImageCaptionEnglish = dto.ImageCaptionEnglish,
+                ImageCaptionBosnian = dto.ImageCaptionBosnian,
+                ImageUrl = dto.ImageUrl,
+                ImageData = dto.ImageData,
+                IconValue = dto.IconValue,
+                OrderIndex = dto.OrderIndex,
+                ModifiedBy = email,
+                ModifiedOn = DateTime.Now
+            };
+
+            _context.Entry(dbModel).State = EntityState.Modified;
+
+            // ignore an update on properties with null values
+            foreach (PropertyInfo propertyInfo in dbModel.GetType().GetProperties())
+            {
+                if (propertyInfo.GetValue(dbModel) == null)
+                    _context.Entry(dbModel).Property(propertyInfo.Name).IsModified = false;
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        // return a list of every DynamicContent
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            //var dtoList = new List<DynamicContentDTO>();
-
             // todo verify this is the correct way to cast to DTO
             var dynContentList = await _context.DynamicContents
                 .Select(d => new DynamicContentDTO(d))
                 .ToListAsync();
-            /*
-            dtoList.Add(new DynamicContentDTO() 
-            {
-                Id = "resume-header-title",
-                EnglishLocalization = "Lorem {Ipsum} English",
-                BosnianLocalization = "Lorem {Ipsum} Bosnian"
-            }); 
-            dtoList.Add(new DynamicContentDTO()
-            {
-                Id = "resume-header-description",
-                EnglishLocalization = "There are many variations of passages of Lorem Ipsum is " +
-                "at the available, but the majority have {suffered} alteration some form, " +
-                "by injected humour randomised words at the available. English",
-                BosnianLocalization = "There are many variations of passages of Lorem Ipsum is " +
-                "at the available, but the majority have {suffered} alteration some form, " +
-                "by injected humour randomised words at the available. Bosnian"
-            });
-            */
 
             return Ok(dynContentList);
         }

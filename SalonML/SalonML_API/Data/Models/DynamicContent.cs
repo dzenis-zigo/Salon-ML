@@ -7,6 +7,7 @@ namespace SalonML_API.Data.Models
     public class DynamicContent
     {
         [Key]
+        [Required]
         public int Id { get; set; }
 
         [Column(TypeName = "varchar(255)")]

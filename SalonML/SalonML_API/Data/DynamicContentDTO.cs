@@ -2,11 +2,15 @@
 using SalonML_API.Data.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SalonML_API.Data
 {
     public class DynamicContentDTO
     {
+        [JsonConstructor]
+        public DynamicContentDTO() { }
+
         public DynamicContentDTO(DynamicContent d)
         {
             Id = d.Id;
