@@ -91,12 +91,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("MyCorsPolicy");
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseCors("MyCorsPolicy");
 
 app.MapControllers();
 
