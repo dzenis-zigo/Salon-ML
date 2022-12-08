@@ -93,18 +93,46 @@
                  placeholder="submitButton" />
         </mat-form-field>
 
-        <!-- Address -->
+        <!-- Info Box -->
         <ul class="address-item">
-          <!--item-->
+          <li *ngFor="let item of infoBoxHeaderArray; index as i;"
+              [ngClass]="{'w-100 mb-4':  i === 0,
+                          'pr-2' :         i === 1,
+                          'phone-item' :   i === 2 }">
+            <!-- Icon -->
+            <i *ngIf="!isAdmin || !infoBoxIconArray[i].isEditing"
+               (click)="setIsEditingTrue(infoBoxIconArray[i])"
+               class="main-color"
+               [class]="infoBoxIconArray[i].iconValue">
+            </i>
+            <mat-form-field *ngIf="isAdmin && infoBoxIconArray[i].isEditing"
+                            class="small-input">
+              <input matInput autoFocus
+                     (focusout)="saveArrayChanges(infoBoxIconArray)"
+                     [(ngModel)]="infoBoxIconArray[i].iconValue"
+                     placeholder="iconArray[{{ i }}]" />
+            </mat-form-field>
+            <div class="content">
+              <!-- Header -->
+              <h6 class="main-color m-0">
+                {{ infoBoxHeaderArray[i].text }}
+              </h6>
+              <!-- Value -->
+              <p>
+                {{ infoBoxValueArray[i].text }}
+              </p>
+            </div>
+          </li>
+          <!--item
           <li class="w-100 mb-4">
             <i class="lni-apartment main-color"></i>
             <div class="content">
-              <!--Todo google maps link-->
+              <!--Todo google maps link
               <h6 class="main-color m-0">Address</h6>
               <p>Dzemala Bijedica St 33, Sarajevo 71000, Bosnia & Herzegovina</p>
             </div>
           </li>
-          <!--item-->
+          <!--item
           <li class="pr-2">
             <i class="lni-comment-reply main-color"></i>
             <div class="content">
@@ -112,7 +140,7 @@
               <p><a href="mailto:email@website.co">frizerml@gmail.com</a></p>
             </div>
           </li>
-          <!--item-->
+          <!--item
           <li class="phone-item">
             <i class="lni-phone-handset main-color"></i>
             <div class="content">
@@ -120,6 +148,7 @@
               <p><a href="tel:002343474383">002 343474383</a></p>
             </div>
           </li>
+            -->
         </ul>
       </div>
 
