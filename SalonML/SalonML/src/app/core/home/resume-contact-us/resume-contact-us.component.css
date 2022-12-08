@@ -58,3 +58,16 @@
       height: 350px;
   }
 }
+
+.small-form-input {
+  width: 100%;
+}
+
+.large-form-input {
+  min-width: 100%;
+  min-height: 150px;
+}
+
+.btn-disabled:disabled {
+  pointer-events: none;
+}
