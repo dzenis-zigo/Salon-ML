@@ -63,9 +63,10 @@ namespace SalonML_API.Controllers
         public async Task<IActionResult> GetList()
         {
             // todo verify this is the correct way to cast to DTO
-            var dynContentList = await _context.DynamicContents
+            var dynContentList = _context.DynamicContents
                 .Select(d => new DynamicContentDTO(d))
-                .ToListAsync();
+                //.OrderByDescending(x => x.OrderIndex)
+                .ToLookup(x => x.Name, StringComparer.OrdinalIgnoreCase);
 
             return Ok(dynContentList);
         }

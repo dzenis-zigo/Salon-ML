@@ -147,7 +147,7 @@ export class DynamicContentService {
     var getUrl = this.url + 'GetList';
 
     this.http.get<DynamicContentDTO[][]>(getUrl)
-      .subscribe(result => {
+      .subscribe(result => { 
         console.log(result);
         // build our dynContentDtoDictionary
         result.forEach( (dtoArray: DynamicContentDTO[]) => {
