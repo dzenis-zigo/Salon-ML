@@ -41,13 +41,13 @@
   }
 }
 
-.col-lg-6 {
+.left-side {
   flex: none;
   max-width: 63%;
 }
 
 @media screen and (max-width: 992px) {
-  .col-lg-6 {
+  .left-side {
     flex: none;
     max-width: 100%;
   }
@@ -55,6 +55,6 @@
 
 @media screen and (min-width: 1200px) {
   .google-map {
-      height: 400px;
+      height: 350px;
   }
 }
