@@ -29,3 +29,32 @@
     display: inline-block;
   }
 }
+
+.right-side {
+  max-width: 100%;
+  width: 100%;
+}
+
+@media screen and (min-width: 992px) {
+  .right-side {
+    max-width: 37%;
+  }
+}
+
+.col-lg-6 {
+  flex: none;
+  max-width: 63%;
+}
+
+@media screen and (max-width: 992px) {
+  .col-lg-6 {
+    flex: none;
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .google-map {
+      height: 400px;
+  }
+}
