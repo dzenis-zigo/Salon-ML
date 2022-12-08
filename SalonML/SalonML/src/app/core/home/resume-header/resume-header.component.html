@@ -43,25 +43,28 @@
       <div *ngIf="!isAdmin || !image.isEditing"
             class="col-lg-5"
             (click)="setIsEditingTrue(image)">
-        <div class="slider-right">
+        <a [href]="(isAdmin == false) ? image.url : '#'"
+           class="slider-right">
           <img data-depth="0.05" [src]="image.data" alt="side-image" class="scene">
           <span data-depth="0.08" class="scene"></span>
-        </div>
+        </a>
       </div>
       <div *ngIf="isAdmin && image.isEditing"
            style="display: flex; flex-direction: column; margin: auto; margin-top: 32px;">
         <mat-form-field class="small-input">
-          <input matInput 
+          <input matInput
                  (focusout)="saveChanges(image)"
                  [(ngModel)]="image.url"
                  placeholder="url link" />
         </mat-form-field>
+        <!-- Don't use caption for this image
         <mat-form-field class="small-input">
-          <input matInput 
+          <input matInput
                  (focusout)="saveChanges(image)"
                  [(ngModel)]="image.caption"
                  placeholder="caption" />
         </mat-form-field>
+        -->
         <input type="file"
                class="file-upload"
                (change)="saveAndUploadImage(image, $event)">

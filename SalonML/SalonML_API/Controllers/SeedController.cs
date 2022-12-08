@@ -72,7 +72,7 @@ namespace SalonML_API.Controllers
                 Name = "resume-header-image",
                 ImageCaptionEnglish = LoremIpsumShortText + " (English)",
                 ImageCaptionBosnian = LoremIpsumShortText + " (Bosnian)",
-                ImageUrl = "https://www.facebook.com/photo/?fbid=486850203461688",
+                ImageUrl = "https://www.facebook.com/salonML/",
                 ImageData = null
             });
 
