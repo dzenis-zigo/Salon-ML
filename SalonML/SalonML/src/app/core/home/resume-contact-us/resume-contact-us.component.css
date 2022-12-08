@@ -71,3 +71,7 @@
 .btn-disabled:disabled {
   pointer-events: none;
 }
+
+.address-item {
+  white-space: nowrap;
+}
