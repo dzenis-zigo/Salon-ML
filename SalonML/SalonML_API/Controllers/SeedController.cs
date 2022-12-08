@@ -45,7 +45,7 @@ namespace SalonML_API.Controllers
             // containing all the countries already existing 
             var dynamicContentDictionary = _context.DynamicContents
                 .AsNoTracking()
-                .ToDictionary(x => x.Name, StringComparer.OrdinalIgnoreCase);
+                .ToLookup(x => x.Name, StringComparer.OrdinalIgnoreCase);
 
             // create list to return which Dynamic Content was added
             var newlyAddedDynamicContent = new List<DynamicContent>();
@@ -183,7 +183,8 @@ namespace SalonML_API.Controllers
 
             foreach (var seed in defaultDynamicContent)
             {
-                if (!dynamicContentDictionary.ContainsKey(seed.Name))
+                // could be a problem if adding more indexes to existing "array"
+                if (!dynamicContentDictionary.Contains(seed.Name))
                 {
                     seed.ModifiedBy = email;
                     seed.ModifiedOn = DateTime.Now;
