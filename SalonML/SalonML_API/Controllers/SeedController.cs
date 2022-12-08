@@ -53,6 +53,7 @@ namespace SalonML_API.Controllers
             // create seed data list
             var defaultDynamicContent = new List<DynamicContent>();
 
+            /*              Resume Header            */
             defaultDynamicContent.Add(new DynamicContent()
             {
                 Name = "resume-header-title",
@@ -75,6 +76,110 @@ namespace SalonML_API.Controllers
                 ImageUrl = "https://www.facebook.com/salonML/",
                 ImageData = null
             });
+
+            /*              Resume Contact Us            */
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "resume-contact-us-title",
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)"
+            });
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "resume-contact-us-subtitle",
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)"
+            });
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "resume-contact-us-name-placeholder",
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)"
+            });
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "resume-contact-us-email-placeholder",
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)"
+            });
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "resume-contact-us-message-placeholder",
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)"
+            });
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "resume-contact-us-submit-button",
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)"
+            });
+
+            for (int i = 0; i < 3; i++)
+            {
+                defaultDynamicContent.Add(new DynamicContent()
+                {
+                    Name = "resume-contact-us-info-box-header-array",
+                    TextEnglish = LoremIpsumShortText + " (English)",
+                    TextBosnian = LoremIpsumShortText + " (Bosnian)",
+                    OrderIndex = i
+                });
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                defaultDynamicContent.Add(new DynamicContent()
+                {
+                    Name = "resume-contact-us-info-box-icon-array",
+                    IconValue = "lni-apartment",
+                    OrderIndex = i
+                });
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                defaultDynamicContent.Add(new DynamicContent()
+                {
+                    Name = "resume-contact-us-info-box-value-array",
+                    TextEnglish = LoremIpsumShortText + " (English)",
+                    TextBosnian = LoremIpsumShortText + " (Bosnian)",
+                    OrderIndex = i
+                });
+            }
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "resume-contact-us-working-hours-header",
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)"
+            });
+
+            for (int i = 0; i < 7; i++)
+            {
+                defaultDynamicContent.Add(new DynamicContent()
+                {
+                    Name = "resume-contact-us-working-hours-left-column-array",
+                    TextEnglish = "Monday (English)",
+                    TextBosnian = "Monday (Bosnian)",
+                    OrderIndex = i
+                });
+            }
+
+            for (int i = 0; i < 7; i++)
+            {
+                defaultDynamicContent.Add(new DynamicContent()
+                {
+                    Name = "resume-contact-us-working-hours-right-column-array",
+                    TextEnglish = "9:00-18:00 (English)",
+                    TextBosnian = "9:00-18:00 (Bosnian)",
+                    OrderIndex = i
+                });
+            }
 
             foreach (var seed in defaultDynamicContent)
             {
