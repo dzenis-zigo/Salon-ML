@@ -58,7 +58,9 @@ export class DynamicContentService {
       dto.imageCaptionBosnian
 
     // todo might not work for png
-    var data = "data:image/jpeg;base64," + btoa(dto.imageData);console
+    var data = undefined;
+    if (dto.imageData != '')
+      data = "data:image/jpeg;base64," + btoa(dto.imageData);
 
     return <Editable>{
       id: dto.id,
@@ -91,6 +93,7 @@ export class DynamicContentService {
       var newDto = this.generateDto(editableArray[i], i);
       newDtoArray.push(newDto);
     }
+
     this.dynContentDtoArrayDictionary[newDtoArray[0].name] = newDtoArray;
 
     var updateUrl = this.url + "UpdateArray";
@@ -104,16 +107,16 @@ export class DynamicContentService {
       name: editable.name,
       textEnglish: (this.localizationValue === "en") ?
         editable.text :
-        this.dynContentDtoDictionary[editable.name].textEnglish,
+        this.dynContentDtoDictionary[editable.name]?.textEnglish,
       textBosnian: (this.localizationValue === "bih") ?
         editable.text :
-        this.dynContentDtoDictionary[editable.name].textBosnian,
+        this.dynContentDtoDictionary[editable.name]?.textBosnian,
       imageCaptionEnglish: (this.localizationValue === "en") ?
         editable.caption :
-        this.dynContentDtoDictionary[editable.name].imageCaptionEnglish,
+        this.dynContentDtoDictionary[editable.name]?.imageCaptionEnglish,
       imageCaptionBosnian: (this.localizationValue === "bih") ?
         editable.caption :
-        this.dynContentDtoDictionary[editable.name].imageCaptionBosnian,
+        this.dynContentDtoDictionary[editable.name]?.imageCaptionBosnian,
       imageUrl: editable.url,
       imageData: (editable.data !== undefined) ?
         atob(editable.data.replace(/^data:image\/(png|jpeg|jpg);base64,/, '')) :
@@ -143,19 +146,20 @@ export class DynamicContentService {
 
     var getUrl = this.url + 'GetList';
 
-    this.http.get<DynamicContentDTO[]>(getUrl)
+    this.http.get<DynamicContentDTO[][]>(getUrl)
       .subscribe(result => {
+        console.log(result);
         // build our dynContentDtoDictionary
-        result.forEach(dto => {
-          // if this dto is part of an array
-          if (dto.orderIndex !== undefined) {
-            if (this.dynContentDtoArrayDictionary[dto.name] === undefined)
-              this.dynContentDtoArrayDictionary[dto.name] = new Array();
-
-            this.dynContentDtoArrayDictionary[dto.name].push(dto);
-          }
-          else
+        result.forEach( (dtoArray: DynamicContentDTO[]) => {
+          if (dtoArray.length == 1) {
+            var dto = dtoArray[0];
             this.dynContentDtoDictionary[dto.name] = dto;
+          }
+          // if there is an array of values with this name
+          else {
+            this.dynContentDtoArrayDictionary[dtoArray[0].name] = dtoArray
+          }
+
         });
 
         // reorder the dto array according to the orderIndex values
