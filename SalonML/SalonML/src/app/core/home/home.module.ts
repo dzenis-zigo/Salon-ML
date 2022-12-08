@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { ResumeHeaderComponent } from './resume-header/resume-header.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { ResumeContactUsComponent } from './resume-contact-us/resume-contact-us.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material.module';
 import { BluePipe } from './blue.pipe';
 import { AutoFocusDirective } from './autofocus.directive';
@@ -21,7 +21,8 @@ import { AutoFocusDirective } from './autofocus.directive';
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ReactiveFormsModule
   ],
   exports: [
     HomeComponent
