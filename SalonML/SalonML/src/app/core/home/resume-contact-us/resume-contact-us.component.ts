@@ -17,10 +17,34 @@ export class ResumeContactUsComponent implements OnInit {
   form!: FormGroup;
 
   isAdmin: boolean;
+  title: Editable = <Editable>{
+    isEditing: false,
+    text: ''
+  };
+  subtitle: Editable = <Editable>{
+    isEditing: false,
+    text: ''
+  };
+  namePlaceholder: Editable = <Editable>{
+    isEditing: false,
+    text: ''
+  };
+  emailPlaceholder: Editable = <Editable>{
+    isEditing: false,
+    text: ''
+  };
+  messagePlaceholder: Editable = <Editable>{
+    isEditing: false,
+    text: ''
+  };
+  submitButton: Editable = <Editable>{
+    isEditing: false,
+    text: ''
+  };
 
   constructor(private authService: AuthService,
-    private dynContentService: DynamicContentService,
-    private httpClient: HttpClient) {
+              private dynContentService: DynamicContentService,
+              private httpClient: HttpClient) {
     this.isAdmin = authService.isLoggedIn;
 
     this.form = new FormGroup({
@@ -34,6 +58,12 @@ export class ResumeContactUsComponent implements OnInit {
       message: new FormControl('', [
         Validators.required
       ])
+    });
+
+    dynContentService.onNewDataLoaded.subscribe(() => {
+      this.title = dynContentService.getEditable("resume-header-title");
+      this.messagePlaceholder = dynContentService.getEditable("resume-header-description");
+      this.submitButton = dynContentService.getEditable("resume-header-image");
     });
   }
 

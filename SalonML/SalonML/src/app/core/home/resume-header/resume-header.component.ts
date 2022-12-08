@@ -12,15 +12,12 @@ import { DynamicContentService, Editable } from '../dynamic-content.service';
 export class ResumeHeaderComponent implements OnInit {
   isAdmin: boolean;
   title: Editable = <Editable>{
-    isEditing: false,
     text: ''
   };
   description: Editable = <Editable>{
-    isEditing: false,
     text: ''
   };
   image: Editable = <Editable>{
-    isEditing: false,
     caption: '',
     url: '',
     data: ''
