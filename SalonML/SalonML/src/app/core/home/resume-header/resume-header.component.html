@@ -12,7 +12,8 @@
               (click)="setIsEditingTrue(title)"
               [innerHtml]="title.text | blue">
           </h2>
-          <mat-form-field *ngIf="isAdmin && title.isEditing">
+          <mat-form-field *ngIf="isAdmin && title.isEditing"
+                          class="small-input">
             <input matInput autoFocus
                    (focusout)="saveChanges(title)"
                    [(ngModel)]="title.text"
@@ -23,10 +24,10 @@
              (click)="setIsEditingTrue(description)"
              [innerHtml]="description.text | blue">
           </p>
-          <mat-form-field *ngIf="isAdmin && description.isEditing" 
+          <mat-form-field *ngIf="isAdmin && description.isEditing"
                           class="large-input">
             <textarea matInput autoFocus
-                      cdkTextareaAutosize 
+                      cdkTextareaAutosize
                       (focusout)="saveChanges(description)"
                       [(ngModel)]="description.text"
                       placeholder="description"></textarea>
@@ -38,12 +39,32 @@
           </button>
         </div>
       </div>
-
-      <div class="col-lg-5">
+      <!-- Image -->
+      <div *ngIf="!isAdmin || !image.isEditing"
+            class="col-lg-5"
+            (click)="setIsEditingTrue(image)">
         <div class="slider-right">
-          <img data-depth="0.05" src="/assets/resume/img/personal.jpg" alt="side-image" class="scene">
+          <img data-depth="0.05" [src]="image.data" alt="side-image" class="scene">
           <span data-depth="0.08" class="scene"></span>
         </div>
+      </div>
+      <div *ngIf="isAdmin && image.isEditing"
+           style="display: flex; flex-direction: column; margin: auto; margin-top: 32px;">
+        <mat-form-field class="small-input">
+          <input matInput 
+                 (focusout)="saveChanges(image)"
+                 [(ngModel)]="image.url"
+                 placeholder="url link" />
+        </mat-form-field>
+        <mat-form-field class="small-input">
+          <input matInput 
+                 (focusout)="saveChanges(image)"
+                 [(ngModel)]="image.caption"
+                 placeholder="caption" />
+        </mat-form-field>
+        <input type="file"
+               class="file-upload"
+               (change)="saveAndUploadImage(image, $event)">
       </div>
     </div>
   </div>

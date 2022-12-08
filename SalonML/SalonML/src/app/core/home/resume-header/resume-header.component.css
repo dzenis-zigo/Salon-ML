@@ -19,6 +19,10 @@
   transform: scale(1.1);
 }
 
+.small-input {
+    width: 250px;
+}
+
 .large-input {
   width: 280px;
   display: block;

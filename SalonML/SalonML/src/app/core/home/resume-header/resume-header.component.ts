@@ -19,6 +19,12 @@ export class ResumeHeaderComponent implements OnInit {
     isEditing: false,
     text: ''
   };
+  image: Editable = <Editable>{
+    isEditing: false,
+    caption: '',
+    url: '',
+    data: ''
+  };
 
   constructor(private authService: AuthService,
     private dynContentService: DynamicContentService) {
@@ -27,6 +33,7 @@ export class ResumeHeaderComponent implements OnInit {
     dynContentService.onNewDataLoaded.subscribe(() => {
       this.title = dynContentService.getEditable("resume-header-title");
       this.description = dynContentService.getEditable("resume-header-description");
+      this.image = dynContentService.getEditable("resume-header-image");
     });
   }
 
@@ -45,5 +52,20 @@ export class ResumeHeaderComponent implements OnInit {
     item.isEditing = false;
 
     this.dynContentService.saveEditable(item);
+  }
+
+  saveAndUploadImage(item: Editable, event: any): void {
+    var reader = new FileReader();
+
+    reader.onload = (event: any) => {
+      this.image.data = event.target.result;
+      this.image.isEditing = false;
+
+      this.dynContentService.saveEditable(item);
+    };
+
+    const file: File = event.target.files[0];
+
+    reader.readAsDataURL(file);
   }
 }

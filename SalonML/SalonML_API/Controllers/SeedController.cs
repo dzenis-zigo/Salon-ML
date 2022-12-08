@@ -67,6 +67,15 @@ namespace SalonML_API.Controllers
                 TextBosnian = LoremIpsumLongText + " (Bosnian)"
             });
 
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "resume-header-image",
+                ImageCaptionEnglish = LoremIpsumShortText + " (English)",
+                ImageCaptionBosnian = LoremIpsumShortText + " (Bosnian)",
+                ImageUrl = "https://www.facebook.com/photo/?fbid=486850203461688",
+                ImageData = null
+            });
+
             foreach (var seed in defaultDynamicContent)
             {
                 if (!dynamicContentDictionary.ContainsKey(seed.Name))

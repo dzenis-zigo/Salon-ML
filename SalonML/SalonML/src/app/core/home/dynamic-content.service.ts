@@ -57,6 +57,9 @@ export class DynamicContentService {
       dto.imageCaptionEnglish :
       dto.imageCaptionBosnian
 
+    // todo might not work for png
+    var data = "data:image/jpeg;base64," + btoa(dto.imageData);console
+
     return <Editable>{
       id: dto.id,
       name: dto.name,
@@ -64,7 +67,7 @@ export class DynamicContentService {
       text: text,
       caption: caption,
       url: dto.imageUrl,
-      data: dto.imageData,
+      data: data,
       iconValue: dto.iconValue
     }
   }
@@ -112,7 +115,9 @@ export class DynamicContentService {
         editable.caption :
         this.dynContentDtoDictionary[editable.name].imageCaptionBosnian,
       imageUrl: editable.url,
-      imageData: editable.data,
+      imageData: (editable.data !== undefined) ?
+        atob(editable.data.replace(/^data:image\/(png|jpeg|jpg);base64,/, '')) :
+        undefined,
       iconValue: editable.iconValue,
       orderIndex: orderIndex
     }
