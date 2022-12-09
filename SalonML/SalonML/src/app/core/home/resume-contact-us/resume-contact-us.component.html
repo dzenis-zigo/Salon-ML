@@ -110,17 +110,34 @@
               <input matInput autoFocus
                      (focusout)="saveArrayChanges(infoBoxIconArray)"
                      [(ngModel)]="infoBoxIconArray[i].iconValue"
-                     placeholder="iconArray[{{ i }}]" />
+                     placeholder="infoBoxIconArray: {{ i }}" />
             </mat-form-field>
             <div class="content">
               <!-- Header -->
-              <h6 class="main-color m-0">
+              <h6 *ngIf="!isAdmin || !infoBoxHeaderArray[i].isEditing"
+                  (click)="setIsEditingTrue(infoBoxHeaderArray[i])"
+                  class="main-color m-0">
                 {{ infoBoxHeaderArray[i].text }}
               </h6>
+              <mat-form-field *ngIf="isAdmin && infoBoxHeaderArray[i].isEditing"
+                              class="small-input">
+                <input matInput autoFocus
+                       (focusout)="saveArrayChanges(infoBoxHeaderArray)"
+                       [(ngModel)]="infoBoxHeaderArray[i].text"
+                       placeholder="infoBoxHeaderArray: {{i}}" />
+              </mat-form-field>
               <!-- Value -->
-              <p>
-                {{ infoBoxValueArray[i].text }}
+              <p *ngIf="!isAdmin || !infoBoxValueArray[i].isEditing"
+                 (click)="setIsEditingTrue(infoBoxValueArray[i])"
+                 [innerHtml]="infoBoxValueArray[i].text | blue">
               </p>
+              <mat-form-field *ngIf="isAdmin && infoBoxValueArray[i].isEditing"
+                              class="small-input">
+                <input matInput autoFocus
+                       (focusout)="saveArrayChanges(infoBoxValueArray)"
+                       [(ngModel)]="infoBoxValueArray[i].text"
+                       placeholder="infoBoxValueArray: {{i}}" />
+              </mat-form-field>
             </div>
           </li>
           <!--item
