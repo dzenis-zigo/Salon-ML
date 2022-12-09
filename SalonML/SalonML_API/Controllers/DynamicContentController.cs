@@ -28,6 +28,32 @@ namespace SalonML_API.Controllers
             // todo possibly export this to a service
             var email = User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault()!.Value;
 
+            UpdateRelevantModelProperties(dto, email);
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        [HttpPut]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> UpdateArray(DynamicContentDTO[] dtoArray)
+        {
+            // todo possibly export this to a service
+            var email = User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault()!.Value;
+
+            foreach (DynamicContentDTO dto in dtoArray)
+            {
+                UpdateRelevantModelProperties(dto, email);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        private void UpdateRelevantModelProperties(DynamicContentDTO dto, string email)
+        {
             DynamicContent dbModel = new DynamicContent()
             {
                 Id = dto.Id,
@@ -52,10 +78,6 @@ namespace SalonML_API.Controllers
                 if (propertyInfo.GetValue(dbModel) == null)
                     _context.Entry(dbModel).Property(propertyInfo.Name).IsModified = false;
             }
-
-            await _context.SaveChangesAsync();
-
-            return Ok();
         }
 
         // return a list of every DynamicContent
