@@ -7,7 +7,7 @@
         <div class="heading-area">
           <!-- Subtitle Editable -->
           <h6 *ngIf="!isAdmin || !subtitle.isEditing"
-              class="sub-title main-color"
+              class="sub-title"
               (click)="setIsEditingTrue(subtitle)"
               [innerHtml]="subtitle.text | blue">
           </h6>
@@ -116,8 +116,8 @@
               <!-- Header -->
               <h6 *ngIf="!isAdmin || !infoBoxHeaderArray[i].isEditing"
                   (click)="setIsEditingTrue(infoBoxHeaderArray[i])"
-                  class="main-color m-0">
-                {{ infoBoxHeaderArray[i].text }}
+                  class="m-0"
+                  [innerHtml]="infoBoxHeaderArray[i].text | blue">
               </h6>
               <mat-form-field *ngIf="isAdmin && infoBoxHeaderArray[i].isEditing"
                               class="small-input">
@@ -140,32 +140,6 @@
               </mat-form-field>
             </div>
           </li>
-          <!--item
-          <li class="w-100 mb-4">
-            <i class="lni-apartment main-color"></i>
-            <div class="content">
-              <!--Todo google maps link
-              <h6 class="main-color m-0">Address</h6>
-              <p>Dzemala Bijedica St 33, Sarajevo 71000, Bosnia & Herzegovina</p>
-            </div>
-          </li>
-          <!--item
-          <li class="pr-2">
-            <i class="lni-comment-reply main-color"></i>
-            <div class="content">
-              <h6 class="main-color m-0">Email</h6>
-              <p><a href="mailto:email@website.co">frizerml@gmail.com</a></p>
-            </div>
-          </li>
-          <!--item
-          <li class="phone-item">
-            <i class="lni-phone-handset main-color"></i>
-            <div class="content">
-              <h6 class="main-color m-0">Phone</h6>
-              <p><a href="tel:002343474383">002 343474383</a></p>
-            </div>
-          </li>
-            -->
         </ul>
       </div>
 
@@ -182,28 +156,50 @@
         </iframe>
         <!-- Working hours -->
         <div class="address-item" style="text-align: center;">
-          <h4 class="main-color">
-            Radne Sati
+          <!-- Header -->
+          <h4 *ngIf="!isAdmin || !workingHoursHeader.isEditing"
+              (click)="setIsEditingTrue(workingHoursHeader)"
+              [innerHtml]="workingHoursHeader.text | blue">
           </h4>
+          <mat-form-field *ngIf="isAdmin && workingHoursHeader.isEditing"
+                          class="small-input">
+            <input matInput autoFocus
+                   (focusout)="saveItemChanges(workingHoursHeader)"
+                   [(ngModel)]="workingHoursHeader.text"
+                   placeholder="workingHoursHeader" />
+          </mat-form-field>
           <div style="display: flex; flex-direction: row; justify-content: space-around;">
-            <div style="text-align: left;">
-              ponedjeljak<br>
-              utorak<br>
-              srijeda<br>
-              četvrtak<br>
-              petak<br>
-              subota<br>
-              nedjelja
-            </div>
-            <div style="text-align: right;">
-              9:00-18:00<br>
-              ZATVORENI<br>
-              9:00-18:00<br>
-              9:00-18:00<br>
-              9:00-18:00<br>
-              9:00-18:00<br>
-              9:00-18:00
-            </div>
+            <!-- Left Working Hours Column -->
+            <ul style="display: flex; flex-direction: column; margin: 0px;">
+              <li *ngFor="let item of workingHoursLeftColumnArray; index as i;">
+                <p *ngIf="!isAdmin || !workingHoursLeftColumnArray[i].isEditing"
+                   (click)="setIsEditingTrue(workingHoursLeftColumnArray[i])"
+                   [innerHtml]="workingHoursLeftColumnArray[i].text | blue">
+                </p>
+                <mat-form-field *ngIf="isAdmin && workingHoursLeftColumnArray[i].isEditing"
+                                class="small-input">
+                  <input matInput autoFocus
+                         (focusout)="saveArrayChanges(workingHoursLeftColumnArray)"
+                         [(ngModel)]="workingHoursLeftColumnArray[i].text"
+                         placeholder="workingHoursLeftColumnArray: {{i}}" />
+                </mat-form-field>
+              </li>
+            </ul>
+            <ul style="display: flex; flex-direction: column; margin: 0px !important;">
+              <li *ngFor="let item of workingHoursRightColumnArray; index as i;">
+                <p *ngIf="!isAdmin || !workingHoursRightColumnArray[i].isEditing"
+                   (click)="setIsEditingTrue(workingHoursRightColumnArray[i])"
+                   [innerHtml]="workingHoursRightColumnArray[i].text | blue">
+                </p>
+                <mat-form-field *ngIf="isAdmin && workingHoursRightColumnArray[i].isEditing"
+                                class="small-input">
+                  <input matInput autoFocus
+                         (focusout)="saveArrayChanges(workingHoursRightColumnArray)"
+                         [(ngModel)]="workingHoursRightColumnArray[i].text"
+                         placeholder="workingHoursRightColumnArray: {{i}}" />
+                </mat-form-field>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
