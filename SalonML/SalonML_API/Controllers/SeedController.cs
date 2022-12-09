@@ -220,6 +220,9 @@ namespace SalonML_API.Controllers
 
             foreach (string email in emails)
             {
+                if (email == null)
+                    continue;
+
                 if (await _userManager.FindByNameAsync(email) == null)
                 {
                     var newUser = new ApplicationUser()
