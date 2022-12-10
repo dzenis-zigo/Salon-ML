@@ -7,6 +7,7 @@ import { DynamicContentService, Editable } from '../dynamic-content.service';
   selector: 'app-resume-header',
   templateUrl: './resume-header.component.html',
   styleUrls: ['./resume-header.component.css',
+        '../shared-styles.css',
         '../../../shared/resume/css/style.css'],
   encapsulation: ViewEncapsulation.Emulated
 }) 

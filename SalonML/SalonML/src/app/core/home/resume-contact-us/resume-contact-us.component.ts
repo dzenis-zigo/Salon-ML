@@ -11,6 +11,7 @@ import { DynamicContentService, Editable } from '../dynamic-content.service';
   templateUrl: './resume-contact-us.component.html',
   styleUrls: [
     '../../../shared/resume/css/style.css',
+    '../shared-styles.css',
     './resume-contact-us.component.css'],
   encapsulation: ViewEncapsulation.None
 })
