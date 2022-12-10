@@ -10,6 +10,7 @@ import { BluePipe } from './blue.pipe';
 import { AutoFocusDirective } from './autofocus.directive';
 import { SocialMediaWidgetsComponent } from './social-media-widgets/social-media-widgets.component';
 import { InstagramDOMService } from './social-media-widgets/instagram-dom.service';
+import { ResumeInfoCardsComponent } from './resume-info-cards/resume-info-cards.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InstagramDOMService } from './social-media-widgets/instagram-dom.servic
     ResumeContactUsComponent,
     BluePipe,
     AutoFocusDirective,
-    SocialMediaWidgetsComponent
+    SocialMediaWidgetsComponent,
+    ResumeInfoCardsComponent
   ],
   imports: [
     CommonModule,
