@@ -16,8 +16,25 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.token = localStorage.getItem(this.tokenKey);
-    this.isLoggedIn = (this.token !== null);
-    this.isTestAdmin = (this.token === this.testAdminToken);
+
+    if (this.token != null) {
+
+      if (this.token === this.testAdminToken) {
+        this.isTestAdmin = true;
+        this.isLoggedIn = true;
+        return;
+      }
+
+      var payload = this.token.split(".")[1];
+      var claims = JSON.parse(atob(payload));
+      var exp = claims.exp;
+
+      // if token isn't expired
+      if (Date.now() / 1000 < exp) {
+        this.isLoggedIn = true;
+      }
+    }
+
   }
 
   login(item: LoginRequest): Observable<LoginResult> {
