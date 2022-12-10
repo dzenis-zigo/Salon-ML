@@ -23,23 +23,29 @@ export abstract class BaseHomeComponent {
   }
 
   saveItemChanges(item: Editable): void {
-    item.isEditing = false;
-
-    if (item.text === '')
-      item.text = '.'; // prevent loss of editable
+    this.modifyEditable(item);
 
     this.dynContentService.saveEditable(item);
   }
 
   saveArrayChanges(itemArray: Editable[]): void {
-    for (let item of itemArray) {
-      item.isEditing = false;
-
-      if (item.text === '')
-        item.text = '.'; // prevent loss of editable
-    }
+    for (let item of itemArray)
+      this.modifyEditable(item);
 
     this.dynContentService.saveEditableArray(itemArray);
+  }
+
+  private modifyEditable(item: Editable) {
+    item.isEditing = false;
+
+    if (item.text === '')
+      item.text = '.'; // prevent loss of editable
+
+    // allow easier copy/pasting from fontawesome
+    if (item.iconValue != null) {
+      item.iconValue = item.iconValue.replace(/<i class=\"/gi, "");
+      item.iconValue = item.iconValue.replace(/\"><\/i>/gi, "");
+    }
   }
 
   saveAndUploadImage(item: Editable, event: any): void {
