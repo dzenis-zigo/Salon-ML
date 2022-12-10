@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material.module';
 import { BluePipe } from './blue.pipe';
 import { AutoFocusDirective } from './autofocus.directive';
+import { SocialMediaWidgetsComponent } from './social-media-widgets/social-media-widgets.component';
+import { InstagramDOMService } from './social-media-widgets/instagram-dom.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { AutoFocusDirective } from './autofocus.directive';
     ResumeHeaderComponent,
     ResumeContactUsComponent,
     BluePipe,
-    AutoFocusDirective
+    AutoFocusDirective,
+    SocialMediaWidgetsComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +26,9 @@ import { AutoFocusDirective } from './autofocus.directive';
     FormsModule,
     AngularMaterialModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    InstagramDOMService
   ],
   exports: [
     HomeComponent
