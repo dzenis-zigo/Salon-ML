@@ -24,14 +24,20 @@ export abstract class BaseHomeComponent {
 
   saveItemChanges(item: Editable): void {
     item.isEditing = false;
-    console.log(item);
+
+    if (item.text === '')
+      item.text = '.'; // prevent loss of editable
 
     this.dynContentService.saveEditable(item);
   }
 
   saveArrayChanges(itemArray: Editable[]): void {
-    for (let item of itemArray)
+    for (let item of itemArray) {
       item.isEditing = false;
+
+      if (item.text === '')
+        item.text = '.'; // prevent loss of editable
+    }
 
     this.dynContentService.saveEditableArray(itemArray);
   }
