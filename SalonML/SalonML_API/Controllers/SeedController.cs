@@ -87,6 +87,28 @@ namespace SalonML_API.Controllers
                 ImageData = null
             });
 
+            /*              Social Media                 */
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "social-media-subtitle",
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)"
+            });
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "social-media-title",
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)"
+            });
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "social-media-description",
+                TextEnglish = LoremIpsumLongText + " (English)",
+                TextBosnian = LoremIpsumLongText + " (Bosnian)"
+            });
+
             /*              Resume Contact Us            */
             defaultDynamicContent.Add(new DynamicContent()
             {
