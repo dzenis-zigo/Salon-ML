@@ -3,10 +3,23 @@
   <!--Navigation-->
   <nav class="navbar navbar-top-default navbar-expand-lg navbar-simple nav-line">
     <div class="container">
-      <a href="#home" title="Logo" class="logo scroll">
-        <!--Logo Default-->
-        <img src="/assets/resume/img/logo.png" alt="logo" class="logo-dark">
+      <!-- Logo -->
+      <a *ngIf="!isAdmin || !logo.isEditing"
+         [href]="(isAdmin == false) ? '#home' : ''"
+         (click)="setIsEditingTrue(logo)"
+         title="Logo"
+         class="logo scroll">
+        <img [src]="logo.data"
+             alt="logo">
       </a>
+      <div *ngIf="isAdmin && logo.isEditing">
+        <input type="file"
+               class="file-upload"
+               (change)="saveAndUploadImage(logo, $event)">
+      </div>
+    </div>
+    <!-- Logout link -->
+    <div>
       <a (click)="logout()"
          *ngIf="isAdmin"
          style="cursor: pointer;">

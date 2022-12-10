@@ -53,6 +53,16 @@ namespace SalonML_API.Controllers
             // create seed data list
             var defaultDynamicContent = new List<DynamicContent>();
 
+            /*                 Navbar                */
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "navbar-logo",
+                ImageCaptionEnglish = LoremIpsumShortText + " (English)",
+                ImageCaptionBosnian = LoremIpsumShortText + " (Bosnian)",
+                ImageUrl = "https://www.facebook.com/salonML/",
+                ImageData = null
+            });
+
             /*              Resume Header            */
             defaultDynamicContent.Add(new DynamicContent()
             {

@@ -57,14 +57,6 @@
                  [(ngModel)]="image.url"
                  placeholder="url link" />
         </mat-form-field>
-        <!-- Don't use caption for this image
-        <mat-form-field class="small-input">
-          <input matInput
-                 (focusout)="saveChanges(image)"
-                 [(ngModel)]="image.caption"
-                 placeholder="caption" />
-        </mat-form-field>
-        -->
         <input type="file"
                class="file-upload"
                (change)="saveAndUploadImage(image, $event)">
