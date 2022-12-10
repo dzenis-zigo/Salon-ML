@@ -11,6 +11,7 @@ import { AutoFocusDirective } from './autofocus.directive';
 import { SocialMediaWidgetsComponent } from './social-media-widgets/social-media-widgets.component';
 import { InstagramDOMService } from './social-media-widgets/instagram-dom.service';
 import { ResumeInfoCardsComponent } from './resume-info-cards/resume-info-cards.component';
+import { MedicalGalleryComponent } from './medical-gallery/medical-gallery.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ResumeInfoCardsComponent } from './resume-info-cards/resume-info-cards.
     BluePipe,
     AutoFocusDirective,
     SocialMediaWidgetsComponent,
-    ResumeInfoCardsComponent
+    ResumeInfoCardsComponent,
+    MedicalGalleryComponent
   ],
   imports: [
     CommonModule,
