@@ -4,4 +4,5 @@ a.logo img {
 
 .navbar {
     padding: 0 1rem;
+    flex-wrap: nowrap;
 }
