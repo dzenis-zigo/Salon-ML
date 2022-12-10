@@ -11,6 +11,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'blue' })
 export class BluePipe implements PipeTransform {
   transform(value: string): string {
+    if (value == null)
+      return value;
+
     value = value.replace(/{/gi, "<span class=\"main-color\">");
     value = value.replace(/}/gi, "</span>");
     return value;

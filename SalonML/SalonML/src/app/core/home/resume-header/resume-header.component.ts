@@ -11,8 +11,8 @@ import { DynamicContentService, Editable } from '../dynamic-content.service';
   encapsulation: ViewEncapsulation.Emulated
 }) 
 export class ResumeHeaderComponent extends BaseHomeComponent implements OnInit {
-  title: Editable = <Editable>{ text: '' };
-  description: Editable = <Editable>{ text: '' };
+  title: Editable = <Editable>{};
+  description: Editable = <Editable>{};
   image: Editable = <Editable>{
     caption: '',
     url: '',

@@ -18,18 +18,18 @@ export class ResumeContactUsComponent extends BaseHomeComponent implements OnIni
   // the form model
   form!: FormGroup;
 
-  title: Editable               = <Editable>{ text: '' };
-  subtitle: Editable            = <Editable>{ text: '' };
-  namePlaceholder: Editable     = <Editable>{ text: '' };
-  emailPlaceholder: Editable    = <Editable>{ text: '' };
-  messagePlaceholder: Editable  = <Editable>{ text: '' };
-  submitButton: Editable        = <Editable>{ text: '' };
-  infoBoxHeaderArray: Editable[]            = <Editable[]>[{ text: '' }, { text: '' }, { text: '' }];
-  infoBoxIconArray: Editable[]              = <Editable[]>[{ text: '' }, { text: '' }, { text: '' }];
-  infoBoxValueArray: Editable[]             = <Editable[]>[{ text: '' }, { text: '' }, { text: '' }];
-  workingHoursHeader: Editable  = <Editable>{ text: '' };
-  workingHoursLeftColumnArray: Editable[]   = <Editable[]>[{ text: '' }, { text: '' }, { text: '' }];
-  workingHoursRightColumnArray: Editable[]  = <Editable[]>[{ text: '' }, { text: '' }, { text: '' }];
+  title: Editable               = <Editable>{};
+  subtitle: Editable            = <Editable>{};
+  namePlaceholder: Editable     = <Editable>{};
+  emailPlaceholder: Editable    = <Editable>{};
+  messagePlaceholder: Editable  = <Editable>{};
+  submitButton: Editable        = <Editable>{};
+  infoBoxHeaderArray: Editable[]            = <Editable[]>[{}, {}, {}];
+  infoBoxIconArray: Editable[]              = <Editable[]>[{}, {}, {}];
+  infoBoxValueArray: Editable[]             = <Editable[]>[{}, {}, {}];
+  workingHoursHeader: Editable  = <Editable>{};
+  workingHoursLeftColumnArray: Editable[]   = <Editable[]>[{}, {}, {}];
+  workingHoursRightColumnArray: Editable[]  = <Editable[]>[{}, {}, {}];
 
   constructor(protected override authService: AuthService,
               protected override dynContentService: DynamicContentService,
