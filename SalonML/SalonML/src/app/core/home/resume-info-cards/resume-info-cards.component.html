@@ -53,25 +53,121 @@
       <div class="col-lg-6">
         <div class="row d-flex align-items-lg-center">
           <div class="col-lg-6 order-lg-2 p-lg-0">
-            <!-- Feature Item -->
+            <!-- Card -->
             <div class="feature-item">
-              <i class="lni-bitbucket  f-icon"></i>
-              <h5 class="title">Development</h5>
-              <p>Simply dummy text of the print and typesetting industry lorem Ipsum has been standard.</p>
+              <i *ngIf="!isAdmin || !iconArray[0].isEditing"
+                 class="f-icon"
+                 (click)="setIsEditingTrue(iconArray[0])"
+                 [class]="iconArray[0].iconValue">
+              </i>
+              <mat-form-field *ngIf="isAdmin && iconArray[0].isEditing"
+                              class="small-input">
+                <input matInput autoFocus
+                       (focusout)="saveArrayChanges(iconArray)"
+                       [(ngModel)]="iconArray[0].iconValue"
+                       placeholder="iconArray: 0" />
+              </mat-form-field>
+              <h5 *ngIf="!isAdmin || !headerArray[0].isEditing"
+                  class="title"
+                  (click)="setIsEditingTrue(headerArray[0])"
+                  [innerHtml]="headerArray[0].text | blue">
+              </h5>
+              <mat-form-field *ngIf="isAdmin && headerArray[0].isEditing"
+                              class="small-input">
+                <input matInput autoFocus
+                       (focusout)="saveArrayChanges(headerArray)"
+                       [(ngModel)]="headerArray[0].text"
+                       placeholder="headerArray: 0" />
+              </mat-form-field>
+              <p *ngIf="!isAdmin || !bodyArray[0].isEditing"
+                 (click)="setIsEditingTrue(bodyArray[0])"
+                 [innerHtml]="bodyArray[0].text | blue">
+              </p>
+              <mat-form-field *ngIf="isAdmin && bodyArray[0].isEditing"
+                              class="small-input">
+                <input matInput autoFocus
+                       (focusout)="saveArrayChanges(bodyArray)"
+                       [(ngModel)]="bodyArray[0].text"
+                       placeholder="bodyArray: 0" />
+              </mat-form-field>
             </div>
-            <!-- Feature Item -->
+            <!-- Card -->
             <div class="feature-item">
-              <i class="lni-cart-full f-icon"></i>
-              <h5 class="title">App Design</h5>
-              <p>Simply dummy text of the print and typesetting industry lorem Ipsum has been standard.</p>
+              <i *ngIf="!isAdmin || !iconArray[1].isEditing"
+                 class="f-icon"
+                 (click)="setIsEditingTrue(iconArray[1])"
+                 [class]="iconArray[1].iconValue">
+              </i>
+              <mat-form-field *ngIf="isAdmin && iconArray[1].isEditing"
+                              class="small-input">
+                <input matInput autoFocus
+                       (focusout)="saveArrayChanges(iconArray)"
+                       [(ngModel)]="iconArray[1].iconValue"
+                       placeholder="iconArray: 1" />
+              </mat-form-field>
+              <h5 *ngIf="!isAdmin || !headerArray[1].isEditing"
+                  class="title"
+                  (click)="setIsEditingTrue(headerArray[1])"
+                  [innerHtml]="headerArray[1].text | blue">
+              </h5>
+              <mat-form-field *ngIf="isAdmin && headerArray[1].isEditing"
+                              class="small-input">
+                <input matInput autoFocus
+                       (focusout)="saveArrayChanges(headerArray)"
+                       [(ngModel)]="headerArray[1].text"
+                       placeholder="headerArray: 1" />
+              </mat-form-field>
+              <p *ngIf="!isAdmin || !bodyArray[1].isEditing"
+                 (click)="setIsEditingTrue(bodyArray[1])"
+                 [innerHtml]="bodyArray[1].text | blue">
+              </p>
+              <mat-form-field *ngIf="isAdmin && bodyArray[1].isEditing"
+                              class="small-input">
+                <input matInput autoFocus
+                       (focusout)="saveArrayChanges(bodyArray)"
+                       [(ngModel)]="bodyArray[1].text"
+                       placeholder="bodyArray: 1" />
+              </mat-form-field>
             </div>
           </div>
           <div class="col-lg-6 p-lg-0">
-            <!-- Feature Item -->
+            <!-- Card -->
             <div class="feature-item">
-              <i class="lni-graduation f-icon"></i>
-              <h5 class="title">UI / UX Design</h5>
-              <p>Simply dummy text of the print and typesetting industry lorem Ipsum has been standard.</p>
+              <i *ngIf="!isAdmin || !iconArray[2].isEditing"
+                 class="f-icon"
+                 (click)="setIsEditingTrue(iconArray[2])"
+                 [class]="iconArray[2].iconValue">
+              </i>
+              <mat-form-field *ngIf="isAdmin && iconArray[2].isEditing"
+                              class="small-input">
+                <input matInput autoFocus
+                       (focusout)="saveArrayChanges(iconArray)"
+                       [(ngModel)]="iconArray[2].iconValue"
+                       placeholder="iconArray: 2" />
+              </mat-form-field>
+              <h5 *ngIf="!isAdmin || !headerArray[2].isEditing"
+                  class="title"
+                  (click)="setIsEditingTrue(headerArray[2])"
+                  [innerHtml]="headerArray[2].text | blue">
+              </h5>
+              <mat-form-field *ngIf="isAdmin && headerArray[2].isEditing"
+                              class="small-input">
+                <input matInput autoFocus
+                       (focusout)="saveArrayChanges(headerArray)"
+                       [(ngModel)]="headerArray[2].text"
+                       placeholder="headerArray: 2" />
+              </mat-form-field>
+              <p *ngIf="!isAdmin || !bodyArray[2].isEditing"
+                 (click)="setIsEditingTrue(bodyArray[2])"
+                 [innerHtml]="bodyArray[2].text | blue">
+              </p>
+              <mat-form-field *ngIf="isAdmin && bodyArray[2].isEditing"
+                              class="small-input">
+                <input matInput autoFocus
+                       (focusout)="saveArrayChanges(bodyArray)"
+                       [(ngModel)]="bodyArray[2].text"
+                       placeholder="bodyArray: 2" />
+              </mat-form-field>
             </div>
           </div>
         </div>

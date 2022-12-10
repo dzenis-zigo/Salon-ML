@@ -132,6 +132,32 @@ namespace SalonML_API.Controllers
                 TextBosnian = LoremIpsumLongText + " (Bosnian)"
             });
 
+            for (int i = 0; i < 3; i++)
+            {
+                defaultDynamicContent.Add(new DynamicContent()
+                {
+                    Name = "resume-info-cards-icon-array",
+                    IconValue = "lni-apartment",
+                    OrderIndex = i
+                });
+
+                defaultDynamicContent.Add(new DynamicContent()
+                {
+                    Name = "resume-info-cards-header-array",
+                    TextEnglish = LoremIpsumShortText + " (English)",
+                    TextBosnian = LoremIpsumShortText + " (Bosnian)",
+                    OrderIndex = i
+                });
+
+                defaultDynamicContent.Add(new DynamicContent()
+                {
+                    Name = "resume-info-cards-body-array",
+                    TextEnglish = LoremIpsumLongText + " (English)",
+                    TextBosnian = LoremIpsumLongText + " (Bosnian)",
+                    OrderIndex = i
+                });
+            }
+
             /*              Resume Contact Us            */
             defaultDynamicContent.Add(new DynamicContent()
             {
