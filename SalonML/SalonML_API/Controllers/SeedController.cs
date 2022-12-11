@@ -158,8 +158,22 @@ namespace SalonML_API.Controllers
                 });
             }
 
-            /*              Resume Contact Us            */
-            defaultDynamicContent.Add(new DynamicContent()
+            /*              Cp Gallery                   */
+            for (int i = 0; i < 2; i++)
+            {
+                defaultDynamicContent.Add(new DynamicContent()
+                {
+                    Name = "cp-gallery-image-array",
+                    ImageCaptionEnglish = LoremIpsumShortText + " (English)",
+                    ImageCaptionBosnian = LoremIpsumShortText + " (Bosnian)",
+                    ImageUrl = "https://www.facebook.com/salonML/",
+                    ImageData = null,
+                    OrderIndex = i
+                });
+            }
+
+                /*              Resume Contact Us            */
+                defaultDynamicContent.Add(new DynamicContent()
             {
                 Name = "resume-contact-us-title",
                 TextEnglish = LoremIpsumShortText + " (English)",

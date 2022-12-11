@@ -45,7 +45,6 @@ export class AuthService {
         if (loginResult.success && loginResult.token) {
           localStorage.setItem(this.tokenKey, loginResult.token);
           this.isLoggedIn = true;
-          console.log(loginResult.token); //todo delete
         }
       }));
   }

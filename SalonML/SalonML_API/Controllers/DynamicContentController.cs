@@ -80,6 +80,45 @@ namespace SalonML_API.Controllers
             }
         }
 
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> CreateItem(string name)
+        {
+            var itemWithHighestOrderIndex = _context.DynamicContents.Where(d => d.Name == name).OrderByDescending(x => x.OrderIndex).FirstOrDefault();
+            var newOrderIndex = (itemWithHighestOrderIndex != null) ? itemWithHighestOrderIndex.OrderIndex + 1 : null;
+
+            // todo possibly export this to a service
+            var email = User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault()!.Value;
+
+            DynamicContent dbModel = new DynamicContent()
+            {
+                Name = name,
+                OrderIndex = newOrderIndex,
+                ModifiedBy = email,
+                ModifiedOn = DateTime.Now
+            };
+
+            _context.DynamicContents.Add(dbModel);
+            await _context.SaveChangesAsync();
+
+            return Ok(new DynamicContentDTO(dbModel));
+        }
+
+        [HttpDelete]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> DeleteItem(int id)
+        {
+            var dbModel = new DynamicContent()
+            {
+                Id = id
+            };
+            _context.Remove(dbModel);
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+        
         // return a list of every DynamicContent
         [HttpGet]
         public async Task<IActionResult> GetList()

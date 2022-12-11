@@ -4,20 +4,52 @@
     <!-- gallery -->
     <div class="row gallery-5" id="gallery-5">
       <!-- gallery item -->
-      <div class="col-md-4 items">
-        <div class="item-img">
-          <img alt="image" src="/assets/creative-parallax/img/project-item-01.jpg">
+      <div *ngFor="let image of imageArray; index as i;"
+           class="col-md-4 items">
+        <div *ngIf="!isAdmin || !image.isEditing"
+             (click)="setIsEditingTrue(image)"
+             class="item-img">
+          <img alt="image" [src]="image.data">
           <!--Item Overlay-->
           <div class="item-overlay">
             <div class="overlay-content">
-              <h5>Lorem !Ipsum! (English)</h5>
-              <a href="javascript:void(0);">
+              <h5>{{ image.caption }}</h5>
+              <a [href]="image.url">
                 <i class="fas fa-share"></i>
               </a>
             </div>
           </div>
         </div>
+        <div *ngIf="isAdmin && image.isEditing"
+             style="display: flex; flex-direction: column;">
+          <mat-form-field>
+            <input matInput
+                   (focusout)="saveArrayChanges(imageArray)"
+                   [(ngModel)]="image.url"
+                   placeholder="image URL" />
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput
+                   (focusout)="saveArrayChanges(imageArray)"
+                   [(ngModel)]="image.caption"
+                   placeholder="image Caption" />
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput
+                   (focusout)="saveImagePosition(imageArray, i, $event)"
+                   placeholder="image Position" />
+          </mat-form-field>
+          <input type="file"
+                 class="file-upload"
+                 (change)="saveAndUploadImage(image, $event)">
+          <button (click)="deleteImageFromArray(i)">
+            Delete image
+          </button>
+        </div>
       </div>
+      <button (click)="addImage()">
+        Add Image
+      </button>
     </div>
   </div>
   <div>

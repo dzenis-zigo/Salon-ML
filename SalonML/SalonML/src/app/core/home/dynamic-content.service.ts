@@ -70,7 +70,8 @@ export class DynamicContentService {
       caption: caption,
       url: dto.imageUrl,
       data: data,
-      iconValue: dto.iconValue
+      iconValue: dto.iconValue,
+      orderIndex: dto.orderIndex
     }
   }
 
@@ -134,6 +135,34 @@ export class DynamicContentService {
     this.onNewDataLoaded.next();
   }
 
+  public addBlankImageToArray(name: string) {
+    const postUrl = this.url + 'CreateItem' + '?name=' + name;
+
+    var onImageCreate = new Subject<void>();
+
+    this.http.post<DynamicContentDTO>(postUrl , null)
+      .subscribe(result => {
+        this.dynContentDtoArrayDictionary[name].push(result);
+
+        onImageCreate.next();
+        onImageCreate.complete();
+      });
+
+    return onImageCreate;
+  }
+
+  public deleteImageFromArray(image: Editable, newImageArray: Editable[]) {
+    const id = image.id;
+
+    const deleteUrl = this.url + 'DeleteItem' + '?id=' + id;
+
+    this.http.delete(deleteUrl)
+      .subscribe(result => {
+        // update the orderIndexes
+        this.saveEditableArray(newImageArray);
+      });
+  }
+
   private fetchAndStoreDynamicContent(): void {
     console.log("running fetchAndStoreDynamicContent (make sure not more than once)")
 
@@ -148,7 +177,6 @@ export class DynamicContentService {
 
     this.http.get<DynamicContentDTO[][]>(getUrl)
       .subscribe(result => { 
-        console.log(result);
         // build our dynContentDtoDictionary
         result.forEach( (dtoArray: DynamicContentDTO[]) => {
           if (dtoArray.length == 1) {

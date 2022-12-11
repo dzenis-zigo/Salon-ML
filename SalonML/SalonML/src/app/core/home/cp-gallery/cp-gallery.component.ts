@@ -1,4 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Subject } from 'rxjs';
+import { AuthService } from '../../auth/auth.service';
+import { BaseHomeComponent } from '../base-home.component';
+import { DynamicContentService, Editable } from '../dynamic-content.service';
 
 @Component({
   selector: 'app-cp-gallery',
@@ -8,11 +12,49 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
     '../../../shared/creative-parallax/css/style.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class CpGalleryComponent implements OnInit {
+export class CpGalleryComponent extends BaseHomeComponent implements OnInit {
+  imageArray: Editable[] = <Editable[]>[{}];
 
-  constructor() { }
+  constructor(protected override authService: AuthService,
+              protected override dynContentService: DynamicContentService) {
+    super(authService, dynContentService);
+
+    dynContentService.onNewDataLoaded.subscribe(() => {
+      this.imageArray = dynContentService.getEditableArray("cp-gallery-image-array");
+    });
+  }
 
   ngOnInit(): void {
   }
 
+  addImage() {
+    var onImageCreate: Subject<void> = this.dynContentService.addBlankImageToArray("cp-gallery-image-array");
+
+    onImageCreate.subscribe(() => {
+      this.imageArray = this.dynContentService.getEditableArray("cp-gallery-image-array");
+    });
+  }
+
+  deleteImageFromArray(index: number) {
+    const imageToDelete = this.imageArray[index];
+
+    // remove from array
+    this.imageArray.splice(index, 1);
+
+    this.dynContentService.deleteImageFromArray(imageToDelete, this.imageArray);
+  }
+
+  saveImagePosition(imageArray: Editable[], oldIndex: number, event: any) {
+    imageArray[oldIndex].isEditing = false;
+
+    const newIndex = event.target.value;
+
+    if (newIndex == null)
+      return;
+
+    // todo do this algorithm
+    console.log(imageArray);
+    console.log(oldIndex);
+    console.log(newIndex);
+  }
 }
