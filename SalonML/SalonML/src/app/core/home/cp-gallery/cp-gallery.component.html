@@ -51,7 +51,8 @@
           </button>
         </div>
       </div>
-      <button (click)="addImage()">
+      <button *ngIf="isAdmin"
+              (click)="addImage()">
         Add Image
       </button>
     </div>
