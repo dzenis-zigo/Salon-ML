@@ -11,3 +11,17 @@
     padding: 3px !important;
   }
 }
+
+.gallery-5 .item-overlay .overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gallery-5 .item-overlay a {
+  height: 45px !important;
+  width: 45px !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}

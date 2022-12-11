@@ -14,8 +14,12 @@
           <div class="item-overlay">
             <div class="overlay-content">
               <h5>{{ image.caption }}</h5>
-              <a [href]="image.url">
-                <i class="fas fa-share"></i>
+              <a *ngIf="image.url"
+                 [href]="image.url">
+                <i class="fa-2x fa-brands"
+                   [ngClass]="{'fa-facebook-f':  image.url.includes('facebook'),
+                               'fa-instagram': image.url.includes('instagram')}">
+                </i>
               </a>
             </div>
           </div>
