@@ -25,3 +25,13 @@
     width: 550px;
   }
 }
+
+.container-10 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container-25 {
+  padding-left: 25px;
+  padding-right: 25px;
+}
