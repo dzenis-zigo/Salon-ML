@@ -2,54 +2,31 @@
 <section id="gallery" class="portfolio-5">
   <div class="container container-10">
     <!-- gallery -->
-    <div class="row gallery-5" id="gallery-5">
-      <!-- gallery item -->
-      <div *ngFor="let image of imageArray; index as i;"
-           class="col-md-4 items">
-        <div *ngIf="!isAdmin || !image.isEditing"
-             (click)="setIsEditingTrue(image)"
-             class="item-img">
-          <img alt="image" [src]="image.data">
-          <!--Item Overlay-->
-          <div class="item-overlay">
-            <div class="overlay-content">
-              <h5>{{ image.caption }}</h5>
-              <a *ngIf="image.url"
-                 [href]="image.url">
-                <i class="fa-2x fa-brands"
-                   [ngClass]="{'fa-facebook-f':  image.url.includes('facebook'),
-                               'fa-instagram': image.url.includes('instagram')}">
-                </i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div *ngIf="isAdmin && image.isEditing"
-             style="display: flex; flex-direction: column;">
-          <mat-form-field>
-            <input matInput
-                   (focusout)="saveArrayChanges(imageArray)"
-                   [(ngModel)]="image.url"
-                   placeholder="image URL" />
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput
-                   (focusout)="saveArrayChanges(imageArray)"
-                   [(ngModel)]="image.caption"
-                   placeholder="image Caption" />
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput
-                   (focusout)="saveImagePosition(imageArray, i, $event)"
-                   placeholder="image Position" />
-          </mat-form-field>
-          <input type="file"
-                 class="file-upload"
-                 (change)="saveAndUploadImage(image, $event)">
-          <button (click)="deleteImageFromArray(i)">
-            Delete image
-          </button>
-        </div>
+    <div class="row gallery-5" id="gallery-5" style="display: flex; flex-direction: row; justify-content: space-between; align-content: space-between;">
+      <!-- gallery item column -->
+      <div class="col-md-4 items"
+           style="display: flex; flex-direction: column">
+        <ng-container     *ngFor="let image of imageArray; index as i;">
+          <ng-container   *ngIf="i % 3 === 0">
+            <ng-template  *ngTemplateOutlet="ImageElement; context: {$implicit: image}"></ng-template>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div class="col-md-4 items"
+           style="display: flex; flex-direction: column">
+        <ng-container     *ngFor="let image of imageArray; index as i;">
+          <ng-container   *ngIf="i % 3 === 1">
+            <ng-template  *ngTemplateOutlet="ImageElement; context: {$implicit: image}"></ng-template>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div class="col-md-4 items"
+           style="display: flex; flex-direction: column">
+        <ng-container     *ngFor="let image of imageArray; index as i;">
+          <ng-container   *ngIf="i % 3 === 2">
+            <ng-template  *ngTemplateOutlet="ImageElement; context: {$implicit: image}"></ng-template>
+          </ng-container>
+        </ng-container>
       </div>
       <button *ngIf="isAdmin"
               (click)="addImage()">
@@ -62,3 +39,51 @@
   </div>
 </section>
 <!-- Ends Gallery portfolio -->
+
+
+<ng-template #ImageElement let-image let-i>
+  <div *ngIf="!isAdmin || !image.isEditing"
+       (click)="setIsEditingTrue(image)"
+       class="item-img">
+    <img alt="image" [src]="image.data">
+    <!--Item Overlay-->
+    <div class="item-overlay">
+      <div class="overlay-content">
+        <h5>{{ image.caption }}</h5>
+        <a *ngIf="image.url"
+           [href]="image.url">
+          <i class="fa-2x fa-brands"
+             [ngClass]="{'fa-facebook-f':  image.url.includes('facebook'),
+                               'fa-instagram': image.url.includes('instagram')}">
+          </i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isAdmin && image.isEditing"
+       style="display: flex; flex-direction: column;">
+    <mat-form-field>
+      <input matInput
+             (focusout)="saveArrayChanges(imageArray)"
+             [(ngModel)]="image.url"
+             placeholder="image URL" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput
+             (focusout)="saveArrayChanges(imageArray)"
+             [(ngModel)]="image.caption"
+             placeholder="image Caption" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput
+             (focusout)="saveImagePosition(imageArray, i, $event)"
+             placeholder="image Position" />
+    </mat-form-field>
+    <input type="file"
+           class="file-upload"
+           (change)="saveAndUploadImage(image, $event)">
+    <button (click)="deleteImageFromArray(i)">
+      Delete image
+    </button>
+  </div>
+</ng-template>
