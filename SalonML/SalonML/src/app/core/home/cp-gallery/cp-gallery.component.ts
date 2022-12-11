@@ -45,16 +45,19 @@ export class CpGalleryComponent extends BaseHomeComponent implements OnInit {
   }
 
   saveImagePosition(imageArray: Editable[], oldIndex: number, event: any) {
-    imageArray[oldIndex].isEditing = false;
+    var imageToMove = imageArray[oldIndex];
+    imageToMove.isEditing = false;
 
-    const newIndex = event.target.value;
-
-    if (newIndex == null)
+    if (event.target.value == '')
       return;
 
-    // todo do this algorithm
-    console.log(imageArray);
-    console.log(oldIndex);
-    console.log(newIndex);
+    // assume user is using 1 as first index
+    var newIndex = event.target.value - 1;
+
+    this.imageArray.splice(oldIndex, 1);
+    this.imageArray.splice(newIndex, 0, imageToMove);
+
+    // update the orderIndexes on backend
+    this.dynContentService.saveEditableArray(this.imageArray);
   }
 }

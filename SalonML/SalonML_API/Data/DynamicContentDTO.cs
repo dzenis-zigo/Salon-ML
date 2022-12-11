@@ -22,7 +22,6 @@ namespace SalonML_API.Data
             ImageUrl = d.ImageUrl;
             ImageData = d.ImageData;
             IconValue = d.IconValue;
-            OrderIndex = d.OrderIndex;
         }
 
         [Required(ErrorMessage = "Id is required.")]
@@ -45,7 +44,5 @@ namespace SalonML_API.Data
         public string? ImageData { get; set; }
 
         public string? IconValue { get; set; }
-
-        public int? OrderIndex { get; set; }
     }
 }

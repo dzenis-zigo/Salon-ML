@@ -28,7 +28,7 @@ namespace SalonML_API.Controllers
             // todo possibly export this to a service
             var email = User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault()!.Value;
 
-            UpdateRelevantModelProperties(dto, email);
+            UpdateRelevantModelProperties(dto, null, email);
 
             await _context.SaveChangesAsync();
 
@@ -42,9 +42,9 @@ namespace SalonML_API.Controllers
             // todo possibly export this to a service
             var email = User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault()!.Value;
 
-            foreach (DynamicContentDTO dto in dtoArray)
+            for (int i = 0; i < dtoArray.Length; i++)
             {
-                UpdateRelevantModelProperties(dto, email);
+                UpdateRelevantModelProperties(dtoArray[i], i, email);
             }
 
             await _context.SaveChangesAsync();
@@ -52,7 +52,7 @@ namespace SalonML_API.Controllers
             return Ok();
         }
 
-        private void UpdateRelevantModelProperties(DynamicContentDTO dto, string email)
+        private void UpdateRelevantModelProperties(DynamicContentDTO dto, int? arrayIndex, string email)
         {
             DynamicContent dbModel = new DynamicContent()
             {
@@ -65,9 +65,9 @@ namespace SalonML_API.Controllers
                 ImageUrl = dto.ImageUrl,
                 ImageData = dto.ImageData,
                 IconValue = dto.IconValue,
-                OrderIndex = dto.OrderIndex,
+                OrderIndex = arrayIndex,
                 ModifiedBy = email,
-                ModifiedOn = DateTime.Now
+                ModifiedOn = DateTime.Now,
             };
 
             _context.Entry(dbModel).State = EntityState.Modified;
@@ -123,11 +123,11 @@ namespace SalonML_API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            // todo verify this is the correct way to cast to DTO
+            // todo get this to order by OrderIndex
             var dynContentList = _context.DynamicContents
+                .OrderByDescending(x => x.OrderIndex)
                 .Select(d => new DynamicContentDTO(d))
-                //.OrderByDescending(x => x.OrderIndex)
-                .ToLookup(x => x.Name, StringComparer.OrdinalIgnoreCase);
+                .ToLookup(x => x.Name);
 
             return Ok(dynContentList);
         }

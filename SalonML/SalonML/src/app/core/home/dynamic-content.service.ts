@@ -70,8 +70,7 @@ export class DynamicContentService {
       caption: caption,
       url: dto.imageUrl,
       data: data,
-      iconValue: dto.iconValue,
-      orderIndex: dto.orderIndex
+      iconValue: dto.iconValue
     }
   }
 
@@ -89,9 +88,8 @@ export class DynamicContentService {
   public saveEditableArray(editableArray: Editable[]) {
     var newDtoArray = new Array();
 
-    // save array index as orderIndex
     for (let i = 0; i < editableArray.length; i++) {
-      var newDto = this.generateDto(editableArray[i], i);
+      var newDto = this.generateDto(editableArray[i]);
       newDtoArray.push(newDto);
     }
 
@@ -102,7 +100,7 @@ export class DynamicContentService {
     this.http.put(updateUrl, newDtoArray).subscribe();
   }
 
-  private generateDto(editable: Editable, orderIndex?: number) {
+  private generateDto(editable: Editable) {
     return <DynamicContentDTO>{
       id: editable.id,
       name: editable.name,
@@ -122,8 +120,7 @@ export class DynamicContentService {
       imageData: (editable.data !== undefined) ?
         atob(editable.data.replace(/^data:image\/(png|jpeg|jpg);base64,/, '')) :
         undefined,
-      iconValue: editable.iconValue,
-      orderIndex: orderIndex
+      iconValue: editable.iconValue
     }
   }
 
@@ -158,7 +155,6 @@ export class DynamicContentService {
 
     this.http.delete(deleteUrl)
       .subscribe(result => {
-        // update the orderIndexes
         this.saveEditableArray(newImageArray);
       });
   }
@@ -190,15 +186,6 @@ export class DynamicContentService {
 
         });
 
-        // reorder the dto array according to the orderIndex values
-        // TODO set this up when we get to it
-        for (var name in this.dynContentDtoArrayDictionary) {
-          var fixedArray = new Array(this.dynContentDtoArrayDictionary[name].length);
-
-          for (var arrayElem in this.dynContentDtoArrayDictionary[name]) {
-          }
-        }
-
         // set new test admin data
         if (this.authService.isTestAdmin && testAdminData === null)
           localStorage.setItem(
@@ -219,7 +206,6 @@ export interface Editable {
   url?: string;
   data?: any; // todo figure out type for byte array
   iconValue?: string;
-  orderIndex?: number;
 }
 
 interface DynamicContentDTO {
@@ -232,7 +218,6 @@ interface DynamicContentDTO {
   imageUrl?: string;
   imageData?: any; // todo figure out type for byte array
   iconValue?: string;
-  orderIndex?: number;
 }
 
 
