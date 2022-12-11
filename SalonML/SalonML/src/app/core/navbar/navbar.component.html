@@ -17,14 +17,14 @@
                class="file-upload"
                (change)="saveAndUploadImage(logo, $event)">
       </div>
-    </div>
-    <!-- Logout link -->
-    <div>
-      <a (click)="logout()"
-         *ngIf="isAdmin"
-         style="cursor: pointer;">
-        <h4>Logout</h4>
-      </a>
+      <!-- Logout link -->
+      <div>
+        <a (click)="logout()"
+           *ngIf="isAdmin"
+           style="color: #2b2b2b; cursor: pointer;">
+          <h4>Logout</h4>
+        </a>
+      </div>
     </div>
   </nav>
 </header>
