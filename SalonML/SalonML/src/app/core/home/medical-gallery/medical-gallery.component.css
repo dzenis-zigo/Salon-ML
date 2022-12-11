@@ -1,0 +1,12 @@
+.gallery-5 .items {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 50%;
+}
+
+
+@media screen and (max-width: 576px) {
+  .gallery-5 .items {
+    padding: 7px !important;
+  }
+}
