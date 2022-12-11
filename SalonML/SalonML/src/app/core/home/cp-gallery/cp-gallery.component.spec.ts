@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MedicalGalleryComponent } from './medical-gallery.component';
+import { CpGalleryComponent } from './cp-gallery.component';
 
 describe('MedicalGalleryComponent', () => {
-  let component: MedicalGalleryComponent;
-  let fixture: ComponentFixture<MedicalGalleryComponent>;
+  let component: CpGalleryComponent;
+  let fixture: ComponentFixture<CpGalleryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MedicalGalleryComponent ]
+      declarations: [CpGalleryComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MedicalGalleryComponent);
+    fixture = TestBed.createComponent(CpGalleryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
