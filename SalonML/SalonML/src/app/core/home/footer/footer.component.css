@@ -7,3 +7,7 @@ p {
 .footer-social a {
   color: black;
 }
+
+section {
+  background-color: #f8f9fa !important;
+}
