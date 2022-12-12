@@ -12,6 +12,7 @@ import { SocialMediaWidgetsComponent } from './social-media-widgets/social-media
 import { InstagramDOMService } from './social-media-widgets/instagram-dom.service';
 import { ResumeInfoCardsComponent } from './resume-info-cards/resume-info-cards.component';
 import { CpGalleryComponent } from './cp-gallery/cp-gallery.component';
+import { FdReviewsComponent } from './fd-reviews/fd-reviews.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CpGalleryComponent } from './cp-gallery/cp-gallery.component';
     AutoFocusDirective,
     SocialMediaWidgetsComponent,
     ResumeInfoCardsComponent,
-    CpGalleryComponent
+    CpGalleryComponent,
+    FdReviewsComponent
   ],
   imports: [
     CommonModule,
