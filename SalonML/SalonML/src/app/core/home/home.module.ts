@@ -13,6 +13,7 @@ import { InstagramDOMService } from './social-media-widgets/instagram-dom.servic
 import { ResumeInfoCardsComponent } from './resume-info-cards/resume-info-cards.component';
 import { CpGalleryComponent } from './cp-gallery/cp-gallery.component';
 import { FdReviewsComponent } from './fd-reviews/fd-reviews.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FdReviewsComponent } from './fd-reviews/fd-reviews.component';
     SocialMediaWidgetsComponent,
     ResumeInfoCardsComponent,
     CpGalleryComponent,
-    FdReviewsComponent
+    FdReviewsComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

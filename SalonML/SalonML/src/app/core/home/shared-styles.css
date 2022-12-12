@@ -35,3 +35,11 @@
   padding-left: 25px;
   padding-right: 25px;
 }
+
+p {
+  font-weight: 300;
+}
+
+section {
+    background-color: white;
+}
