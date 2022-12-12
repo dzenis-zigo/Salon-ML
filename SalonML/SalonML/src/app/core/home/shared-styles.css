@@ -43,3 +43,7 @@ p {
 section {
     background-color: white;
 }
+
+::-webkit-scrollbar {
+  width: inherit;
+}

@@ -75,3 +75,7 @@
 .address-item {
   white-space: nowrap;
 }
+
+p {
+    font-weight: 300;
+}
