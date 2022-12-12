@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { AuthService } from "../auth/auth.service";
 import { DynamicContentService, Editable } from "./dynamic-content.service";
+import { readAndCompressImage } from 'browser-image-resizer';
 
 @Component({
   template: ''
@@ -49,17 +50,30 @@ export abstract class BaseHomeComponent {
   }
 
   saveAndUploadImage(item: Editable, event: any): void {
-    var reader = new FileReader();
+    item.isEditing = false;
 
-    reader.onload = (event: any) => {
-      item.data = event.target.result;
-      item.isEditing = false;
-
-      this.dynContentService.saveEditable(item);
+    // compression/resizing settings
+    const config = {
+      quality: 0.5,
+      maxWidth: 400,
+      debug: false
     };
 
     const file: File = event.target.files[0];
 
-    reader.readAsDataURL(file);
+    var reader = new FileReader();
+
+    readAndCompressImage(file, config)
+      .then(resizedImage => {
+        // read blob
+        reader.readAsDataURL(resizedImage);
+      })
+
+    // finished reading blob
+    reader.onload = (event: any) => {
+      item.data = event.target.result;
+
+      this.dynContentService.saveEditable(item);
+    };
   }
 }

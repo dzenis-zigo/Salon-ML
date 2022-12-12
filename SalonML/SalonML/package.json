@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^14.2.12",
     "@angular/platform-browser-dynamic": "^14.2.12",
     "@angular/router": "^14.2.12",
+    "browser-image-resizer": "^2.4.1",
     "jest-editor-support": "*",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
