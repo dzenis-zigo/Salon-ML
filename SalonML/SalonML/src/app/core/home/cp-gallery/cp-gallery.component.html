@@ -2,30 +2,42 @@
 <section id="gallery" class="portfolio-5">
   <div class="container container-10">
     <!-- gallery -->
-    <div class="row gallery-5" id="gallery-5" style="display: flex; flex-direction: row; justify-content: space-between; align-content: space-between;">
+    <div class="row gallery-5" id="gallery-5">
       <!-- gallery item column -->
-      <div class="col-md-4 items"
+      <div class="col-md-4"
            style="display: flex; flex-direction: column">
-        <ng-container     *ngFor="let image of imageArray; index as i;">
-          <ng-container   *ngIf="i % 3 === 0">
-            <ng-template  *ngTemplateOutlet="ImageElement; context: {$implicit: image}"></ng-template>
-          </ng-container>
+        <ng-container *ngFor="let image of imageArray; index as i;">
+          <div *ngIf="i % 4 === 0"
+               class="items">
+            <ng-template *ngTemplateOutlet="ImageElement; context: {$implicit: image, key2: i}"></ng-template>
+          </div>
         </ng-container>
       </div>
-      <div class="col-md-4 items"
+      <div class="col-md-4"
            style="display: flex; flex-direction: column">
-        <ng-container     *ngFor="let image of imageArray; index as i;">
-          <ng-container   *ngIf="i % 3 === 1">
-            <ng-template  *ngTemplateOutlet="ImageElement; context: {$implicit: image}"></ng-template>
-          </ng-container>
+        <ng-container *ngFor="let image of imageArray; index as i;">
+          <div *ngIf="i % 4 === 1"
+               class="items">
+            <ng-template *ngTemplateOutlet="ImageElement; context: {$implicit: image, key2: i}"></ng-template>
+          </div>
         </ng-container>
       </div>
-      <div class="col-md-4 items"
+      <div class="col-md-4"
            style="display: flex; flex-direction: column">
-        <ng-container     *ngFor="let image of imageArray; index as i;">
-          <ng-container   *ngIf="i % 3 === 2">
-            <ng-template  *ngTemplateOutlet="ImageElement; context: {$implicit: image}"></ng-template>
-          </ng-container>
+        <ng-container *ngFor="let image of imageArray; index as i;">
+          <div *ngIf="i % 4 === 2"
+               class="items">
+            <ng-template *ngTemplateOutlet="ImageElement; context: {$implicit: image, key2: i}"></ng-template>
+          </div>
+        </ng-container>
+      </div>
+      <div class="col-md-4"
+           style="display: flex; flex-direction: column">
+        <ng-container *ngFor="let image of imageArray; index as i;">
+          <div *ngIf="i % 4 === 3"
+               class="items">
+            <ng-template *ngTemplateOutlet="ImageElement; context: {$implicit: image, key2: i}"></ng-template>
+          </div>
         </ng-container>
       </div>
       <button *ngIf="isAdmin"
@@ -41,7 +53,7 @@
 <!-- Ends Gallery portfolio -->
 
 
-<ng-template #ImageElement let-image let-i>
+<ng-template #ImageElement let-image let-i="key2">
   <div *ngIf="!isAdmin || !image.isEditing"
        (click)="setIsEditingTrue(image)"
        class="item-img">
@@ -50,6 +62,9 @@
     <div class="item-overlay">
       <div class="overlay-content">
         <h5>{{ image.caption }}</h5>
+        <h5 *ngIf="isAdmin">
+          Position - {{ i }}
+        </h5>
         <a *ngIf="image.url"
            [href]="image.url">
           <i class="fa-2x fa-brands"
@@ -61,25 +76,31 @@
     </div>
   </div>
   <div *ngIf="isAdmin && image.isEditing"
+       class="item-img"
        style="display: flex; flex-direction: column;">
     <mat-form-field>
       <input matInput
+             style="width: 100%;"
              (focusout)="saveArrayChanges(imageArray)"
              [(ngModel)]="image.url"
              placeholder="image URL" />
     </mat-form-field>
     <mat-form-field>
       <input matInput
+             style="width: 100%;"
              (focusout)="saveArrayChanges(imageArray)"
              [(ngModel)]="image.caption"
              placeholder="image Caption" />
     </mat-form-field>
     <mat-form-field>
       <input matInput
+             style="width: 100%;"
+             [value]="i"
              (focusout)="saveImagePosition(imageArray, i, $event)"
              placeholder="image Position" />
     </mat-form-field>
     <input type="file"
+           style="width: 100%;"
            class="file-upload"
            (change)="saveAndUploadImage(image, $event)">
     <button (click)="deleteImageFromArray(i)">

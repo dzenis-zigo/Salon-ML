@@ -51,8 +51,7 @@ export class CpGalleryComponent extends BaseHomeComponent implements OnInit {
     if (event.target.value == '')
       return;
 
-    // assume user is using 1 as first index
-    var newIndex = event.target.value - 1;
+    var newIndex = event.target.value;
 
     this.imageArray.splice(oldIndex, 1);
     this.imageArray.splice(newIndex, 0, imageToMove);
