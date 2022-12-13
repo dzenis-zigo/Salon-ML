@@ -27,6 +27,7 @@ p {
 
 .img-fill {
     user-select: none;
+    transform: scale(0.75);
 }
 
 .title {

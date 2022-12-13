@@ -13,21 +13,24 @@ export class DynamicContentService {
   private url: string = environment.baseUrl + "api/DynamicContent/";
   private dynContentDtoDictionary: { [name: string]: DynamicContentDTO } = {};
   private dynContentDtoArrayDictionary: { [name: string]: DynamicContentDTO[]; } = {};
-  private localizationValue: string | null; // not sure about the " | null" todo
+  private localizationValue: string; // not sure about the " | null" todo
 
   // call next() when page loads first time or when localization changes
-  public onNewDataLoaded = new Subject<void>();
+  public onNewDataLoaded = new Subject<string>();
 
   constructor(private http: HttpClient,
               private authService: AuthService) {
 
     // store and retrieve localization choice for future visits
     // default language is English
-    this.localizationValue = localStorage.getItem(this.localizationKey) ;
-    if (localStorage.getItem(this.localizationKey) === null) {
+    var l10nVal = localStorage.getItem(this.localizationKey);
+
+    if (l10nVal === null) {
       this.localizationValue = "en";
       localStorage.setItem(this.localizationKey, this.localizationValue);
     }
+    else
+      this.localizationValue = l10nVal;
 
     this.fetchAndStoreDynamicContent(); //maybe call this something else
   }
@@ -129,7 +132,7 @@ export class DynamicContentService {
 
     localStorage.setItem(this.localizationKey, localizationValue);
 
-    this.onNewDataLoaded.next();
+    this.onNewDataLoaded.next(this.localizationValue);
   }
 
   public addBlankImageToArray(name: string) {
@@ -192,7 +195,7 @@ export class DynamicContentService {
             this.testAdminDataKey,
             JSON.stringify(this.dynContentDtoDictionary));
 
-        this.onNewDataLoaded.next();
+        this.onNewDataLoaded.next(this.localizationValue);
       });
   }
 }
