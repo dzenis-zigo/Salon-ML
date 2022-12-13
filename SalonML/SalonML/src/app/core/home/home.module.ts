@@ -12,7 +12,7 @@ import { SocialMediaWidgetsComponent } from './social-media-widgets/social-media
 import { InstagramDOMService } from './social-media-widgets/instagram-dom.service';
 import { ResumeInfoCardsComponent } from './resume-info-cards/resume-info-cards.component';
 import { CpGalleryComponent } from './cp-gallery/cp-gallery.component';
-import { FdReviewsComponent } from './fd-reviews/fd-reviews.component';
+import { ConstructionReviewsComponent } from './construction-reviews/construction-reviews.component';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
@@ -25,7 +25,7 @@ import { FooterComponent } from './footer/footer.component';
     SocialMediaWidgetsComponent,
     ResumeInfoCardsComponent,
     CpGalleryComponent,
-    FdReviewsComponent,
+    ConstructionReviewsComponent,
     FooterComponent
   ],
   imports: [
