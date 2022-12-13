@@ -36,23 +36,66 @@ p {
 }
 
 .star-img {
-  margin: 12px;
   width: 100px;
   height: 19px;
   user-select: none;
 }
 
-.g-logo-img {
-    width: 35px;
-    height: 35px;
-    user-select: none;
-    margin: auto;
-    margin-top: 24px;
+.user-name {
+    margin-bottom: 12px !important;
 }
 
-.text-and-logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.g-logo-img {
+  width: 35px;
+  height: 35px;
+  user-select: none;
+  margin-left: 18px;
+  margin-right: 18px;
 }
+
+.review-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 350px;
+  padding-right: 350px;
+}
+
+@media screen and (max-width: 1200px) {
+  .review-footer {
+    padding-left: 270px;
+    padding-right: 270px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .review-footer {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .review-footer {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .review-footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+  .footer-number {
+    padding-top: 29px;
+    margin-right: 6px;
+  }
+
+  .rating-box {
+    display: flex;
+    align-items: center;
+  }
