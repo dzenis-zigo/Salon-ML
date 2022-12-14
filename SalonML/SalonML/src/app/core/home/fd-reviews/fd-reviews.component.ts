@@ -4,13 +4,13 @@ import { BaseHomeComponent } from '../base-home.component';
 import { DynamicContentService, Editable } from '../dynamic-content.service';
 
 @Component({
-  selector: 'app-construction-reviews',
-  templateUrl: './construction-reviews.component.html',
-  styleUrls: ['./construction-reviews.component.css',
+  selector: 'app-fd-reviews',
+  templateUrl: './fd-reviews.component.html',
+  styleUrls: ['./fd-reviews.component.css',
     '../shared-styles.css'],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class ConstructionReviewsComponent extends BaseHomeComponent implements OnInit {
+export class FdReviewsComponent extends BaseHomeComponent implements OnInit {
   // caption in editable is used as reviewer's name
   reviewArray: Editable[] = <Editable[]>[{}, {}, {}];
 
@@ -20,9 +20,9 @@ export class ConstructionReviewsComponent extends BaseHomeComponent implements O
 
     dynContentService.onNewDataLoaded.subscribe( (l10n) => {
       if (l10n === "en")
-        this.reviewArray = dynContentService.getEditableArray("construction-reviews-english-array");
+        this.reviewArray = dynContentService.getEditableArray("fd-reviews-english-array");
       else
-        this.reviewArray = dynContentService.getEditableArray("construction-reviews-bosnian-array");
+        this.reviewArray = dynContentService.getEditableArray("fd-reviews-bosnian-array");
     });
   }
 
