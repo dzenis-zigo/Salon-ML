@@ -4,14 +4,13 @@ import { BaseHomeComponent } from '../base-home.component';
 import { DynamicContentService, Editable } from '../dynamic-content.service';
 
 @Component({
-  selector: 'app-resume-reviews',
-  templateUrl: './resume-reviews.component.html',
-  styleUrls: ['./resume-reviews.component.css',
-    '../shared-styles.css',
-    '../../../shared/resume/css/style.css'],
+  selector: 'app-construction-reviews',
+  templateUrl: './construction-reviews.component.html',
+  styleUrls: ['./construction-reviews.component.css',
+    '../shared-styles.css'],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class ResumeReviewsComponent extends BaseHomeComponent implements OnInit {
+export class ConstructionReviewsComponent extends BaseHomeComponent implements OnInit {
   // caption in editable is used as reviewer's name
   reviewArray: Editable[] = <Editable[]>[{}, {}, {}];
 
@@ -21,9 +20,9 @@ export class ResumeReviewsComponent extends BaseHomeComponent implements OnInit 
 
     dynContentService.onNewDataLoaded.subscribe( (l10n) => {
       if (l10n === "en")
-        this.reviewArray = dynContentService.getEditableArray("resume-reviews-english-array");
+        this.reviewArray = dynContentService.getEditableArray("construction-reviews-english-array");
       else
-        this.reviewArray = dynContentService.getEditableArray("resume-reviews-bosnian-array");
+        this.reviewArray = dynContentService.getEditableArray("construction-reviews-bosnian-array");
     });
   }
 

@@ -172,17 +172,17 @@ namespace SalonML_API.Controllers
                 });
             }
 
-            /*              Resume Reviews               */
+            /*            Construction Reviews           */
             defaultDynamicContent.Add(new DynamicContent()
             {
-                Name = "resume-reviews-title",
+                Name = "construction-reviews-title",
                 TextEnglish = LoremIpsumLongText + " (English)",
                 TextBosnian = LoremIpsumLongText + " (Bosnian)"
             });
 
             defaultDynamicContent.Add(new DynamicContent()
             {
-                Name = "resume-reviews-subtitle",
+                Name = "construction-reviews-subtitle",
                 TextEnglish = LoremIpsumLongText + " (English)",
                 TextBosnian = LoremIpsumLongText + " (Bosnian)"
             });
@@ -192,7 +192,7 @@ namespace SalonML_API.Controllers
             {
                 defaultDynamicContent.Add(new DynamicContent()
                 {
-                    Name = "resume-reviews-english-array",
+                    Name = "construction-reviews-english-array",
                     ImageCaptionEnglish = LoremIpsumShortText + " (English)", // caption used to hold reviewer name
                     TextEnglish = LoremIpsumLongText + " (English)",
                     ImageUrl = "https://goo.gl/maps/pAUmtMoBRV5eo7Nu8",
@@ -205,7 +205,7 @@ namespace SalonML_API.Controllers
             {
                 defaultDynamicContent.Add(new DynamicContent()
                 {
-                    Name = "resume-reviews-bosnian-array",
+                    Name = "construction-reviews-bosnian-array",
                     ImageCaptionBosnian = LoremIpsumShortText + " (Bosnian)",  // caption used to hold reviewer name
                     TextBosnian = LoremIpsumLongText + " (Bosnian)", 
                     ImageUrl = "https://goo.gl/maps/pAUmtMoBRV5eo7Nu8",
