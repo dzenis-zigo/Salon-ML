@@ -200,6 +200,46 @@ namespace SalonML_API.Controllers
                 });
             }
 
+            /*            Resume Picture Texts           */
+            for (int i = 0; i < 2; i++)
+            {
+                defaultDynamicContent.Add(new DynamicContent()
+                {
+                    Name = "resume-picture-texts-subtitle-array",
+                    TextEnglish = LoremIpsumShortText + " (English)",
+                    TextBosnian = LoremIpsumShortText + " (Bosnian)"
+                });
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                defaultDynamicContent.Add(new DynamicContent()
+                {
+                    Name = "resume-picture-texts-title-array",
+                    TextEnglish = LoremIpsumShortText + " (English)",
+                    TextBosnian = LoremIpsumShortText + " (Bosnian)"
+                });
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                defaultDynamicContent.Add(new DynamicContent()
+                {
+                    Name = "resume-picture-texts-description-array",
+                    TextEnglish = LoremIpsumLongText + " (English)",
+                    TextBosnian = LoremIpsumLongText + " (Bosnian)"
+                });
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                defaultDynamicContent.Add(new DynamicContent()
+                {
+                    Name = "resume-picture-texts-image-array",
+                    ImageData = null
+                });
+            }
+
             /*              Resume Contact Us            */
             defaultDynamicContent.Add(new DynamicContent()
             {
