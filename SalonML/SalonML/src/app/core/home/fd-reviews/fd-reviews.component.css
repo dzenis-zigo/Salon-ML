@@ -91,12 +91,18 @@ p {
   }
 }
 
-  .footer-number {
-    padding-top: 29px;
-    margin-right: 6px;
-  }
+.footer-number {
+  padding-top: 29px;
+  margin-right: 6px;
+}
 
-  .rating-box {
-    display: flex;
-    align-items: center;
+.rating-box {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-width: 450px) {
+  .single-feedback {
+    padding-top: 0 !important;
   }
+}
