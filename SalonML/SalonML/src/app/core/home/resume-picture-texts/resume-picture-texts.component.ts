@@ -21,10 +21,12 @@ export class ResumePictureTextsComponent extends BaseHomeComponent implements On
     protected override dynContentService: DynamicContentService) {
     super(authService, dynContentService);
 
-    this.subTitleArray = dynContentService.getEditableArray("resume-picture-texts-subtitle-array");
-    this.titleArray = dynContentService.getEditableArray("resume-picture-texts-title-array");
-    this.descriptionArray = dynContentService.getEditableArray("resume-picture-texts-description-array");
-    this.imageArray = dynContentService.getEditableArray("resume-picture-texts-image-array");
+    dynContentService.onNewDataLoaded.subscribe(() => {
+      this.subTitleArray = dynContentService.getEditableArray("resume-picture-texts-subtitle-array");
+      this.titleArray = dynContentService.getEditableArray("resume-picture-texts-title-array");
+      this.descriptionArray = dynContentService.getEditableArray("resume-picture-texts-description-array");
+      this.imageArray = dynContentService.getEditableArray("resume-picture-texts-image-array");
+    });
   }
 
   ngOnInit(): void {
