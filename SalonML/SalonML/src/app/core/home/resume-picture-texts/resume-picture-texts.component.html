@@ -1,1 +1,97 @@
-<p>resume-picture-texts works!</p>
+<!--Home Start-->
+<ng-container *ngFor="let unusedItem of subTitleArray; index as i;">
+
+  <section id="picture-texts">
+    <div class="container">
+      <div class="row align-items-lg-center">
+
+        <ng-container *ngIf="(i % 2) == 0">
+          <ng-template *ngTemplateOutlet="TextArea; context: {$implicit: i}">
+          </ng-template>
+        </ng-container>
+
+        <ng-template *ngTemplateOutlet="ImageArea; context: {$implicit: i}">
+        </ng-template>
+
+        <ng-container *ngIf="(i % 2) != 0">
+          <ng-template *ngTemplateOutlet="TextArea; context: {$implicit: i}">
+          </ng-template>
+        </ng-container>
+
+      </div>
+    </div>
+  </section>
+</ng-container>
+
+<ng-template #ImageArea let-i>
+  <!-- Image Area -->
+  <div class="col-lg-6">
+    <div class="slider-right">
+      <img *ngIf="!isAdmin || !imageArray[i].isEditing"
+           (click)="setIsEditingTrue(imageArray[i])"
+           [src]="imageArray[i].data"
+           data-depth="0.05"
+           alt="side-image"
+           class="scene">
+      <input *ngIf="isAdmin && imageArray[i].isEditing"
+             type="file"
+             style="width: 100%;"
+             class="file-upload"
+             (change)="saveAndUploadImage(imageArray[i], $event)">
+      <span data-depth="0.08"
+            class="scene">
+      </span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #TextArea let-i>
+  <!-- Text Area-->
+  <div class="col-lg-6 order-lg-2">
+    <div class="heading-area pl-lg-4 p-0">
+
+      <!-- Subtitle -->
+      <h6 *ngIf="!isAdmin || !subTitleArray[i].isEditing"
+          class="sub-title"
+          (click)="setIsEditingTrue(subTitleArray[i])"
+          [innerHtml]="subTitleArray[i].text | blue">
+      </h6>
+      <mat-form-field *ngIf="isAdmin && subTitleArray[i].isEditing"
+                      class="small-input">
+        <input matInput autoFocus
+               (focusout)="saveArrayChanges(subTitleArray)"
+               [(ngModel)]="subTitleArray[i].text"
+               placeholder="subtitleArray: {{i}}" />
+      </mat-form-field>
+
+      <!-- Title -->
+      <h2 *ngIf="!isAdmin || !titleArray[i].isEditing"
+          class="title"
+          (click)="setIsEditingTrue(titleArray[i])"
+          [innerHtml]="titleArray[i].text | blue">
+      </h2>
+      <mat-form-field *ngIf="isAdmin && titleArray[i].isEditing"
+                      class="small-input">
+        <input matInput autoFocus
+               (focusout)="saveArrayChanges(titleArray)"
+               [(ngModel)]="titleArray[i].text"
+               placeholder="titleArray: {{i}}" />
+      </mat-form-field>
+
+      <!-- Description -->
+      <p *ngIf="!isAdmin || !descriptionArray[i].isEditing"
+         class="paragraph"
+         (click)="setIsEditingTrue(descriptionArray[i])"
+         [innerHtml]="descriptionArray[i].text | blue">
+      </p>
+      <mat-form-field *ngIf="isAdmin && descriptionArray[i].isEditing"
+                      class="large-input">
+        <textarea matInput autoFocus
+                  cdkTextareaAutosize
+                  (focusout)="saveArrayChanges(descriptionArray)"
+                  [(ngModel)]="descriptionArray[i].text"
+                  placeholder="descriptionArray: {{i}}"></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</ng-template>
