@@ -14,6 +14,7 @@ import { ResumeInfoCardsComponent } from './resume-info-cards/resume-info-cards.
 import { CpGalleryComponent } from './cp-gallery/cp-gallery.component';
 import { FdReviewsComponent } from './fd-reviews/fd-reviews.component';
 import { FooterComponent } from './footer/footer.component';
+import { ResumePictureTextsComponent } from './resume-picture-texts/resume-picture-texts.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FooterComponent } from './footer/footer.component';
     ResumeInfoCardsComponent,
     CpGalleryComponent,
     FdReviewsComponent,
-    FooterComponent
+    FooterComponent,
+    ResumePictureTextsComponent
   ],
   imports: [
     CommonModule,
