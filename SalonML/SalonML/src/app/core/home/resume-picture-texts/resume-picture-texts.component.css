@@ -1,4 +1,18 @@
-.slider-right span {
+.left-box {
   margin-left: -30px !important;
   height: 100% !important;
+}
+
+.right-box {
+  margin-left: 30px !important;
+}
+
+.float-left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.float-right {
+  display: flex;
+  justify-content: flex-end;
 }
