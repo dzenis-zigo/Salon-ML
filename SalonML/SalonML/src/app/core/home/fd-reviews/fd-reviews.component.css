@@ -25,9 +25,9 @@ p {
   -khtml-user-select: unset;
 }
 
-.img-fill {
+.img-fill img {
+    width: 85px;
     user-select: none;
-    transform: scale(0.75);
 }
 
 .title {
@@ -105,4 +105,16 @@ p {
   .single-feedback {
     padding-top: 0 !important;
   }
+}
+
+.text {
+  margin-top: 1rem;
+}
+
+.review-footer:hover {
+  background-color: white;
+}
+
+.review-footer p {
+  cursor: pointer;
 }
