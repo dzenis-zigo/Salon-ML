@@ -207,7 +207,8 @@ namespace SalonML_API.Controllers
                 {
                     Name = "resume-picture-texts-subtitle-array",
                     TextEnglish = LoremIpsumShortText + " (English)",
-                    TextBosnian = LoremIpsumShortText + " (Bosnian)"
+                    TextBosnian = LoremIpsumShortText + " (Bosnian)",
+                    OrderIndex = i
                 });
             }
 
@@ -217,7 +218,8 @@ namespace SalonML_API.Controllers
                 {
                     Name = "resume-picture-texts-title-array",
                     TextEnglish = LoremIpsumShortText + " (English)",
-                    TextBosnian = LoremIpsumShortText + " (Bosnian)"
+                    TextBosnian = LoremIpsumShortText + " (Bosnian)",
+                    OrderIndex = i
                 });
             }
 
@@ -227,7 +229,8 @@ namespace SalonML_API.Controllers
                 {
                     Name = "resume-picture-texts-description-array",
                     TextEnglish = LoremIpsumLongText + " (English)",
-                    TextBosnian = LoremIpsumLongText + " (Bosnian)"
+                    TextBosnian = LoremIpsumLongText + " (Bosnian)",
+                    OrderIndex = i
                 });
             }
 
@@ -236,7 +239,8 @@ namespace SalonML_API.Controllers
                 defaultDynamicContent.Add(new DynamicContent()
                 {
                     Name = "resume-picture-texts-image-array",
-                    ImageData = null
+                    ImageData = null,
+                    OrderIndex = i
                 });
             }
 

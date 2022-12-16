@@ -33,7 +33,7 @@ export abstract class BaseHomeComponent {
     for (let item of itemArray)
       this.modifyEditable(item);
 
-    this.dynContentService.saveEditableArray(itemArray);
+    this.dynContentService.saveEditableArray(itemArray[0].name, itemArray);
   }
 
   private modifyEditable(item: Editable) {

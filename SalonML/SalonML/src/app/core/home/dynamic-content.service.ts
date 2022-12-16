@@ -43,6 +43,9 @@ export class DynamicContentService {
 
   public getEditableArray(name: string): Editable[] {
     var dtoArray = this.dynContentDtoArrayDictionary[name];
+    if (!dtoArray)
+      return [];
+
     var editableArray: Editable[] = new Array();
 
     for (let dto of dtoArray)
@@ -88,7 +91,7 @@ export class DynamicContentService {
     this.http.put(updateUrl, newDto).subscribe();
   }
 
-  public saveEditableArray(editableArray: Editable[]) {
+  public saveEditableArray(name: string, editableArray: Editable[]) {
     var newDtoArray = new Array();
 
     for (let i = 0; i < editableArray.length; i++) {
@@ -96,7 +99,7 @@ export class DynamicContentService {
       newDtoArray.push(newDto);
     }
 
-    this.dynContentDtoArrayDictionary[newDtoArray[0].name] = newDtoArray;
+    this.dynContentDtoArrayDictionary[name] = newDtoArray;
 
     var updateUrl = this.url + "UpdateArray";
 
@@ -135,30 +138,39 @@ export class DynamicContentService {
     this.onNewDataLoaded.next(this.localizationValue);
   }
 
-  public addBlankImageToArray(name: string) {
-    const postUrl = this.url + 'CreateItem' + '?name=' + name;
+  public addBlankItemToArray(name: string, hasShortText?: boolean, hasLongText?: boolean) {
+    const postUrl = this.url + 'CreateItem' +
+      '?name=' + name +
+      '&hasShortText=' + (hasShortText ? 'true' : 'false') +
+      '&hasLongText=' + (hasLongText ? 'true' : 'false');
 
-    var onImageCreate = new Subject<void>();
+    var onItemCreate = new Subject<void>();
 
     this.http.post<DynamicContentDTO>(postUrl , null)
       .subscribe(result => {
+        if (!this.dynContentDtoArrayDictionary[name]) {
+          this.dynContentDtoArrayDictionary[name] = new Array();
+        }
+
         this.dynContentDtoArrayDictionary[name].push(result);
 
-        onImageCreate.next();
-        onImageCreate.complete();
+        onItemCreate.next();
+        onItemCreate.complete();
       });
 
-    return onImageCreate;
+    return onItemCreate;
   }
 
-  public deleteImageFromArray(image: Editable, newImageArray: Editable[]) {
-    const id = image.id;
+  public deleteItemFromArray(item: Editable, newArray: Editable[]) {
+    const id = item.id;
+    const name = item.name;
 
     const deleteUrl = this.url + 'DeleteItem' + '?id=' + id;
 
     this.http.delete(deleteUrl)
       .subscribe(result => {
-        this.saveEditableArray(newImageArray);
+        console.log(newArray);
+        this.saveEditableArray(name, newArray);
       });
   }
 
@@ -177,14 +189,14 @@ export class DynamicContentService {
     this.http.get<DynamicContentDTO[][]>(getUrl)
       .subscribe(result => { 
         // build our dynContentDtoDictionary
-        result.forEach( (dtoArray: DynamicContentDTO[]) => {
-          if (dtoArray.length == 1) {
+        result.forEach((dtoArray: DynamicContentDTO[]) => {
+          // if there is name corresponds to an array
+          if (dtoArray[0].name.includes("array")) {
+            this.dynContentDtoArrayDictionary[dtoArray[0].name] = dtoArray
+          }
+          else {
             var dto = dtoArray[0];
             this.dynContentDtoDictionary[dto.name] = dto;
-          }
-          // if there is an array of values with this name
-          else {
-            this.dynContentDtoArrayDictionary[dtoArray[0].name] = dtoArray
           }
 
         });

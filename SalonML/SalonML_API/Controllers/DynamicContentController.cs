@@ -82,10 +82,22 @@ namespace SalonML_API.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> CreateItem(string name)
+        public async Task<IActionResult> CreateItem(string name, bool hasShortText, bool hasLongText)
         {
+            //todo maybe move this since it's duplicate with seed controller
+            const string LoremIpsumShortText = "Lorem {Ipsum}";
+            const string LoremIpsumLongText = "There are many variations of passages of Lorem Ipsum is " +
+                    "at the available, but the majority have {suffered} alteration some form, " +
+                    "by injected humour randomised words at the available.";
+
+            string? text = null;
+            if (hasShortText)
+                text = LoremIpsumShortText;
+            else if (hasLongText)
+                text = LoremIpsumLongText;
+
             var itemWithHighestOrderIndex = _context.DynamicContents.Where(d => d.Name == name).OrderByDescending(x => x.OrderIndex).FirstOrDefault();
-            var newOrderIndex = (itemWithHighestOrderIndex != null) ? itemWithHighestOrderIndex.OrderIndex + 1 : null;
+            var newOrderIndex = (itemWithHighestOrderIndex == null) ? 0 : itemWithHighestOrderIndex.OrderIndex + 1;
 
             // todo possibly export this to a service
             var email = User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault()!.Value;
@@ -93,6 +105,8 @@ namespace SalonML_API.Controllers
             DynamicContent dbModel = new DynamicContent()
             {
                 Name = name,
+                TextEnglish = text == null ? null : text + " (English)",
+                TextBosnian = text == null ? null : text + " (Bosnian)",
                 OrderIndex = newOrderIndex,
                 ModifiedBy = email,
                 ModifiedOn = DateTime.Now
@@ -123,7 +137,7 @@ namespace SalonML_API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            // todo get this to order by OrderIndex
+            // ** todo get this to order by OrderIndex **
             var dynContentList = _context.DynamicContents
                 .OrderByDescending(x => x.OrderIndex)
                 .Select(d => new DynamicContentDTO(d))

@@ -28,7 +28,7 @@ export class CpGalleryComponent extends BaseHomeComponent implements OnInit {
   }
 
   addImage() {
-    var onImageCreate: Subject<void> = this.dynContentService.addBlankImageToArray("cp-gallery-image-array");
+    var onImageCreate: Subject<void> = this.dynContentService.addBlankItemToArray("cp-gallery-image-array");
 
     onImageCreate.subscribe(() => {
       this.imageArray = this.dynContentService.getEditableArray("cp-gallery-image-array");
@@ -41,7 +41,7 @@ export class CpGalleryComponent extends BaseHomeComponent implements OnInit {
     // remove from array
     this.imageArray.splice(index, 1);
 
-    this.dynContentService.deleteImageFromArray(imageToDelete, this.imageArray);
+    this.dynContentService.deleteItemFromArray(imageToDelete, this.imageArray);
   }
 
   saveImagePosition(imageArray: Editable[], oldIndex: number, event: any) {
@@ -57,6 +57,6 @@ export class CpGalleryComponent extends BaseHomeComponent implements OnInit {
     this.imageArray.splice(newIndex, 0, imageToMove);
 
     // update the orderIndexes on backend
-    this.dynContentService.saveEditableArray(this.imageArray);
+    this.dynContentService.saveEditableArray(imageArray[0].name, this.imageArray);
   }
 }

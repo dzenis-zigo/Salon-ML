@@ -16,3 +16,7 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.slider-right {
+    margin-top: 1rem !important;
+}
