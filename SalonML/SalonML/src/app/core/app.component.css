@@ -1,4 +1,5 @@
 .spinner {
-    top: auto;
-    left: auto;
+  top: auto;
+  left: auto;
+  position: absolute !important;
 }
