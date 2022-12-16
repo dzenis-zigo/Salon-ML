@@ -112,7 +112,7 @@ p {
 }
 
 .review-footer:hover {
-  background-color: white;
+  transform: scale(1.2);
 }
 
 .review-footer p {
