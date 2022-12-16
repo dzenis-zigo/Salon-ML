@@ -186,16 +186,18 @@ export class DynamicContentService {
 
     var getUrl = this.url + 'GetList';
 
-    this.http.get<DynamicContentDTO[][]>(getUrl)
+    this.http.get<DynamicContentDTO[]>(getUrl)
       .subscribe(result => { 
         // build our dynContentDtoDictionary
-        result.forEach((dtoArray: DynamicContentDTO[]) => {
+        result.forEach((dto: DynamicContentDTO) => {
           // if there is name corresponds to an array
-          if (dtoArray[0].name.includes("array")) {
-            this.dynContentDtoArrayDictionary[dtoArray[0].name] = dtoArray
+          if (dto.name.includes("array")) {
+            if (this.dynContentDtoArrayDictionary[dto.name] == null)
+              this.dynContentDtoArrayDictionary[dto.name] = new Array();
+
+            this.dynContentDtoArrayDictionary[dto.name].push(dto);
           }
           else {
-            var dto = dtoArray[0];
             this.dynContentDtoDictionary[dto.name] = dto;
           }
 

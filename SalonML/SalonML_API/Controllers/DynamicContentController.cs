@@ -138,10 +138,10 @@ namespace SalonML_API.Controllers
         public async Task<IActionResult> GetList()
         {
             // ** todo get this to order by OrderIndex **
-            var dynContentList = _context.DynamicContents
-                .OrderByDescending(x => x.OrderIndex)
+            var dynContentList = await _context.DynamicContents
+                .OrderBy(x => x.OrderIndex)
                 .Select(d => new DynamicContentDTO(d))
-                .ToLookup(x => x.Name);
+                .ToListAsync();
 
             return Ok(dynContentList);
         }
