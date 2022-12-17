@@ -172,13 +172,13 @@ namespace SalonML_API.Controllers
                 });
             }
 
-            /*              Fd Reviews                   */
+            /*              Reviews                   */
             // seperate the for loops so the DB table is easier to read
             for (int i = 0; i < 4; i++)
             {
                 defaultDynamicContent.Add(new DynamicContent()
                 {
-                    Name = "fd-reviews-english-array",
+                    Name = "reviews-english-array",
                     ImageCaptionEnglish = LoremIpsumShortText + " (English)", // caption used to hold reviewer name
                     TextEnglish = LoremIpsumLongText + " (English)",
                     ImageUrl = "https://goo.gl/maps/pAUmtMoBRV5eo7Nu8",
@@ -191,7 +191,7 @@ namespace SalonML_API.Controllers
             {
                 defaultDynamicContent.Add(new DynamicContent()
                 {
-                    Name = "fd-reviews-bosnian-array",
+                    Name = "reviews-bosnian-array",
                     ImageCaptionBosnian = LoremIpsumShortText + " (Bosnian)",  // caption used to hold reviewer name
                     TextBosnian = LoremIpsumLongText + " (Bosnian)", 
                     ImageUrl = "https://goo.gl/maps/pAUmtMoBRV5eo7Nu8",

@@ -1,39 +1,45 @@
 <section id="reviews" style="background-color: #f8f9fa;">
   <div class="container">
     <owl-carousel-o [options]="customOptions" #owlCar>
-      <ng-template carouselSlide dotContent="content">
-        <div class="slide">
-          <img src="assets/custom/review-1.png">
-          <h3 class="user-name">Andreana King</h3>
+
+      <ng-template *ngFor="let review of reviewArray; index as i;"
+                   carouselSlide>
+        <div *ngIf="!isAdmin || !review.isEditing"
+             (click)="setIsEditingTrue(review)"
+             class="slide">
+          <img [src]="review.data">
+          <h3 class="user-name"
+              [innerHtml]="review.caption | blue"></h3>
           <img src="/assets/custom/5-stars.png" class="star-img" />
-          <p>Lejla was absolutely amazing! She did WONDERS TO MY HAIR! It’s never looked better! I will always be coming to ML Salon whenever I’m in town! I wish I lived in Bosnia so I could get my hair done by Lejla every week! Literally the BEST stylist!”</p>
+          <p [innerHtml]="review.text | blue">
+          </p>
+        </div>
+        <div *ngIf="isAdmin && review.isEditing"
+             class="slide">
+          <input type="file"
+                 class="file-upload"
+                 (change)="saveAndUploadImage(review, $event)">
+          <mat-form-field class="small-input">
+            <input matInput
+                   (focusout)="saveArrayChanges(reviewArray)"
+                   [(ngModel)]="review.caption"
+                   placeholder="reviewArray: {{i}} (caption)" />
+          </mat-form-field>
+          <mat-form-field class="large-input">
+            <textarea matInput
+                      cdkTextareaAutosize
+                      (focusout)="saveArrayChanges(reviewArray)"
+                      [(ngModel)]="review.text"
+                      placeholder="reviewArray: {{i}} (text)"></textarea>
+          </mat-form-field>
+          <button (click)="deleteReview(review, i)">
+            Delete This Review
+          </button>
         </div>
       </ng-template>
-      <ng-template carouselSlide dotContent="content">
-        <div class="slide">
-          <img src="assets/custom/review-2.png">
-          <h3 class="user-name">Paula Sulejman</h3>
-          <img src="/assets/custom/5-stars.png" class="star-img" />
-          <p>“Lejla the owner of the salon is beyond expectations. She is the best at what she does and always has a smile on her face. Every time I come to Sarajevo I go straight to her and I always leave feeling satisfied and better than any salon in the United States!!!”</p>
-        </div>
-      </ng-template>
-      <ng-template carouselSlide dotContent="content">
-        <div class="slide">
-          <img src="assets/custom/review-3.png">
-          <h3 class="user-name">Maya Adivi</h3>
-          <img src="/assets/custom/5-stars.png" class="star-img" />
-          <p>“One of the best haircuts I've ever received! I explained that I need something manageable and that would require minimal styling or upkeep, and that's exactly what I got. This is the perfect wash and wear cut. I've been getting tons of compliments even on days when I don't both brushing it!”</p>
-        </div>
-      </ng-template>
-      <ng-template carouselSlide dotContent="content">
-        <div class="slide">
-          <img src="assets/custom/review-4.png">
-          <h3 class="user-name">Colby Eklund</h3>
-          <img src="/assets/custom/5-stars.png" class="star-img" />
-          <p>“Amazing!  I had the best haircut and highlights I’ve had in years.  Lejla did exactly what I asked, I couldn’t be more pleased.  Highly recommend!”</p>
-        </div>
-      </ng-template>
+
     </owl-carousel-o>
+
     <div class="arrow-nav">
       <a class="btn btn-success" (click)="owlCar.prev()">
         <i class="fa-solid fa-arrow-left"></i>
@@ -42,6 +48,7 @@
         <i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
+
     <a class="review-footer"
        href="https://goo.gl/maps/YUcgrAFqhDDT7ArY8"
        style="cursor: pointer;">
@@ -52,5 +59,10 @@
       <img src="/assets/custom/google-logo.png" class="g-logo-img" />
       <p style="width: 130px; text-align: left;">121 Reviews</p>
     </a>
+
+    <button *ngIf="isAdmin"
+            (click)="addReview()">
+      Add New Review
+    </button>
   </div>
 </section>

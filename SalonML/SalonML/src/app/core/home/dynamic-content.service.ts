@@ -13,7 +13,7 @@ export class DynamicContentService {
   private url: string = environment.baseUrl + "api/DynamicContent/";
   private dynContentDtoDictionary: { [name: string]: DynamicContentDTO } = {};
   private dynContentDtoArrayDictionary: { [name: string]: DynamicContentDTO[]; } = {};
-  private localizationValue: string; // not sure about the " | null" todo
+  private localizationValue: string; 
 
   // call next() when page loads first time or when localization changes
   public onNewDataLoaded = new Subject<string>();
@@ -138,11 +138,12 @@ export class DynamicContentService {
     this.onNewDataLoaded.next(this.localizationValue);
   }
 
-  public addBlankItemToArray(name: string, hasShortText?: boolean, hasLongText?: boolean) {
+  public addBlankItemToArray(name: string, hasShortText?: boolean, hasLongText?: boolean, hasCaption?: boolean) {
     const postUrl = this.url + 'CreateItem' +
       '?name=' + name +
       '&hasShortText=' + (hasShortText ? 'true' : 'false') +
-      '&hasLongText=' + (hasLongText ? 'true' : 'false');
+      '&hasLongText=' + (hasLongText ? 'true' : 'false') +
+      '&hasCaption=' + (hasCaption ? 'true' : 'false');
 
     var onItemCreate = new Subject<void>();
 

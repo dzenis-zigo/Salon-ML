@@ -82,13 +82,15 @@ namespace SalonML_API.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> CreateItem(string name, bool hasShortText, bool hasLongText)
+        public async Task<IActionResult> CreateItem(string name, bool hasShortText, bool hasLongText, bool hasCaption)
         {
             //todo maybe move this since it's duplicate with seed controller
             const string LoremIpsumShortText = "Lorem {Ipsum}";
             const string LoremIpsumLongText = "There are many variations of passages of Lorem Ipsum is " +
                     "at the available, but the majority have {suffered} alteration some form, " +
                     "by injected humour randomised words at the available.";
+
+            string? caption = hasCaption ? LoremIpsumShortText : null;
 
             string? text = null;
             if (hasShortText)
@@ -107,6 +109,8 @@ namespace SalonML_API.Controllers
                 Name = name,
                 TextEnglish = text == null ? null : text + " (English)",
                 TextBosnian = text == null ? null : text + " (Bosnian)",
+                ImageCaptionEnglish = caption == null ? null : caption + " (English)",
+                ImageCaptionBosnian = caption == null ? null : caption + " (Bosnian)",
                 OrderIndex = newOrderIndex,
                 ModifiedBy = email,
                 ModifiedOn = DateTime.Now

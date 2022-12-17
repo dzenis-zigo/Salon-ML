@@ -102,3 +102,7 @@
   display: flex;
   align-items: center;
 }
+
+.large-input {
+  width: 350px;
+}
