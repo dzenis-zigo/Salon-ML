@@ -5,14 +5,6 @@
 @import url('./app/shared/vendor/css/jquery.fancybox.min.css');
 @import url('./app/shared/vendor/css/owl.carousel.min.css');
 @import url('./app/shared/vendor/css/cubeportfolio.min.css');
-/* Food Delivery */
-@import url('./app/shared/food-delivery/css/line-awesome.min.css');
-@import url('./app/shared/vendor/css/LineIcons.min.css');
-@import url('./app/shared/food-delivery/css/slick-theme.css');
-@import url('./app/shared/food-delivery/css/slick.css');
-@import url('./app/shared/vendor/css/wow.css');
-@import url('./app/shared/food-delivery/css/select2.min.css');
-@import url('./app/shared/food-delivery/css/style.css');
 
 html, body {
   height: 100%;

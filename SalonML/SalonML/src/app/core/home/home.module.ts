@@ -12,7 +12,6 @@ import { SocialMediaWidgetsComponent } from './social-media-widgets/social-media
 import { InstagramDOMService } from './social-media-widgets/instagram-dom.service';
 import { ResumeInfoCardsComponent } from './resume-info-cards/resume-info-cards.component';
 import { CpGalleryComponent } from './cp-gallery/cp-gallery.component';
-import { FdReviewsComponent } from './fd-reviews/fd-reviews.component';
 import { FooterComponent } from './footer/footer.component';
 import { ResumePictureTextsComponent } from './resume-picture-texts/resume-picture-texts.component';
 import { ReviewsComponent } from './reviews/reviews.component';
@@ -28,7 +27,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     SocialMediaWidgetsComponent,
     ResumeInfoCardsComponent,
     CpGalleryComponent,
-    FdReviewsComponent,
     FooterComponent,
     ResumePictureTextsComponent,
     ReviewsComponent
