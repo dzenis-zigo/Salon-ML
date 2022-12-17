@@ -15,6 +15,8 @@ import { CpGalleryComponent } from './cp-gallery/cp-gallery.component';
 import { FdReviewsComponent } from './fd-reviews/fd-reviews.component';
 import { FooterComponent } from './footer/footer.component';
 import { ResumePictureTextsComponent } from './resume-picture-texts/resume-picture-texts.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -28,14 +30,16 @@ import { ResumePictureTextsComponent } from './resume-picture-texts/resume-pictu
     CpGalleryComponent,
     FdReviewsComponent,
     FooterComponent,
-    ResumePictureTextsComponent
+    ResumePictureTextsComponent,
+    ReviewsComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     FormsModule,
     AngularMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CarouselModule
   ],
   providers: [
     InstagramDOMService

@@ -1,0 +1,104 @@
+.slide img {
+  width: 100px !important;
+  margin-bottom: 12px;
+}
+
+.slide h3 {
+  margin-bottom: 12px;
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-success {
+  margin-left: 6px;
+  margin-right: 6px;
+  background-color: #55ACEE;
+}
+
+.arrow-nav {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.arrow-nav .btn-success {
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  padding-left: 5px;
+}
+
+.star-img {
+  width: 100px;
+  height: 19px;
+  user-select: none;
+}
+
+.g-logo-img {
+  width: 35px;
+  height: 35px;
+  user-select: none;
+  margin-left: 18px;
+  margin-right: 18px;
+}
+
+.review-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 350px;
+  padding-right: 350px;
+  margin-top: 36px;
+}
+
+@media screen and (max-width: 1200px) {
+  .review-footer {
+    padding-left: 270px;
+    padding-right: 270px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .review-footer {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .review-footer {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .review-footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.review-footer:hover {
+  transform: scale(1.1);
+}
+
+.review-footer p {
+  cursor: pointer;
+}
+
+.footer-number {
+  padding-top: 29px;
+  margin-right: 6px;
+}
+
+.rating-box {
+  display: flex;
+  align-items: center;
+}
