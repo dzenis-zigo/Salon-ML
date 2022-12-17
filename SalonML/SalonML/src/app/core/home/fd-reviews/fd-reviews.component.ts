@@ -10,21 +10,9 @@ import { DynamicContentService, Editable } from '../dynamic-content.service';
     '../shared-styles.css'],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class FdReviewsComponent extends BaseHomeComponent implements OnInit {
-  // caption in editable is used as reviewer's name
-  reviewArray: Editable[] = <Editable[]>[{}, {}, {}];
+export class FdReviewsComponent implements OnInit {
 
-  constructor(protected override authService: AuthService,
-              protected override dynContentService: DynamicContentService) {
-    super(authService, dynContentService);
-
-    dynContentService.onNewDataLoaded.subscribe( (l10n) => {
-      if (l10n === "en")
-        this.reviewArray = dynContentService.getEditableArray("fd-reviews-english-array");
-      else
-        this.reviewArray = dynContentService.getEditableArray("fd-reviews-bosnian-array");
-    });
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }

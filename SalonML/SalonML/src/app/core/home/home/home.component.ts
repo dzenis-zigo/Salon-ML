@@ -3,16 +3,23 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../auth/auth.service';
+import { BaseHomeComponent } from '../base-home.component';
+import { DynamicContentService } from '../dynamic-content.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent extends BaseHomeComponent implements OnInit {
+  localization = "en";
 
   constructor(private router: Router,
-    private authService: AuthService) {
+              protected override authService: AuthService,
+              protected override dynContentService: DynamicContentService) {
+    super(authService, dynContentService);
+
+    // todo get rid of this
     if (this.router.url === "/admin-test") {
       authService.loginTestAdmin();
 
@@ -20,8 +27,20 @@ export class HomeComponent implements OnInit {
         window.location.reload();
       });
     }
+
+    dynContentService.onNewDataLoaded.subscribe((l10n: string) => {
+      this.localization = l10n;
+    });
   }
 
   ngOnInit(): void {
+  }
+
+  isEnglishLocalization() {
+    return this.localization === "en";
+  }
+
+  isBosnianLocalization() {
+    return this.localization === "bih";
   }
 }
