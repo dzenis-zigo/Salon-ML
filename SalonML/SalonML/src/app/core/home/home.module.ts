@@ -16,6 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ResumePictureTextsComponent } from './resume-picture-texts/resume-picture-texts.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { TipsAndTricksComponent } from './tips-and-tricks/tips-and-tricks.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     CpGalleryComponent,
     FooterComponent,
     ResumePictureTextsComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    TipsAndTricksComponent
   ],
   imports: [
     CommonModule,

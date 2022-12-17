@@ -4,13 +4,15 @@ import { ForgotPasswordComponent } from './admin-login/forgot-password/forgot-pa
 import { LoginComponent } from './admin-login/login/login.component';
 import { NewPasswordComponent } from './admin-login/new-password/new-password.component';
 import { HomeComponent } from './home/home/home.component';
+import { TipsAndTricksComponent } from './home/tips-and-tricks/tips-and-tricks.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, pathMatch: 'full' },
     { path: 'admin-test', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
-    { path: 'new-password/:userId/:token', component: NewPasswordComponent }
+    { path: 'new-password/:userId/:token', component: NewPasswordComponent },
+    { path: 'tips-and-tricks', component: TipsAndTricksComponent }
 ];
 
 @NgModule({
