@@ -159,6 +159,20 @@ namespace SalonML_API.Controllers
             }
 
             /*              Cp Gallery                   */
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "cp-gallery-subtitle",
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)"
+            });
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "cp-gallery-title",
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)"
+            });
+
             for (int i = 0; i < 2; i++)
             {
                 defaultDynamicContent.Add(new DynamicContent()

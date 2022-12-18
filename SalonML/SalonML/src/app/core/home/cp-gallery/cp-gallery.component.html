@@ -1,6 +1,32 @@
 <!-- Gallery portfolio -->
 <section id="gallery" class="portfolio-5">
   <div class="container container-10">
+    <!-- Subtitle -->
+    <h6 *ngIf="!isAdmin || !subtitle.isEditing"
+        class="sub-title"
+        (click)="setIsEditingTrue(subtitle)"
+        [innerHtml]="subtitle.text | blue">
+    </h6>
+    <mat-form-field *ngIf="isAdmin && subtitle.isEditing"
+                    class="small-input">
+      <input matInput autoFocus
+             (focusout)="saveItemChanges(subtitle)"
+             [(ngModel)]="subtitle.text"
+             placeholder="subtitle" />
+    </mat-form-field>
+    <!-- Title -->
+    <h2 *ngIf="!isAdmin || !title.isEditing"
+        class="title"
+        (click)="setIsEditingTrue(title)"
+        [innerHtml]="title.text | blue">
+    </h2>
+    <mat-form-field *ngIf="isAdmin && title.isEditing"
+                    class="small-input">
+      <input matInput autoFocus
+             (focusout)="saveItemChanges(title)"
+             [(ngModel)]="title.text"
+             placeholder="title" />
+    </mat-form-field>
     <!-- gallery -->
     <div class="row gallery-5" id="gallery-5">
       <!-- gallery item column -->

@@ -13,6 +13,8 @@ import { DynamicContentService, Editable } from '../dynamic-content.service';
   encapsulation: ViewEncapsulation.None
 })
 export class CpGalleryComponent extends BaseHomeComponent implements OnInit {
+  subtitle: Editable = <Editable>{};
+  title: Editable = <Editable>{};
   imageArray: Editable[] = <Editable[]>[{}];
 
   constructor(protected override authService: AuthService,
@@ -20,6 +22,8 @@ export class CpGalleryComponent extends BaseHomeComponent implements OnInit {
     super(authService, dynContentService);
 
     dynContentService.onNewDataLoaded.subscribe(() => {
+      this.subtitle = dynContentService.getEditable("cp-gallery-subtitle");
+      this.title = dynContentService.getEditable("cp-gallery-title");
       this.imageArray = dynContentService.getEditableArray("cp-gallery-image-array");
     });
   }
