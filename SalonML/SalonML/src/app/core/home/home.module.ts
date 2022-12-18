@@ -15,8 +15,8 @@ import { CpGalleryComponent } from './cp-gallery/cp-gallery.component';
 import { FooterComponent } from './footer/footer.component';
 import { ResumePictureTextsComponent } from './resume-picture-texts/resume-picture-texts.component';
 import { ReviewsComponent } from './reviews/reviews.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TipsAndTricksComponent } from './tips-and-tricks/tips-and-tricks.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { TipsAndTricksComponent } from './tips-and-tricks/tips-and-tricks.compon
     FormsModule,
     AngularMaterialModule,
     ReactiveFormsModule,
-    CarouselModule
+    SwiperModule
   ],
   providers: [
     InstagramDOMService

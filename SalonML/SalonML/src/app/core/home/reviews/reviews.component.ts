@@ -1,36 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 import { BaseHomeComponent } from '../base-home.component';
 import { DynamicContentService, Editable } from '../dynamic-content.service';
 
+// import Swiper core and required modules
+import SwiperCore, { Pagination, Navigation } from "swiper";
+
+// install Swiper modules
+SwiperCore.use([Pagination, Navigation]);
+
 @Component({
   selector: 'app-reviews',
   templateUrl: './reviews.component.html',
-  styleUrls: ['./reviews.component.css']
+  styleUrls: ['./reviews.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ReviewsComponent extends BaseHomeComponent implements OnInit {
   reviewArray: Editable[] = <Editable[]>[];
   localizationValue: string = "en";
 
-  customOptions: any = {
-    loop: true,
-    margin: 10,
-    //autoplay: true,
-    dots: false,
-    responsiveClass: true,
-    responsive: {
-      0: {
-        items: 1
+  swiperConfig: any = {
+    slidesPerView: 1,
+    spaceBetween: 25,
+    pagination: {
+      clickable: true
+    },
+    navigation: true,
+    breakpoints: {
+      300: {
+        slidesPerView: 1
       },
-      480: {
-        items: 2
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20,
       },
-      940: {
-        items: 3
+      1200: {
+        slidesPerView: 3,
+        spaceBetween: 20,
       }
     }
   }
+  
 
   constructor(protected override authService: AuthService,
               protected override dynContentService: DynamicContentService) {

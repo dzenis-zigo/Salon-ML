@@ -1,9 +1,10 @@
 <section id="reviews" style="background-color: #f8f9fa;">
   <div class="container">
-    <owl-carousel-o [options]="customOptions" #owlCar>
+    <swiper [config]="swiperConfig"
+            class="mySwiper">
 
       <ng-template *ngFor="let review of reviewArray; index as i;"
-                   carouselSlide>
+                   swiperSlide>
         <div *ngIf="!isAdmin || !review.isEditing"
              (click)="setIsEditingTrue(review)"
              class="slide">
@@ -37,21 +38,11 @@
           </button>
         </div>
       </ng-template>
-
-    </owl-carousel-o>
-
-    <div class="arrow-nav">
-      <a class="btn btn-success" (click)="owlCar.prev()">
-        <i class="fa-solid fa-arrow-left"></i>
-      </a>
-      <a class="btn btn-success" (click)="owlCar.next()">
-        <i class="fa-solid fa-arrow-right"></i>
-      </a>
-    </div>
+    </swiper>
 
     <a class="review-footer"
-       href="https://goo.gl/maps/YUcgrAFqhDDT7ArY8"
-       style="cursor: pointer;">
+        href="https://goo.gl/maps/YUcgrAFqhDDT7ArY8"
+        style="cursor: pointer;">
       <div class="rating-box">
         <p class="footer-number">4.7</p>
         <img src="/assets/custom/4.5-stars.png" class="star-img" />
@@ -64,5 +55,5 @@
             (click)="addReview()">
       Add New Review
     </button>
-  </div>
+</div>
 </section>
