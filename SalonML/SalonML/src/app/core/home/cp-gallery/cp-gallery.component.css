@@ -43,3 +43,7 @@
     flex: 0 1 50% !important;
   }
 }
+
+.content h6 {
+  text-align: left;
+}
