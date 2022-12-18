@@ -173,6 +173,20 @@ namespace SalonML_API.Controllers
             }
 
             /*              Reviews                   */
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "reviews-subtitle",
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)",
+            });
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "reviews-title",
+                TextEnglish = LoremIpsumShortText + " (English)",
+                TextBosnian = LoremIpsumShortText + " (Bosnian)",
+            });
+
             // seperate the for loops so the DB table is easier to read
             for (int i = 0; i < 4; i++)
             {
@@ -199,6 +213,20 @@ namespace SalonML_API.Controllers
                     OrderIndex = i
                 });
             }
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "reviews-total-count",
+                TextEnglish = "121 Reviews (English)",
+                TextBosnian = "121 Reviews (Bosnian)"
+            });
+
+            defaultDynamicContent.Add(new DynamicContent()
+            {
+                Name = "reviews-total-rating",
+                TextEnglish = "4.0 (English)",
+                TextBosnian = "4.0 (Bosnian)"
+            });
 
             /*            Resume Picture Texts           */
             for (int i = 0; i < 2; i++)

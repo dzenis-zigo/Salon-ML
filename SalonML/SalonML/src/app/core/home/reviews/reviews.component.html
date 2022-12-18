@@ -1,5 +1,32 @@
 <section id="reviews" style="background-color: #f8f9fa;">
   <div class="container">
+    <!-- Subtitle -->
+    <h6 *ngIf="!isAdmin || !subtitle.isEditing"
+        class="sub-title"
+        (click)="setIsEditingTrue(subtitle)"
+        [innerHtml]="subtitle.text | blue">
+    </h6>
+    <mat-form-field *ngIf="isAdmin && subtitle.isEditing"
+                    class="small-input">
+      <input matInput autoFocus
+             (focusout)="saveItemChanges(subtitle)"
+             [(ngModel)]="subtitle.text"
+             placeholder="subtitle" />
+    </mat-form-field>
+    <!-- Title -->
+    <h2 *ngIf="!isAdmin || !title.isEditing"
+        class="title"
+        (click)="setIsEditingTrue(title)"
+        [innerHtml]="title.text | blue">
+    </h2>
+    <mat-form-field *ngIf="isAdmin && title.isEditing"
+                    class="small-input">
+      <input matInput autoFocus
+             (focusout)="saveItemChanges(title)"
+             [(ngModel)]="title.text"
+             placeholder="title" />
+    </mat-form-field>
+    <!--Carousel-->
     <swiper [config]="swiperConfig"
             class="mySwiper">
 
@@ -9,8 +36,8 @@
              (click)="setIsEditingTrue(review)"
              class="slide">
           <img [src]="review.data">
-          <h3 class="user-name"
-              [innerHtml]="review.caption | blue"></h3>
+          <h4 class="user-name"
+              [innerHtml]="review.caption | blue"></h4>
           <img src="/assets/custom/5-stars.png" class="star-img" />
           <p [innerHtml]="review.text | blue">
           </p>
@@ -40,21 +67,43 @@
         </div>
       </ng-template>
     </swiper>
-
-    <a class="review-footer"
-        href="https://goo.gl/maps/YUcgrAFqhDDT7ArY8"
-        style="cursor: pointer;">
+    <!--Footer (default)-->
+    <a *ngIf="!isAdmin || !totalRating.isEditing"
+       class="review-footer"
+       [href]="isAdmin ? noHrefActionString : 'https://goo.gl/maps/YUcgrAFqhDDT7ArY8'"
+       (click)="setIsEditingTrue(totalRating)"
+       style="cursor: pointer;">
       <div class="rating-box">
-        <p class="footer-number">4.7</p>
+        <p class="footer-rating"
+           [innerHtml]="totalRating.text">
+        </p>
         <img src="/assets/custom/4.5-stars.png" class="star-img" />
       </div>
       <img src="/assets/custom/google-logo.png" class="g-logo-img" />
-      <p style="width: 130px; text-align: left;">121 Reviews</p>
+      <p class="footer-count"
+         [innerHtml]="totalCount.text">
+      </p>
     </a>
+    <!--Footer (admin)-->
+    <div *ngIf="isAdmin && totalRating.isEditing"
+         class="review-footer">
+      <mat-form-field class="small-input">
+        <input matInput
+               (focusout)="saveItemChanges(totalRating)"
+               [(ngModel)]="totalRating.text"
+               placeholder="totalRating" />
+      </mat-form-field>
+      <mat-form-field class="small-input">
+        <input matInput
+               (focusout)="saveItemChanges(totalCount)"
+               [(ngModel)]="totalCount.text"
+               placeholder="totalCount" />
+      </mat-form-field>
+    </div>
 
     <button *ngIf="isAdmin"
             (click)="addReview()">
       Add New Review
     </button>
-</div>
+  </div>
 </section>

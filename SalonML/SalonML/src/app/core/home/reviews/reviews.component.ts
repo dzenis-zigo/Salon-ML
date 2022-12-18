@@ -17,7 +17,12 @@ SwiperCore.use([Pagination, Navigation]);
   encapsulation: ViewEncapsulation.None
 })
 export class ReviewsComponent extends BaseHomeComponent implements OnInit {
+  noHrefActionString = "javascript:;\"";
+  subtitle: Editable = <Editable>{};
+  title: Editable = <Editable>{};
   reviewArray: Editable[] = <Editable[]>[];
+  totalRating: Editable = <Editable>{};
+  totalCount: Editable = <Editable>{};
   localizationValue: string = "en";
 
   swiperConfig: any = {
@@ -54,6 +59,11 @@ export class ReviewsComponent extends BaseHomeComponent implements OnInit {
         this.reviewArray = dynContentService.getEditableArray("reviews-english-array");
       else
         this.reviewArray = dynContentService.getEditableArray("reviews-bosnian-array");
+
+      this.subtitle = dynContentService.getEditable("reviews-subtitle");
+      this.title = dynContentService.getEditable("reviews-title");
+      this.totalRating = dynContentService.getEditable("reviews-total-rating");
+      this.totalCount = dynContentService.getEditable("reviews-total-count");
     });
   }
 
