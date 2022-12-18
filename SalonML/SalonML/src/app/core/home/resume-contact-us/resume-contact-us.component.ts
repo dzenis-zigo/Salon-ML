@@ -92,4 +92,20 @@ export class ResumeContactUsComponent extends BaseHomeComponent implements OnIni
       // normal submit - tie in backend
     }
   }
+
+  getHref(index: number): string {
+    const noHrefActionString = "javascript:;\"";
+
+    if (this.isAdmin)
+      return noHrefActionString;
+
+    if (index === 0)
+      return "https://goo.gl/maps/YUcgrAFqhDDT7ArY8";
+    else if (index === 1)
+      return "mailto:" + this.infoBoxValueArray[index].text;
+    else if (index === 2)
+      return "tel:" + this.infoBoxValueArray[index].text;
+
+    return "";
+  }
 }

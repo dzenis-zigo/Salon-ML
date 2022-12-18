@@ -127,10 +127,11 @@
                        placeholder="infoBoxHeaderArray: {{i}}" />
               </mat-form-field>
               <!-- Value -->
-              <p *ngIf="!isAdmin || !infoBoxValueArray[i].isEditing"
+              <a *ngIf="!isAdmin || !infoBoxValueArray[i].isEditing"
+                 [href]="getHref(i)"
                  (click)="setIsEditingTrue(infoBoxValueArray[i])"
                  [innerHtml]="infoBoxValueArray[i].text | blue">
-              </p>
+              </a>
               <mat-form-field *ngIf="isAdmin && infoBoxValueArray[i].isEditing"
                               class="small-input">
                 <input matInput autoFocus
