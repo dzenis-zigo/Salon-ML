@@ -56,7 +56,8 @@ export abstract class BaseHomeComponent {
     const config = {
       quality: 0.8,
       maxWidth: 400,
-      debug: false
+      debug: false,
+      mimeType: 'image/png'
     };
 
     const file: File = event.target.files[0];

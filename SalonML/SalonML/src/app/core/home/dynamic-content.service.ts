@@ -66,7 +66,7 @@ export class DynamicContentService {
     // todo might not work for png
     var data = undefined;
     if (dto.imageData != '')
-      data = "data:image/jpeg;base64," + btoa(dto.imageData);
+      data = "data:image/png;base64," + btoa(dto.imageData);
 
     return <Editable>{
       id: dto.id,
