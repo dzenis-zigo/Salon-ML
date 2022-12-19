@@ -79,3 +79,7 @@
 p {
     font-weight: 300;
 }
+
+.content a {
+  white-space: pre-wrap;
+}
