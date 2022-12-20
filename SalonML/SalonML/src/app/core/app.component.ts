@@ -8,22 +8,5 @@ import { environment } from '../../environments/environment.prod';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public forecasts?: WeatherForecast[];
-
-    constructor(http: HttpClient) {
-      var url = environment.baseUrl + '/weatherforecast';
-
-      http.get<WeatherForecast[]>(url).subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
-  }
-
   title = 'SalonML';
-}
-
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
 }

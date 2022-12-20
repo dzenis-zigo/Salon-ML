@@ -101,29 +101,7 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
-            "scripts": [
-              "src/app/shared/vendor/js/bundle.min.js",
-              "src/app/shared/vendor/js/jquery.appear.js",
-              "src/app/shared/vendor/js/jquery.fancybox.min.js",
-              "src/app/shared/vendor/js/owl.carousel.min.js",
-              "src/app/shared/vendor/js/parallaxie.min.js",
-              "src/app/shared/vendor/js/wow.min.js",
-              "src/app/shared/vendor/js/jquery.cubeportfolio.min.js",
-              "src/app/shared/vendor/js/jquery.themepunch.tools.min.js",
-              "src/app/shared/vendor/js/jquery.themepunch.revolution.min.js",
-              "src/app/shared/vendor/js/extensions/revolution.extension.actions.min.js",
-              "src/app/shared/vendor/js/extensions/revolution.extension.carousel.min.js",
-              "src/app/shared/vendor/js/extensions/revolution.extension.kenburn.min.js",
-              "src/app/shared/vendor/js/extensions/revolution.extension.layeranimation.min.js",
-              "src/app/shared/vendor/js/extensions/revolution.extension.migration.min.js",
-              "src/app/shared/vendor/js/extensions/revolution.extension.navigation.min.js",
-              "src/app/shared/vendor/js/extensions/revolution.extension.parallax.min.js",
-              "src/app/shared/vendor/js/extensions/revolution.extension.slideanims.min.js",
-              "src/app/shared/vendor/js/extensions/revolution.extension.video.min.js",
-              "src/app/shared/resume/js/map.js",
-              "src/app/shared/vendor/js/contact_us.js",
-              "src/app/shared/resume/js/script.js"
-            ]
+            "scripts": []
           }
         }
       }
