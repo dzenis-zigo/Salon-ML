@@ -49,15 +49,15 @@ export abstract class BaseHomeComponent {
     }
   }
 
-  saveAndUploadImage(item: Editable, event: any): void {
+  saveAndUploadImage(item: Editable, event: any, respectTransparency?: boolean): void {
     item.isEditing = false;
 
     // compression/resizing settings
     const config = {
-      quality: 0.5,
+      quality: 0.6,
       maxWidth: 400,
       debug: false,
-      mimeType: 'image/png'
+      mimeType: (respectTransparency === true) ? 'image/png' : 'image/jpeg'
     };
 
     const file: File = event.target.files[0];

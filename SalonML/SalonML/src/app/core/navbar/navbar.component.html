@@ -15,7 +15,7 @@
       <div *ngIf="isAdmin && logo.isEditing">
         <input type="file"
                class="file-upload"
-               (change)="saveAndUploadImage(logo, $event)">
+               (change)="saveAndUploadImage(logo, $event, true)">
       </div>
       <!-- Logout link -->
       <div>

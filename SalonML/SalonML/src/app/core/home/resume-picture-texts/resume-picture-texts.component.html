@@ -44,7 +44,7 @@
              type="file"
              style="width: 100%;"
              class="file-upload"
-             (change)="saveAndUploadImage(imageArray[i], $event)">
+             (change)="saveAndUploadImage(imageArray[i], $event, false)">
       <span data-depth="0.08"
             [ngClass]="{'right-box' : i % 2 === 1, 'left-box': i % 2 === 0}"
             class="scene">
