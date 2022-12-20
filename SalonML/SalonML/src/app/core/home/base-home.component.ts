@@ -54,7 +54,7 @@ export abstract class BaseHomeComponent {
 
     // compression/resizing settings
     const config = {
-      quality: 0.8,
+      quality: 0.6,
       maxWidth: 400,
       debug: false,
       mimeType: 'image/png'
