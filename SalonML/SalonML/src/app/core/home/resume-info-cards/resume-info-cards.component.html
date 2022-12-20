@@ -85,10 +85,11 @@
               </p>
               <mat-form-field *ngIf="isAdmin && bodyArray[0].isEditing"
                               class="small-input">
-                <input matInput autoFocus
-                       (focusout)="saveArrayChanges(bodyArray)"
-                       [(ngModel)]="bodyArray[0].text"
-                       placeholder="bodyArray: 0" />
+                <textarea matInput autoFocus
+                          cdkTextareaAutosize
+                          (focusout)="saveArrayChanges(bodyArray)"
+                          [(ngModel)]="bodyArray[0].text"
+                          placeholder="bodyArray: 0"></textarea>
               </mat-form-field>
             </div>
             <!-- Card -->
