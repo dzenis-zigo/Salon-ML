@@ -49,7 +49,7 @@ export abstract class BaseHomeComponent {
     }
   }
 
-  saveAndUploadImage(item: Editable, event: any, respectTransparency?: boolean): void {
+  saveAndUploadImage(item: Editable, event: any, respectTransparency: boolean, skipCompression?: boolean): void {
     item.isEditing = false;
 
     // compression/resizing settings
@@ -64,11 +64,16 @@ export abstract class BaseHomeComponent {
 
     var reader = new FileReader();
 
-    readAndCompressImage(file, config)
-      .then(resizedImage => {
-        // read blob
-        reader.readAsDataURL(resizedImage);
-      })
+    if (skipCompression === true) {
+      reader.readAsDataURL(file)
+    }
+    else {
+      readAndCompressImage(file, config)
+        .then(resizedImage => {
+          // read blob
+          reader.readAsDataURL(resizedImage);
+        });
+    }
 
     // finished reading blob
     reader.onload = (event: any) => {

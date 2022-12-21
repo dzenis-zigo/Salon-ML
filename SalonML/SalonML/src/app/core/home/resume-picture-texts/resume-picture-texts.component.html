@@ -33,22 +33,27 @@
   <!-- Image Area -->
   <div [ngClass]="{'order-lg-2 float-left': i % 2 === 1, 'float-right': i % 2 === 0}"
        class="col-lg-6">
-    <div class="slider-right">
-      <img *ngIf="!isAdmin || !imageArray[i].isEditing"
-           (click)="setIsEditingTrue(imageArray[i])"
+    <div *ngIf="!isAdmin || !imageArray[i].isEditing"
+         class="slider-right">
+      <img (click)="setIsEditingTrue(imageArray[i])"
            [src]="imageArray[i].data"
            data-depth="0.05"
            alt="side-image"
            class="scene">
-      <input *ngIf="isAdmin && imageArray[i].isEditing"
-             type="file"
-             style="width: 100%;"
-             class="file-upload"
-             (change)="saveAndUploadImage(imageArray[i], $event, false)">
       <span data-depth="0.08"
             [ngClass]="{'right-box' : i % 2 === 1, 'left-box': i % 2 === 0}"
             class="scene">
       </span>
+    </div>
+    <div *ngIf="isAdmin && imageArray[i].isEditing">
+      <mat-checkbox #clearText
+                    style="margin-bottom: 12px;">
+        Upload Image as Cleartext
+      </mat-checkbox>
+      <input type="file"
+             style="width: 100%;"
+             class="file-upload"
+             (change)="saveAndUploadImage(imageArray[i], $event, false, clearText.checked)">
     </div>
   </div>
 </ng-template>

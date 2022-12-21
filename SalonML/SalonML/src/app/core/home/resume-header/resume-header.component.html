@@ -50,9 +50,13 @@
       </div>
       <div *ngIf="isAdmin && image.isEditing"
            style="display: flex; flex-direction: column; margin: auto; margin-top: 32px;">
+        <mat-checkbox #clearText
+                      style="margin-bottom: 12px;">
+          Upload Image as Cleartext
+        </mat-checkbox>
         <input type="file"
                class="file-upload"
-               (change)="saveAndUploadImage(image, $event, false)">
+               (change)="saveAndUploadImage(image, $event, false, clearText.checked)">
       </div>
     </div>
   </div>

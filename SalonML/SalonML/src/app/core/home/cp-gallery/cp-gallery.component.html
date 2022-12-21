@@ -125,10 +125,14 @@
              (focusout)="saveImagePosition(imageArray, i, $event)"
              placeholder="image Position" />
     </mat-form-field>
+    <mat-checkbox #clearText
+                  style="margin-bottom: 12px;">
+      Upload Image as Cleartext
+    </mat-checkbox>
     <input type="file"
-           style="width: 100%;"
-           class="file-upload"
-           (change)="saveAndUploadImage(image, $event, false)">
+            style="width: 100%;"
+            class="file-upload"
+            (change)="saveAndUploadImage(image, $event, false, clearText.checked)">
     <button (click)="deleteImageFromArray(i)">
       Delete image
     </button>

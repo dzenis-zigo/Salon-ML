@@ -17,6 +17,7 @@ import { ResumePictureTextsComponent } from './resume-picture-texts/resume-pictu
 import { ReviewsComponent } from './reviews/reviews.component';
 import { TipsAndTricksComponent } from './tips-and-tricks/tips-and-tricks.component';
 import { SwiperModule } from 'swiper/angular';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SwiperModule } from 'swiper/angular';
     FormsModule,
     AngularMaterialModule,
     ReactiveFormsModule,
-    SwiperModule
+    SwiperModule,
+    MatCheckboxModule 
   ],
   providers: [
     InstagramDOMService
