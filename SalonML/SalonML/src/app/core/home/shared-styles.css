@@ -97,3 +97,11 @@ section {
 .scroll-top-arrow {
   background-color: #808080 !important;
 }
+
+.gallery-5 .item-overlay {
+  background-color: rgba(128, 128, 128, 0.8) !important;
+}
+
+.fa-2x {
+  color: #808080 !important;
+}
