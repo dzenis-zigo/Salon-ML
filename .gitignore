@@ -2,3 +2,4 @@
 *.vs
 obj
 bin
+/SalonML/SalonML_API/Properties/PublishProfiles/FolderProfile.pubxml.user

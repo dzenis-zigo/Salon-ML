@@ -2,9 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { catchError, map, Observable, of } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../auth/auth.service';
 import { BaseHomeComponent } from '../base-home.component';
 import { DynamicContentService, Editable } from '../dynamic-content.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-resume-contact-us',
@@ -34,7 +36,7 @@ export class ResumeContactUsComponent extends BaseHomeComponent implements OnIni
 
   constructor(protected override authService: AuthService,
               protected override dynContentService: DynamicContentService,
-              protected httpClient: HttpClient) {
+              protected http: HttpClient) {
     super(authService, dynContentService);
 
     this.form = new FormGroup({
@@ -89,7 +91,21 @@ export class ResumeContactUsComponent extends BaseHomeComponent implements OnIni
       this.submitButton.isEditing = true;
     }
     else {
-      // normal submit - tie in backend
+      const postUrl = environment.baseUrl + "api/ContactUs/SendEmail";
+      const postBody = {
+        name: this.form.controls['name'].value,
+        email: this.form.controls['email'].value,
+        message: this.form.controls['message'].value
+      };
+
+      this.http.post(postUrl, postBody)
+        .subscribe(result => {
+          Swal.fire(
+            'Email sent!',
+            'We will be in contact with you soon!',
+            'success'
+          )
+        });
     }
   }
 

@@ -25,6 +25,7 @@
     "browser-image-resizer": "^2.4.1",
     "jest-editor-support": "*",
     "rxjs": "~7.4.0",
+    "sweetalert2": "^11.6.16",
     "swiper": "^8.4.5",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
