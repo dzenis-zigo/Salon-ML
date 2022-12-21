@@ -184,7 +184,7 @@ ol, ul {
 .btn.btn-yellow {background:#f2c900; border-color: #FFFFFF; color: #fff;font-size: 15px;}
 .btn.btn-yellow:hover, .btn.btn-yellow:focus {border-color: #f2c900; background: #FFFFFF; color: #f2c900 !important;font-size: 15px;}
 .btn.btn-blue {background:#00bcd4; border-color: #FFFFFF; color: #fff;font-size: 15px;}
-.btn.btn-blue:hover, .btn.btn-blue:focus {background: #FFFFFF; color: #00bcd4 !important; border-color:#00bcd4; font-size: 15px;}
+.btn.btn-blue:hover, .btn.btn-blue:focus {background: #FFFFFF; color: #00bcd4; border-color:#00bcd4; font-size: 15px;} /*Removed !important from color here*/
 
 .btn.btn-drk-blue {background:#0284d0; border-color: #0284d0; color: #fff;font-size: 15px;}
 .btn.btn-drk-blue:hover, .btn.btn-drk-blue:focus {background: #39c5de; color: #FFFFFF !important; border-color:#39c5de; font-size: 15px;}

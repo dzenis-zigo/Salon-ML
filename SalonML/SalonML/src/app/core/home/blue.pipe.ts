@@ -25,8 +25,13 @@ export class BluePipe implements PipeTransform {
     if (value === "." && !this.isAdmin)
       return "";
 
+    value = value.replace(/{/gi, "<strong>");
+    value = value.replace(/}/gi, "</strong>");
+    /*
     value = value.replace(/{/gi, "<span class=\"main-color\">");
     value = value.replace(/}/gi, "</span>");
+    */
+
     return value;
   }
 }

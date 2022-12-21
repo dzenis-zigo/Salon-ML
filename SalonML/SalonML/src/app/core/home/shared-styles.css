@@ -43,3 +43,57 @@ p {
 section {
     background-color: white;
 }
+
+.slider-right span {
+  background-color: #808080 !important;
+}
+
+.feature-item > i {
+  background-color: #808080 !important;
+}
+
+.main-color {
+  color: #808080 !important;
+}
+
+.swiper-button-next, .swiper-button-prev {
+  color: #808080 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #808080 !important;
+}
+
+.shape-plus, .shape-plus:after {
+  background-color: #808080 !important;
+}
+
+.shape-triangle {
+  border-bottom-color: #808080 !important;
+}
+
+.shape-square {
+  background-color: #808080 !important;
+}
+
+.shape-circle {
+  border-color: #808080 !important;
+}
+
+.preloader .spinner div {
+  background: #808080 !important;
+}
+
+.btn.btn-blue {
+  background-color: #808080 !important;
+  border-color: #808080 !important;
+}
+
+.btn.btn-blue:hover, .btn.btn-blue:focus {
+  border-color: #808080 !important;
+  color: #808080 !important;
+}
+
+.scroll-top-arrow {
+  background-color: #808080 !important;
+}

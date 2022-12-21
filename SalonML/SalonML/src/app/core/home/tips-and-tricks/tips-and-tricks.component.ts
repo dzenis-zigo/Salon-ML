@@ -9,7 +9,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class TipsAndTricksComponent implements OnInit {
-  blueTextSentence = "Add {blue text} by surrounding text with curly braces - ";
+  blueTextSentence = "Add {bold text} by surrounding text with curly braces - ";
   brTag = "<br/>";
 
   constructor() { }
