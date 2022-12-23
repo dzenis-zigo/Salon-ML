@@ -32,7 +32,19 @@ export class DynamicContentService {
     else
       this.localizationValue = l10nVal;
 
-    this.fetchAndStoreDynamicContent(); //maybe call this something else
+    /*
+    // load test admin data
+    var testAdminData = localStorage.getItem(this.testAdminDataKey);
+    if (this.authService.isTestAdmin && testAdminData !== null) {
+      this.dynContentDtoDictionary = JSON.parse(testAdminData);
+      return;
+    */
+
+    // load smaller content at beginning of the page seperately
+    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContentAsList?substring=resume-header');
+    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContentAsList?substring=social-media');
+    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContentAsList?substring=resume-info-cards');
+    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContentAsList');
   }
 
   public getEditable(name: string): Editable {
@@ -175,23 +187,12 @@ export class DynamicContentService {
       });
   }
 
-  private fetchAndStoreDynamicContent(): void {
-    console.log("running fetchAndStoreDynamicContent (make sure not more than once)")
+  private fetchDynamicContentAndBuildDictionaries(url: string) {
 
-    // load test admin data
-    var testAdminData = localStorage.getItem(this.testAdminDataKey);
-    if (this.authService.isTestAdmin && testAdminData !== null) {
-      this.dynContentDtoDictionary = JSON.parse(testAdminData);
-      return;
-    }
-
-    var getUrl = this.url + 'GetList';
-
-    this.http.get<DynamicContentDTO[]>(getUrl)
-      .subscribe(result => { 
+    this.http.get<DynamicContentDTO[]>(url)
+      .subscribe(result => {
         // build our dynContentDtoDictionary
         result.forEach((dto: DynamicContentDTO) => {
-          // if there is name corresponds to an array
           if (dto.name.includes("array")) {
             if (this.dynContentDtoArrayDictionary[dto.name] == null)
               this.dynContentDtoArrayDictionary[dto.name] = new Array();
@@ -201,14 +202,15 @@ export class DynamicContentService {
           else {
             this.dynContentDtoDictionary[dto.name] = dto;
           }
-
         });
 
         // set new test admin data
+        /*
         if (this.authService.isTestAdmin && testAdminData === null)
           localStorage.setItem(
             this.testAdminDataKey,
             JSON.stringify(this.dynContentDtoDictionary));
+        */
 
         this.onNewDataLoaded.next(this.localizationValue);
       });
