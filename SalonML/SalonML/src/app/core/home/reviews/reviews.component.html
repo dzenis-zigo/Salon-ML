@@ -38,7 +38,7 @@
           <img [src]="review.data">
           <h4 class="user-name"
               [innerHtml]="review.caption | blue"></h4>
-          <img src="/assets/custom/5-stars.png" class="star-img" />
+          <img src="/assets/custom/5-stars.png" class="star-img" loading="lazy" />
           <p [innerHtml]="review.text | blue">
           </p>
         </div>
@@ -77,9 +77,9 @@
         <p class="footer-rating"
            [innerHtml]="totalRating.text">
         </p>
-        <img src="/assets/custom/4.5-stars.png" class="star-img" />
+        <img src="/assets/custom/4.5-stars.png" class="star-img" loading="lazy" />
       </div>
-      <img src="/assets/custom/google-logo.png" class="g-logo-img" />
+      <img src="/assets/custom/google-logo.png" class="g-logo-img" loading="lazy" />
       <p class="footer-count"
          [innerHtml]="totalCount.text">
       </p>
