@@ -1,10 +1,11 @@
+/*
 $(window).on("load", function () {
 
     "use strict";
 
     /* ===================================
             Loading Timeout
-     ====================================== */
+     ====================================== 
 
     $('.side-menu').removeClass('hidden');
 
@@ -13,7 +14,7 @@ $(window).on("load", function () {
     }, 1000);
 
 });
-
+*/
 
 jQuery(function ($) {
 
