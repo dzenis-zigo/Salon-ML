@@ -57,7 +57,7 @@ export class DynamicContentService {
   public getEditableArray(name: string): Editable[] {
     var dtoArray = this.dynContentDtoArrayDictionary[name];
     if (!dtoArray)
-      return [];
+      return <Editable[]>[{}, {}, {}];
 
     var editableArray: Editable[] = new Array();
 
@@ -68,6 +68,9 @@ export class DynamicContentService {
   }
 
   private generateEditable(dto: DynamicContentDTO): Editable {
+    if (dto == undefined)
+      return <Editable>{};
+
     var text = (this.localizationValue === "en") ?
       dto.textEnglish :
       dto.textBosnian
