@@ -139,7 +139,7 @@ namespace SalonML_API.Controllers
         
         // return a list of every DynamicContent
         [HttpGet]
-        public async Task<IActionResult> GetContentAsList(string? substring)
+        public async Task<IActionResult> GetContent(string? substring)
         {
             // ** todo get this to order by OrderIndex **
             List<DynamicContentDTO> dynContentList;
@@ -152,6 +152,8 @@ namespace SalonML_API.Controllers
             else
                 dynContentList = await _context.DynamicContents
                     .OrderBy(x => x.OrderIndex)
+                    //.Where(i => strArray.Any(i.Name.Contains))
+                    //.Where(i => strArray.Any(s => i.Name.Contains(s)))
                     .Where(i => i.Name.Contains(substring))
                     .Select(d => new DynamicContentDTO(d))
                     .ToListAsync();

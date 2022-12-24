@@ -41,11 +41,10 @@ export class DynamicContentService {
     */
 
     // load smaller content at beginning of the page seperately
-    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContentAsList?substring=navbar');
-    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContentAsList?substring=resume-header');
-    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContentAsList?substring=social-media');
-    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContentAsList?substring=resume-info-cards');
-    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContentAsList');
+    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContent?substring=navbar');
+    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContent?substring=resume-header');
+    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContent?substring=social-media');
+    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContent');
   }
 
   public getEditable(name: string): Editable {
