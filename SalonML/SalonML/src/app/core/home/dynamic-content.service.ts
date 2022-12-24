@@ -41,6 +41,7 @@ export class DynamicContentService {
     */
 
     // load smaller content at beginning of the page seperately
+    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContentAsList?substring=navbar');
     this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContentAsList?substring=resume-header');
     this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContentAsList?substring=social-media');
     this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContentAsList?substring=resume-info-cards');
