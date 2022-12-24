@@ -108,15 +108,4 @@ $('.home-banner').mousemove(function(e) {
     });
 });
 
-    /* =====================================
-          Parallax
-       ====================================== */
-
-    if ($(window).width() > 992) {
-        $(".parallax").parallaxie({
-            speed: 0.55,
-            offset: 0,
-        });
-    }
-
 });
