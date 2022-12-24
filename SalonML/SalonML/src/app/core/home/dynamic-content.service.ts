@@ -41,10 +41,10 @@ export class DynamicContentService {
     */
 
     // load smaller content at beginning of the page seperately
-    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContent?substring=navbar');
-    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContent?substring=resume-header');
-    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContent?substring=social-media');
-    this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContent');
+    var onFetchCompleted = this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContent?getBeginningContent=true');
+    onFetchCompleted.subscribe(() => {
+      this.fetchDynamicContentAndBuildDictionaries(this.url + 'GetContent');
+    });
   }
 
   public getEditable(name: string): Editable {
@@ -191,11 +191,15 @@ export class DynamicContentService {
   }
 
   private fetchDynamicContentAndBuildDictionaries(url: string) {
+    var onFetchCompleted = new Subject<void>();
 
     this.http.get<DynamicContentDTO[]>(url)
       .subscribe(result => {
         // build our dynContentDtoDictionary
         result.forEach((dto: DynamicContentDTO) => {
+          onFetchCompleted.next();
+          onFetchCompleted.complete();
+
           if (dto.name.includes("array")) {
             if (this.dynContentDtoArrayDictionary[dto.name] == null)
               this.dynContentDtoArrayDictionary[dto.name] = new Array();
@@ -217,6 +221,8 @@ export class DynamicContentService {
 
         this.onNewDataLoaded.next(this.localizationValue);
       });
+
+    return onFetchCompleted;
   }
 }
 

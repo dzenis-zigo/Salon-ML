@@ -136,15 +136,15 @@ namespace SalonML_API.Controllers
 
             return Ok();
         }
-        
+
         // return a list of every DynamicContent
         [HttpGet]
-        public async Task<IActionResult> GetContent(string? substring)
+        public async Task<IActionResult> GetContent(bool? getBeginningContent = false)
         {
             // ** todo get this to order by OrderIndex **
             List<DynamicContentDTO> dynContentList;
 
-            if (string.IsNullOrEmpty(substring))
+            if (getBeginningContent == false)
                 dynContentList = await _context.DynamicContents
                     .OrderBy(x => x.OrderIndex)
                     .Select(d => new DynamicContentDTO(d))
@@ -154,7 +154,11 @@ namespace SalonML_API.Controllers
                     .OrderBy(x => x.OrderIndex)
                     //.Where(i => strArray.Any(i.Name.Contains))
                     //.Where(i => strArray.Any(s => i.Name.Contains(s)))
-                    .Where(i => i.Name.Contains(substring))
+                    //.Where(c => EF.Functions.Like(c.Name, "resume-header%"))
+                    .Where(i => i.Name.Contains("resume-header") ||
+                                i.Name.Contains("navbar") ||
+                                i.Name.Contains("social-media") ||
+                                i.Name.Contains("resume-info-cards"))
                     .Select(d => new DynamicContentDTO(d))
                     .ToListAsync();
 
