@@ -147,6 +147,10 @@ namespace SalonML_API.Controllers
                 dynContentList = await _context.DynamicContents
                     .OrderBy(x => x.OrderIndex)
                     .Select(d => new DynamicContentDTO(d))
+                    .Where(i => !i.Name.Contains("resume-header") &&
+                                !i.Name.Contains("navbar") &&
+                                !i.Name.Contains("social-media") &&
+                                !i.Name.Contains("resume-info-cards"))
                     .ToListAsync();
             else
                 dynContentList = await _context.DynamicContents
