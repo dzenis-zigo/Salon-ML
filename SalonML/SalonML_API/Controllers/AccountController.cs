@@ -65,19 +65,6 @@ namespace SalonML_API.Controllers
             // TODO change expiration time
             var token = await _userManager.GeneratePasswordResetTokenAsync(user); // token is crazy long
 
-            /* TODO deleteme
-            // create token in DB
-            ResetPasswordToken resetPasswordToken = new ResetPasswordToken()
-            {
-                GuidToken = new Guid(),
-                Email = forgotPasswordRequest.Email,
-                ExpirationDateTime = DateTime.UtcNow.AddDays(
-                    int.Parse(_config["ResetPasswordTokenLifetimeInDays"]))
-            };
-            _context.ResetPasswordTokens.Add(resetPasswordToken);
-            await _context.SaveChangesAsync();
-            */
-
             // fire and forget to lower server response time (and prevent timing attacks)
             _emailHandler.SendPasswordResetLink(forgotPasswordRequest.Email, user.Id, token);
 
@@ -99,7 +86,7 @@ namespace SalonML_API.Controllers
         private async Task<string> GenerateTokenAsync(ApplicationUser user)
         {
             var jwtOptions = new JwtSecurityToken(
-                issuer: _config["JwtSettings:Issuer"], //TODO verify iss and aud was done correctly
+                issuer: _config["JwtSettings:Issuer"],
                 audience: _config["JwtSettings:Audience"],
                 claims: await GetClaimsAsync(user),
                 expires: DateTime.Now.AddHours(

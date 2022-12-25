@@ -40,7 +40,6 @@ namespace SalonML_API.Data
 
         public string? ImageUrl { get; set; }
 
-        // todo check if this should be string
         public string? ImageData { get; set; }
 
         public string? IconValue { get; set; }

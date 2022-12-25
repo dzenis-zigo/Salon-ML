@@ -51,8 +51,8 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.tokenKey);
-    this.isLoggedIn = false; // probably don't need this (todo)
-    this.isTestAdmin = false; // idk if need this
+    this.isLoggedIn = false;
+    this.isTestAdmin = false;
   }
 
   loginTestAdmin(): void {
@@ -75,5 +75,3 @@ export interface LoginResult {
   success: boolean;
   token?: string;
 }
-
-//todo handle token expiration

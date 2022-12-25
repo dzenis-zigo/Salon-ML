@@ -30,7 +30,6 @@ namespace SalonML_API.Data.Models
         public string? ImageUrl { get; set; }
 
         [Column(TypeName = "varbinary(max)")]
-        // todo check if this should be string
         public string? ImageData { get; set; }
 
         [Column(TypeName = "varchar(100)")]

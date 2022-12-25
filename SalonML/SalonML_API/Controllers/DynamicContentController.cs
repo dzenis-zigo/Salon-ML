@@ -141,7 +141,6 @@ namespace SalonML_API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetContent(bool? getBeginningContent = false)
         {
-            // ** todo get this to order by OrderIndex **
             List<DynamicContentDTO> dynContentList;
 
             if (getBeginningContent == false)

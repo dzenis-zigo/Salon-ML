@@ -19,7 +19,6 @@ export class HomeComponent extends BaseHomeComponent implements OnInit {
               protected override dynContentService: DynamicContentService) {
     super(authService, dynContentService);
 
-    // todo get rid of this
     if (this.router.url === "/admin-test") {
       authService.loginTestAdmin();
 

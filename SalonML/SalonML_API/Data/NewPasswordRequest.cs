@@ -2,7 +2,6 @@
 
 namespace SalonML_API.Data
 {
-    // TODO suffix all these with DTO?
     public class NewPasswordRequest
     {
         [Required(ErrorMessage = "UserId is required.")]

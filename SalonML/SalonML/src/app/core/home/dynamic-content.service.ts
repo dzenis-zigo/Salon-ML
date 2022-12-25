@@ -78,7 +78,6 @@ export class DynamicContentService {
       dto.imageCaptionEnglish :
       dto.imageCaptionBosnian
 
-    // todo might not work for png
     var data = undefined;
     if (dto.imageData != '')
       data = "data:image/png;base64," + dto.imageData;
@@ -233,7 +232,7 @@ export interface Editable {
   text: string;
   caption: string;
   url?: string;
-  data?: any; // todo figure out type for byte array
+  data?: any;
   iconValue?: string;
 }
 
@@ -245,7 +244,7 @@ interface DynamicContentDTO {
   imageCaptionEnglish?: string;
   imageCaptionBosnian?: string;
   imageUrl?: string;
-  imageData?: any; // todo figure out type for byte array
+  imageData?: any;
   iconValue?: string;
 }
 
