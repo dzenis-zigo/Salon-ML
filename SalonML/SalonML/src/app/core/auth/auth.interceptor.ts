@@ -27,12 +27,16 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((error) => {
         // If token is invalid (such as being expired) then do a logout (remove the token)
         if (error instanceof HttpErrorResponse && error.status === 401) {
-          this.authService.logout();
-          this.router.navigate(['/login']).then(() => {
-            window.location.reload();
-          });
+          // expect 401 errors in test admin mode
+          if (!this.authService.isTestAdmin) {
+            this.authService.logout();
+            this.router.navigate(['/login']).then(() => {
+              window.location.reload();
+            });
+            return throwError(error);
+          }
         }
-        return throwError(error);
+        return throwError("Test admin save ocurred - 401 is expected");
       })
     );
   }
