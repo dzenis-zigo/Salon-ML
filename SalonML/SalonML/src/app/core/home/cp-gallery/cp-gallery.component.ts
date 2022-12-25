@@ -32,6 +32,9 @@ export class CpGalleryComponent extends BaseHomeComponent implements OnInit {
   }
 
   addImage() {
+    if (this.authService.isTestAdmin)
+      console.log("Could not add new image - result from ASP.NET CreateItem method is needed");
+
     var onImageCreate: Subject<void> = this.dynContentService.addBlankItemToArray("cp-gallery-image-array");
 
     onImageCreate.subscribe(() => {

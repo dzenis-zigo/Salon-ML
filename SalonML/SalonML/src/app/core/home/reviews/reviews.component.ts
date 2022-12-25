@@ -77,6 +77,9 @@ export class ReviewsComponent extends BaseHomeComponent implements OnInit {
   }
 
   addReview() {
+    if (this.authService.isTestAdmin)
+      console.log("Could not add new review - a result from ASP.NET CreateItem method is needed");
+
     if (this.localizationValue === "en") {
       this.dynContentService
         .addBlankItemToArray("reviews-english-array", false, true, true)

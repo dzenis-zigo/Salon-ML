@@ -36,7 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
             return throwError(error);
           }
         }
-        return throwError("Test admin save ocurred - 401 is expected");
+        return throwError("An expected 401 was received in test admin mode");
       })
     );
   }

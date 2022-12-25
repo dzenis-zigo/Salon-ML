@@ -56,6 +56,9 @@ export class ResumePictureTextsComponent extends BaseHomeComponent implements On
   }
 
   addSection() {
+    if (this.authService.isTestAdmin)
+      console.log("Could not add new section - result(s) from ASP.NET CreateItem method is needed");
+
     var onSubtitleCreate: Subject<void> = this.dynContentService.addBlankItemToArray("resume-picture-texts-subtitle-array", true);
     var onTitleCreate: Subject<void> = this.dynContentService.addBlankItemToArray("resume-picture-texts-title-array", true);
     var onDescriptionCreate: Subject<void> = this.dynContentService.addBlankItemToArray("resume-picture-texts-description-array", false, true);
