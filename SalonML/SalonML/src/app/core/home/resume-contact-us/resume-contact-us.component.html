@@ -129,7 +129,7 @@
               <!-- Value -->
               <a *ngIf="!isAdmin || !infoBoxValueArray[i].isEditing"
                  [href]="getHref(i)"
-                 (click)="setIsEditingTrue(infoBoxValueArray[i])"
+                 (click)="onClickLink(infoBoxValueArray[i], $event)"
                  [innerHtml]="infoBoxValueArray[i].text | blue">
               </a>
               <mat-form-field *ngIf="isAdmin && infoBoxValueArray[i].isEditing"

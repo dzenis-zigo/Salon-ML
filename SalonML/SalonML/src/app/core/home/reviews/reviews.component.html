@@ -70,8 +70,8 @@
     <!--Footer (default)-->
     <a *ngIf="!isAdmin || !totalRating.isEditing"
        class="review-footer"
-       [href]="isAdmin ? noHrefActionString : 'https://goo.gl/maps/YUcgrAFqhDDT7ArY8'"
-       (click)="setIsEditingTrue(totalRating)"
+       href="https://goo.gl/maps/YUcgrAFqhDDT7ArY8"
+       (click)="onClickLink(totalRating, $event)"
        style="cursor: pointer;">
       <div class="rating-box">
         <p class="footer-rating"

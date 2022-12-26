@@ -17,7 +17,7 @@ SwiperCore.use([Pagination, Navigation]);
   encapsulation: ViewEncapsulation.None
 })
 export class ReviewsComponent extends BaseHomeComponent implements OnInit {
-  noHrefActionString = "javascript:;\"";
+
   subtitle: Editable = <Editable>{};
   title: Editable = <Editable>{};
   reviewArray: Editable[] = <Editable[]>[];

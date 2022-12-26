@@ -110,11 +110,6 @@ export class ResumeContactUsComponent extends BaseHomeComponent implements OnIni
   }
 
   getHref(index: number): string {
-    const noHrefActionString = "javascript:;\"";
-
-    if (this.isAdmin)
-      return noHrefActionString;
-
     if (index === 0)
       return "https://goo.gl/maps/YUcgrAFqhDDT7ArY8";
     else if (index === 1)

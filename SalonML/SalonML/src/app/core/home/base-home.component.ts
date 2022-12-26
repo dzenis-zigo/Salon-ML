@@ -82,4 +82,12 @@ export abstract class BaseHomeComponent {
       this.dynContentService.saveEditable(item);
     };
   }
+
+  onClickLink(item: Editable, event: any) {
+    if (this.isAdmin) {
+      event.preventDefault();
+
+      this.setIsEditingTrue(item);
+    }
+  }
 }
