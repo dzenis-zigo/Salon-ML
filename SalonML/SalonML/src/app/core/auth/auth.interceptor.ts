@@ -29,7 +29,8 @@ export class AuthInterceptor implements HttpInterceptor {
         if (error instanceof HttpErrorResponse && error.status === 401) {
           // expect 401 errors in test admin mode
           if (this.authService.isTestAdmin)
-            return throwError("An expected 401 was received in test admin mode");
+            // suppress excessive error messages in the console
+            return new Observable<never>();
           else {
             this.authService.logout();
             this.router.navigate(['/login']).then(() => {
