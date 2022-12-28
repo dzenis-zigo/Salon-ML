@@ -5,10 +5,10 @@ import { BaseHomeComponent } from '../base-home.component';
 import { DynamicContentService, Editable } from '../dynamic-content.service';
 
 // import Swiper core and required modules
-import SwiperCore, { Pagination, Navigation } from "swiper";
+import SwiperCore, { Pagination, Navigation, Autoplay } from "swiper";
 
 // install Swiper modules
-SwiperCore.use([Pagination, Navigation]);
+SwiperCore.use([Pagination, Navigation, Autoplay]);
 
 @Component({
   selector: 'app-reviews',
@@ -28,6 +28,9 @@ export class ReviewsComponent extends BaseHomeComponent implements OnInit {
   swiperConfig: any = {
     slidesPerView: 1,
     spaceBetween: 25,
+    autoplay: {
+      delay: 3000
+    },
     pagination: {
       clickable: true
     },
