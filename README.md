@@ -1,15 +1,11 @@
 ﻿# Update
-This full-stack project was changed to a static website in order to reduce yearly server costs down from ~$50 to $0 (it is now being hosted for free by [GitHub Pages](https://pages.github.com/)). As it is now a static website, the CMS (Content Management System) features are gone.
+This full-stack project was changed to a **static website** in order to reduce yearly server costs down from ~$50 to $0 (**it is now being hosted for free** by [GitHub Pages](https://pages.github.com/)). As it is now a **static website**, the CMS (Content Management System) features are gone.
 
-### (Old) Project Description
-
+#### (Old) Project Description:
 The main idea behind this project is that it is an alternative to the traditional CMS (Content Management System). Much like a standard CMS, the client has control over the text and images, but in this case they exercise changes by simply clicking on the text or image and editing it from a quick popup.
-
 Visit the website at ~~[https://salonmlsarajevo.com/admin-test](https://salonmlsarajevo.com/admin-test)~~ and click around to emulate being the admin. Using the preceding link sets an invalid token in local storage - allowing you to pretend to be an admin on the front end, but not allowing any changes to occur in the backend (you will receive expected 401 responses). Be sure to check the ~~["Tips and Tricks"](https://salonmlsarajevo.com/tips-and-tricks)~~ in the footer for more information.
-
 Credit for this project goes to [this book author](https://www.amazon.com/ASP-NET-Core-Angular-Full-stack-development/dp/1803239700) and [this template creator](https://themeforest.net/item/megaone-one-page-parallax/25651324)
-
-Technologies used include [Angular 14](https://angular.dev/) and [ASP.NET 6](https://learn.microsoft.com/en-us/aspnet/overview). In addition, for the backend database, [Entity Framework](https://learn.microsoft.com/en-us/aspnet/entity-framework), [SQL Server Express](https://www.microsoft.com/en-us/sql-server/), and [SQL Server Management Studio](https://learn.microsoft.com/en-us/ssms/install/install) are used. Finally, [Nginx](https://nginx.org/) is used as the HTTP web server.
+Technologies used include Angular 14 and ASP.NET 6. In addition, for the backend database, Entity Framework, SQL Server Express, and SQL Server Management Studio are used. Finally, Nginx is used as the HTTP web server.
 
 # System Installation Instructions
 
